@@ -1,0 +1,261 @@
+{
+ "slug": "sorcier",
+ "nom": "Sorcier",
+ "famille": "mages",
+ "description": "Le sorcier est un lanceur de sorts qui s’intéresse aux forces obscures et au pouvoir de la mort. Parfois nommés nécromanciens ou démonistes, les sorciers sont généralement considérés comme maléfiques et sont peu appréciés. Toutefois, cela dépend des cultures : après tout, est-il plus maléfique de vider un ennemi de son sang que de le découper à coup de hache ou de le carboniser à coup de Explosion de feu ? C’est une des questions que soulève le sorcier ! Interprétez-le de façon subtile afin d’en faire un personnage plutôt sombre ou désespéré, mais pas nécessairement « mauvais ».",
+ "pvText": "Points de vigueur au niveau 1 : 6 + CON · Points de vigueur / niveau : 3 · Dé de récupération : d6 · Points de chance : 2 + CHA · +1 capacité de rang 2 à la création du personnage · Accès à la voie du mage en remplacement de la voie de peuple.",
+ "armesArmures": "Le sorcier sait manier la dague et le bâton.\nLes voies de sorcier interdisent de porter une armure ou d’utiliser un bouclier.",
+ "equipementTexte": "Bâton ferré (DM 1d6), dague (DM 1d4), grimoire de sorts ou parchemins anciens.",
+ "voies": [
+  {
+   "slug": "voie-du-demon",
+   "nom": "Voie du démon",
+   "capacites": [
+    {
+     "rang": 1,
+     "titre": "Malédiction",
+     "tags": [
+      "M",
+      "L"
+     ],
+     "sort": true,
+     "texte": "Le sorcier effectue un test opposé d’attaque magique contre une cible à moins de 20 m. En cas de succès, si l’incantation était une action de mouvement (M), la victime subit un dé malus à son prochain test. Si l’incantation était une action limitée (L), le dé malus s’applique à ses 3 prochains tests. Dans tous les cas, la cible ne peut subir les effets de ce sort qu’une fois par combat."
+    },
+    {
+     "rang": 2,
+     "titre": "Beauté de la succube",
+     "tags": [
+      "L"
+     ],
+     "sort": true,
+     "texte": "Le sorcier acquiert une beauté fascinante pour INT minutes. Il gagne un dé bonus aux tests de CHA ainsi qu’une attaque de contact nécessitant un test d’attaque magique (contre DEF, action d’attaque), qui inflige [1d4°+INT] DM. Le sorcier récupère autant de PV (sans dépasser son maximum de PV) que la cible en a perdu."
+    },
+    {
+     "rang": 3,
+     "titre": "Pacte démoniaque",
+     "tags": [
+      "G"
+     ],
+     "sort": false,
+     "texte": "Le sorcier sacrifie 1d4° PV et gagne immédiatement +INT sur le résultat d’un d20 qu’il vient de lancer ou en DEF contre une attaque (avant de savoir si une attaque touche). De plus, il ajoute désormais sa VOL au nombre de dés de récupération (DR) qu’il possède."
+    },
+    {
+     "rang": 4,
+     "titre": "Aspect du démon",
+     "tags": [
+      "A"
+     ],
+     "sort": true,
+     "texte": "Le sorcier prend l’apparence d’un démon ailé pendant INT minutes. Il gagne un dé bonus en attaque au contact et +5 en DEF et à tous les tests physiques (FOR, AGI, CON), mais il ne peut pas utiliser d’arme (ni les arts martiaux). Il peut faire deux attaques de griffes à [1d4°+INT] DM à chaque tour, en action limitée (une seule en action d’attaque) et il peut voler de 10 m par action de mouvement.\nNote : Ne se cumule pas avec la Beauté de la succube."
+    },
+    {
+     "rang": 5,
+     "titre": "Invocation d'un démon",
+     "tags": [
+      "L"
+     ],
+     "sort": true,
+     "texte": "En sacrifiant 1d4° PV, le sorcier invoque un démon à son service pour INT minutes. Ce démon possède l’apparence d’un humanoïde musclé d’environ 2,30 m doté d’une épée et d’ailes de chauve-souris. Le démon divise par deux tous les DM non magiques subis, les sorts et les armes magiques lui infligent des DM normaux. Il est capable de voler à une vitesse équivalente à un déplacement normal. Lorsque le sorcier atteint le niveau 15, le démon devient capable d’attaquer deux fois à son tour, au prix d’une action limitée.\nDémon : AGI +2 ; CON +4 ; FOR +5 ; PER +2 ; CHA +0 ; INT +2 ; VOL +4 ;\nDEF 18 PV [niv. du sorcier × 5] Init. [Init. du sorcier]\nAttaque au contact [attaque magique du sorcier] · DM 2d4° + 5"
+    }
+   ]
+  },
+  {
+   "slug": "voie-de-la-mort",
+   "nom": "Voie de la mort",
+   "capacites": [
+    {
+     "rang": 1,
+     "titre": "Siphon des âmes",
+     "tags": [],
+     "sort": false,
+     "texte": "Une fois par round, lorsqu’une créature humanoïde vivante meurt à moins de 20 m du sorcier, il récupère NC PV (arrondis à 1 pour NC ½). À partir du rang 3, si la créature est de NC supérieur à 4, il peut choisir de récupérer 1 PM au lieu des PV."
+    },
+    {
+     "rang": 2,
+     "titre": "Masque mortuaire",
+     "tags": [
+      "M"
+     ],
+     "sort": true,
+     "texte": "Le sorcier prend l’apparence de la mort pendant INT minutes. Il est alors considéré non-vivant et devient immunisé à la plupart des pouvoirs des morts-vivants (drain de vigueur et affaiblissement, paralysie de la goule, etc.). De plus, ceux-ci le prennent pour l’un des leurs. Il divise par deux tous les DM de froid. Il ne peut pas bénéficier de soins tant qu’il est sous l’effet de ce sort.\nNote : Les créatures non vivantes sont infatigables, ne respirent pas et sont immunisées aux maladies, aux poisons et à la plupart des attaques qui demandent un test de CON. Elles voient dans le noir comme dans de la pénombre à une distance de 30 m."
+    },
+    {
+     "rang": 3,
+     "titre": "Baiser du vampire",
+     "tags": [
+      "A"
+     ],
+     "sort": true,
+     "texte": "Ce sort nécessite la réussite d’un test opposé d’attaque magique (portée 30 m). La victime subit [2d4°+INT] DM et le sorcier récupère autant de PV (sans dépasser son maximum de PV)."
+    },
+    {
+     "rang": 4,
+     "titre": "Peur",
+     "tags": [
+      "A",
+      "L"
+     ],
+     "sort": true,
+     "texte": "Le sorcier effectue un test opposé d’attaque magique contre une cible (portée 20 m). S’il l’emporte, la victime fuit aussi loin du sorcier que possible pendant INT rounds (il lui faut généralement autant de temps pour revenir!). Les créatures dont le NC est supérieur ou égal au niveau du sorcier ne fuient qu’un seul round. Le sorcier peut choisir de lancer ce sort en action limitée et toutes les créatures à son contact sont affectées (faire un test d’attaque magique par adversaire)."
+    },
+    {
+     "rang": 5,
+     "titre": "Briser les cœurs",
+     "tags": [
+      "A"
+     ],
+     "sort": true,
+     "texte": "Le sorcier fait mine d’arracher le cœur de sa victime, puis de broyer dans sa main (l’image du cœur de la victime apparaît dans la main du sorcier). Il doit faire un test opposé d’attaque magique contre une cible vivante (portée 20 m) et, en cas de réussite, il inflige [5d4°+INT] DM, la moitié en cas de test raté. Ce sort ne peut affecter une même cible qu’une seule fois par combat."
+    }
+   ]
+  },
+  {
+   "slug": "voie-de-l-outre-tombe",
+   "nom": "Voie de l'outre-tombe",
+   "capacites": [
+    {
+     "rang": 1,
+     "titre": "Un pied dans la tombe",
+     "tags": [
+      "A"
+     ],
+     "sort": true,
+     "texte": "Le sorcier désigne une cible vivante à portée (10 m) et doit réussir un test opposé d’attaque magique. En cas de succès, la cible ressent une douleur intense à l’emplacement du cœur, elle subit [1d4°+INT] DM et, si elle rate un test de CON difficulté 10, l’état ralenti durant 1 round."
+    },
+    {
+     "rang": 2,
+     "titre": "Armure d'os",
+     "tags": [],
+     "sort": false,
+     "texte": "Le sorcier peut désormais porter une armure d’os (souvent camouflée sous une robe) qui lui offre un bonus de +3 en DEF et n’empêche pas l’utilisation des capacités de sorcier. Son bonus de DEF augmente de +1 chaque fois que le personnage atteint le rang 4 dans une voie de sorcier. Le sorcier doit confectionner cette armure lui-même à partir d’ossements et l’entretenir par magie 10 min chaque jour."
+    },
+    {
+     "rang": 3,
+     "titre": "Animation des morts",
+     "tags": [
+      "L"
+     ],
+     "sort": true,
+     "texte": "Le sorcier anime le cadavre d’un humanoïde de taille moyenne, décédé depuis moins d’INT jours. Le zombie comprend les ordres « Attaquer », « Suivre », « Garder » et « Pas bouger ». Le sorcier peut contrôler un seul zombie, plus un zombie chaque fois qu’il atteint le rang 5 dans une voie de sorcier. Un zombie réduit à 0 PV tombe en poussière.\nZombie : AGI -1 ; CON +1 ; FOR +2 ; PER -2 ; CHA -4 ; INT -4 ; VOL +6 ;\nDEF 10 PV [10 + niveau] Init. 8\nAttaque au contact [attaque magique du sorcier] · DM 1d4° + 2\nLe zombie se déplace de 5 m par action de mouvement."
+    },
+    {
+     "rang": 4,
+     "titre": "Ensevelissement",
+     "tags": [
+      "L"
+     ],
+     "sort": true,
+     "texte": "Une fois par combat, si le sorcier réussit un test opposé d’attaque magique (portée 20 m), des mains squelettiques surgissent sous les pieds d’une cible de taille moyenne ou inférieure et l’enterrent vivante. Tant qu’elle est ensevelie, elle subit 2d4° DM par round, ne peut agir ni être la cible d’attaques extérieures. À son tour, elle peut tenter de sortir de terre en réussissant un test de FOR ou d’AGI (au choix de la cible) difficulté 15 au prix d’une action limitée. Si elle tombe à 0 PV, elle reste enterrée et décède au tour suivant. Chaque personne qui creuse pour l’aider lui octroie un bonus de +2 sur son test (maximum +10)."
+    },
+    {
+     "rang": 5,
+     "titre": "Armée des morts",
+     "tags": [
+      "L"
+     ],
+     "sort": true,
+     "texte": "Une fois par jour, le sorcier peut invoquer d’innombrables squelettes qui émergent du sol pour attaquer ses ennemis pendant [niveau du sorcier] rounds. Tous les adversaires situés dans un rayon de 10 m autour du sorcier subissent automatiquement 2d4° DM par round. Les squelettes se déplacent avec le sorcier, mais tous les déplacements dans cette zone (même ceux du sorcier) sont divisés par deux."
+    }
+   ]
+  },
+  {
+   "slug": "voie-du-sang",
+   "nom": "Voie du sang",
+   "capacites": [
+    {
+     "rang": 1,
+     "titre": "Saignements",
+     "tags": [
+      "A"
+     ],
+     "sort": true,
+     "texte": "Le sorcier doit réussir un test d’attaque magique (portée 10 m) contre une difficulté de [10 + CON de la cible]. Du sang s’écoule de la bouche, du nez, des oreilles et même des yeux de la victime, qui subit 1d4° DM par round pendant INT rounds."
+    },
+    {
+     "rang": 2,
+     "titre": "Sang mordant",
+     "tags": [
+      "M"
+     ],
+     "sort": true,
+     "texte": "Pendant INT minutes, le sang du sorcier se transforme en un acide qui gicle lorsqu’il subit une blessure. Chaque fois qu’un ennemi au contact le blesse, ce dernier subit 1d4° DM d’acide."
+    },
+    {
+     "rang": 3,
+     "titre": "Exsangue",
+     "tags": [],
+     "sort": false,
+     "texte": "Le corps du sorcier devient cadavérique. Il gagne +2 en DEF et ce bonus passe à +3 au rang 5 (Si le personnage porte une armure autre qu’une armure d’os de sorcier, le bonus est réduit de 1 point, donc +1 DEF et +2 DEF au rang 5). De plus, lorsqu’il tombe à 0 PV, il peut continuer à agir, mais avec un dé malus à tous ses tests. S’il subit encore au moins 1 DM, il sombre dans l’inconscience."
+    },
+    {
+     "rang": 4,
+     "titre": "Rituel du sang",
+     "tags": [
+      "A"
+     ],
+     "sort": true,
+     "texte": "Le sorcier s’ouvre les veines et sacrifie 1d4° PV pour cibler une créature vivante (portée 20 m), la victime saigne à la moindre blessure. Tous les DM infligés à la cible par des armes tranchantes ou perçantes (griffes et crocs inclus) augmentent de +1d4° pendant INT rounds."
+    },
+    {
+     "rang": 5,
+     "titre": "Lien de sang",
+     "tags": [
+      "A"
+     ],
+     "sort": true,
+     "texte": "En réussissant un test opposé d’attaque magique (portée 20 m), le sorcier tisse un lien avec sa victime. Pendant INT minutes, la moitié des DM reçus par le sorcier sont également subis par la cible (les DM infligés au sorcier ne sont pas pour autant réduits) et le sorcier peut lui lancer un sort sans la voir (si elle est à portée)."
+    }
+   ]
+  },
+  {
+   "slug": "voie-de-la-sombre-magie",
+   "nom": "Voie de la sombre magie",
+   "capacites": [
+    {
+     "rang": 1,
+     "titre": "Ténèbres",
+     "tags": [
+      "L"
+     ],
+     "sort": true,
+     "texte": "Le sorcier invoque une zone fixe de ténèbres magiques, de 10 m de diamètre, à une portée de 20 m pour une durée d’INT minutes. Toutes les créatures, même celles capables de voir dans le noir, sont aveuglées dans cette zone. En plus de ce sort, le sorcier ajoute son rang + 2 à tous les tests d’INT basés sur les savoirs sombres (démons, morts-vivants, rituels impies, etc.)."
+    },
+    {
+     "rang": 2,
+     "titre": "Reptation",
+     "tags": [
+      "M"
+     ],
+     "sort": true,
+     "texte": "Pendant INT minutes, le sorcier peut ramper de 5 m par action de mouvement sur les murs et les plafonds. Il peut lancer des sorts dans cette posture."
+    },
+    {
+     "rang": 3,
+     "titre": "Strangulation",
+     "tags": [
+      "A"
+     ],
+     "sort": true,
+     "texte": "En réussissant un test opposé d’attaque magique (portée 20 m), le sorcier étouffe une créature vivante. La victime subit un dé malus à tous ses tests et [1d4°+INT] DM par round tant que le sorcier maintient sa concentration par une action de mouvement et la dépense de 1 PM par round. Si la victime sort de la portée du sort, il prend fin."
+    },
+    {
+     "rang": 4,
+     "titre": "Manteau de l'ombre",
+     "tags": [
+      "L"
+     ],
+     "sort": true,
+     "texte": "Le sorcier s’enveloppe d’ombre pendant INT minutes. Il gagne un dé bonus à tous les tests de discrétion et il impose un dé malus à tous les tests d’attaque à distance qui le prennent pour cible. S’il tombe à 0 PV pendant la durée du sort, il peut choisir de disparaître dans son ombre et de réapparaître à 1d6 km dans la direction de son choix avec 1d4° PV, 1d6 min plus tard (une dissipation de la magie (Maîtrise de la magie, voie du mage) lancée sur la zone où le sorcier a disparu dans son ombre avant sa réapparition au loin fait apparaître son corps et annule l’effet). Ceci met fin au sort et interdit de le lancer de nouveau avant le prochain crépuscule."
+    },
+    {
+     "rang": 5,
+     "titre": "Pacte ténébreux",
+     "tags": [],
+     "sort": false,
+     "texte": "Le sorcier augmente sa CON de +1. Désormais, il obtient un dé bonus aux tests de CON et voit dans le noir comme s’il s’agissait de pénombre. De plus, lorsqu’il lance un sort, il peut sacrifier 1d4° PV pour ajouter +2d4° aux DM de ce sort. S’il s’agit d’un sort dont les DM durent de round en round (comme strangulation), il peut sacrifier 1d4° PV chaque round."
+    }
+   ]
+  }
+ ],
+ "source": "https://drs.chroniques-oubliees.fr/fantasy/profils/sorcier"
+}

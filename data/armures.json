@@ -1,0 +1,83 @@
+[
+ {
+  "slug": "tissus-matelasses",
+  "nom": "Tissus matelassés, fourrures",
+  "def": 1,
+  "agiMax": 7,
+  "prix": "2 pa",
+  "type": "armure",
+  "page": 188
+ },
+ {
+  "slug": "cuir-simple",
+  "nom": "Cuir simple",
+  "def": 2,
+  "agiMax": 6,
+  "prix": "4 pa",
+  "type": "armure",
+  "page": 188
+ },
+ {
+  "slug": "cuir-renforce",
+  "nom": "Cuir renforcé, broigne",
+  "def": 3,
+  "agiMax": 5,
+  "prix": "8 pa",
+  "type": "armure",
+  "page": 188
+ },
+ {
+  "slug": "chemise-de-mailles",
+  "nom": "Chemise de mailles",
+  "def": 4,
+  "agiMax": 4,
+  "prix": "15 pa",
+  "type": "armure",
+  "page": 188
+ },
+ {
+  "slug": "cotte-de-mailles",
+  "nom": "Cotte de mailles",
+  "def": 5,
+  "agiMax": 3,
+  "prix": "25 pa",
+  "type": "armure",
+  "page": 188
+ },
+ {
+  "slug": "armure-de-plaques",
+  "nom": "Armure de plaques",
+  "def": 6,
+  "agiMax": 2,
+  "prix": "60 pa",
+  "type": "armure",
+  "page": 188
+ },
+ {
+  "slug": "plaque-complete",
+  "nom": "Plaque complète",
+  "def": 7,
+  "agiMax": 1,
+  "prix": "200 pa",
+  "type": "armure",
+  "page": 188
+ },
+ {
+  "slug": "petit-bouclier",
+  "nom": "Petit bouclier",
+  "def": 1,
+  "agiMax": null,
+  "prix": "2 pa",
+  "type": "bouclier",
+  "page": 188
+ },
+ {
+  "slug": "grand-bouclier",
+  "nom": "Grand bouclier",
+  "def": 2,
+  "agiMax": null,
+  "prix": "4 pa",
+  "type": "bouclier",
+  "page": 188
+ }
+]

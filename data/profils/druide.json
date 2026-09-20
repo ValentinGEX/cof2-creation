@@ -1,0 +1,241 @@
+{
+ "slug": "druide",
+ "nom": "Druide",
+ "famille": "mystiques",
+ "description": "Le druide est un prêtre de la nature qui défend sa pureté originelle et tire ses pouvoirs de la vie, des animaux et des plantes.",
+ "pvText": "Points de vigueur au niveau 1 : 8 + CON · Points de vigueur / niveau : 4 · Dé de récupération : d8 · +1 dé de récupération · Points de chance : 2 + CHA",
+ "armesArmures": "Le druide sait manier la dague, le bâton noueux (équivalent au bâton ferré), l’épieu, le javelot et l’arc court.\nLes voies de druide limitent l’armure au cuir simple. Il peut utiliser le petit bouclier en bois (DEF +1).",
+ "equipementTexte": "Bâton noueux (DM 1d6) ou épieu (DM 1d6 ou 1d10), dague (DM 1d4), arc court (DM 1d6, portée 30 m), armure de cuir (DEF +2).",
+ "voies": [
+  {
+   "slug": "voie-des-animaux",
+   "nom": "Voie des animaux",
+   "capacites": [
+    {
+     "rang": 1,
+     "titre": "Langage des animaux",
+     "tags": [],
+     "sort": false,
+     "texte": "Le druide sait communiquer avec les mammifères. La communication reste primitive et limitée à l’intelligence de l’animal et à son point de vue (prédateur, proie, etc.). De plus, il ajoute son rang + 2 à tous les tests destinés à influencer un animal avec lequel il peut communiquer. Chaque fois que le personnage atteint le rang 4 dans une voie de druide, il apprend à communiquer avec une nouvelle catégorie d’animaux de son choix : les oiseaux, les reptiles (et les amphibiens), les poissons (et les mollusques) ou les arthropodes (insectes, araignées, scorpions, etc.) et enfin les animaux fantastiques (griffon, pégase, etc.)."
+    },
+    {
+     "rang": 2,
+     "titre": "Petit compagnon",
+     "tags": [],
+     "sort": false,
+     "texte": "Le druide choisit un petit animal (écureuil, corbeau, chat). Il peut utiliser les sens de son familier (voir par ses yeux, entendre ce qu’il entend, etc.) et communiquer avec lui à distance illimitée. Il gagne +2 en DEF lorsque son familier est en vue. Le familier récupère tous les PV perdus après une récupération rapide. S’il est réduit à 0 PV, le familier prend la fuite et réapparaît auprès de son maître 24 h plus tard, complètement soigné. S’il est tué (lors d’un fait de jeu que le MJ juge inévitable), le druide perd 1d4° PV en contrecoup et pourra trouver un autre familier au prochain passage de niveau (pas forcément le même animal).\nFamilier AGI +3 ; CON +0 ; FOR -4 ; PER +2 ; CHA -2 ; INT -2 ; VOL +2 ;\nDEF [13 + rang dans la voie] PV [niveau du druide × 2] Init. [Init. du druide]\nUn familier est une créature trop petite pour attaquer et infliger des dommages.\nNote : Petit compagnon est une version non magique du Familier du magicien (voie de la magie universelle). Si un personnage décide de faire l’acquisition de ces deux capacités, le bonus de DEF ne se cumule pas."
+    },
+    {
+     "rang": 3,
+     "titre": "Nuée d'insectes",
+     "tags": [
+      "A"
+     ],
+     "sort": true,
+     "texte": "En réussissant un test d’attaque magique contre la DEF de sa cible (portée 20 m), le druide libère sur celle-ci une nuée d’insectes volants qui piquent, aveuglent et la suivent pendant [3 + PER] rounds. La victime subit 1 DM par round et un malus de -2 à tous les tests. Les DM de zone détruisent la nuée."
+    },
+    {
+     "rang": 4,
+     "titre": "Masque du prédateur",
+     "tags": [
+      "A"
+     ],
+     "sort": true,
+     "texte": "Pendant PER minutes, le druide prend les traits d’un fauve ou d’un loup. Il gagne +2 en Initiative, en DEF, en attaque et aux DM au contact et peut voir dans la nuit (comme un elfe)."
+    },
+    {
+     "rang": 5,
+     "titre": "Forme animale",
+     "tags": [
+      "A"
+     ],
+     "sort": true,
+     "texte": "Pendant une durée de PER minutes, le druide peut prendre la forme d’un animal de taille moyenne ou inférieure (minimum une souris) d’une catégorie dont il maîtrise la communication (voir rang 1, à l’exception des animaux fantastiques). Il conserve seulement ses PV, ses valeur d’INT et de VOL, et acquiert les caractéristiques, les attaques, la DEF et les capacités naturelles de la forme choisie (le vol pour un oiseau, la respiration aquatique pour le poisson, etc.). Le druide ne peut ni utiliser son équipement ni ses propres capacités sous cette forme. Le druide peut reprendre sa forme humaine lorsqu’il le désire par une action de mouvement (M)."
+    }
+   ]
+  },
+  {
+   "slug": "voie-du-fauve",
+   "nom": "Voie du fauve",
+   "capacites": [
+    {
+     "rang": 1,
+     "titre": "Vitesse du félin",
+     "tags": [],
+     "sort": false,
+     "texte": "Le druide ajoute son rang + 2 aux tests de course, d’escalade ou de saut. De plus, il gagne +3 en Initiative et +1 en DEF. Le bonus de DEF passe à +2 au rang 3 et +3 au rang 5."
+    },
+    {
+     "rang": 2,
+     "titre": "Panthère",
+     "tags": [],
+     "sort": false,
+     "texte": "Le druide apprivoise une panthère (ou un puma) qui lui obéit au doigt et à l’œil.\nPanthère (Créature vivante) : AGI +4 ; CON +2 ; FOR +2 ; PER +2 ; CHA -2 ; INT -3 ; VOL +2 ;\nDEF [13 + rang dans la voie] PV [niv. du druide × 4] Init. [Init. du druide]\nAttaque au contact [attaque magique du druide] · DM 1d4 + 2"
+    },
+    {
+     "rang": 3,
+     "titre": "Attaque bondissante",
+     "tags": [
+      "L"
+     ],
+     "sort": false,
+     "texte": "Le druide ou son félin parcourt de 5 à 10 m et bénéficie d’un dé bonus au test d’attaque et de +1d4° aux DM contre sa cible. Il ne peut pas effectuer d’attaque bondissante s’il est au contact d’un adversaire."
+    },
+    {
+     "rang": 4,
+     "titre": "Grand félin",
+     "tags": [],
+     "sort": false,
+     "texte": "La panthère devient un animal fabuleux ou est remplacée par un félin plus grand (tigre, lion). Le grand félin peut servir de monture au druide et il se déplace de 20 m par action de mouvement. Le druide peut communiquer avec son félin par télépathie et le guérir à distance en dépensant ses propres PV (-1 PV au druide par PV octroyé au félin).\nAnimal fabuleux (Créature vivante) : AGI +4 ; CON +5 ; FOR +5 ; PER +2 ; CHA -2 ; INT -2 ; VOL +4 ;\nDEF [15 + rang dans la voie] PV [niv. du druide × 5] Init. [Init. du druide]\nAttaque au contact [attaque magique du druide] · DM 1d4° + 5"
+    },
+    {
+     "rang": 5,
+     "titre": "Les sept vies du chat",
+     "tags": [],
+     "sort": false,
+     "texte": "Cette capacité ne peut être utilisée que six fois, et pas plus d’une fois par niveau. Lorsque les PV du druide tombent à 0 ou qu’il meurt, le druide peut choisir d’ignorer ce qui a provoqué la mort ou l’inconscience ! Le MJ et le joueur doivent se mettre d’accord et trouver une raison plausible (ou pas!) pour expliquer la survie du personnage, et le faire réapparaître immédiatement ou un peu plus tard dans l’aventure si nécessaire."
+    }
+   ]
+  },
+  {
+   "slug": "voie-de-la-nature",
+   "nom": "Voie de la nature",
+   "capacites": [
+    {
+     "rang": 1,
+     "titre": "Maître de la survie",
+     "tags": [],
+     "sort": false,
+     "texte": "En milieu naturel, le druide ajoute son rang + 2 à tous les tests de survie (s’orienter, trouver un abri et de la nourriture, éviter les dangers, etc.) dont les tests de récupération effectués chaque nuit. Lorsqu’il dort en milieu naturel, s’il utilise 1 DR, il guérit 1d4° PV supplémentaire."
+    },
+    {
+     "rang": 2,
+     "titre": "Terrains difficiles",
+     "tags": [],
+     "sort": false,
+     "texte": "Le druide ne subit aucune pénalité de déplacement en terrain difficile (natation, neige, boue, broussailles, pente abrupte, etc.). Il obtient un bonus de +3 en initiative, et +1 en attaque et en DEF lors d’un combat dans ces conditions."
+    },
+    {
+     "rang": 3,
+     "titre": "Bâton de druide",
+     "tags": [
+      "L"
+     ],
+     "sort": false,
+     "texte": "Le druide combat avec les deux extrémités de son bâton de bois noueux (ou de son épieu). Lorsqu’il utilise cette capacité, il effectue deux attaques de contact pour lesquelles il peut remplacer sa FOR par son AGI en attaque s’il le souhaite. Il inflige [1d4°+FOR ou AGI au choix] DM par attaque (plus d’éventuels bonus si l’arme est magique) et il gagne +2 en DEF pendant 1 round."
+    },
+    {
+     "rang": 4,
+     "titre": "Constitution héroïque",
+     "tags": [],
+     "sort": false,
+     "texte": "Le druide augmente sa CON de +1. Désormais, il obtient un dé bonus aux tests de CON."
+    },
+    {
+     "rang": 5,
+     "titre": "Résistant",
+     "tags": [],
+     "sort": false,
+     "texte": "Le druide divise par deux tous les DM « naturels non magiques » : froid, feu, chutes, poisons… mais aussi les DM provoqués par les animaux ou les insectes (même géants). Cette protection s’étend aussi à ses compagnons animaux."
+    }
+   ]
+  },
+  {
+   "slug": "voie-du-protecteur",
+   "nom": "Voie du protecteur",
+   "capacites": [
+    {
+     "rang": 1,
+     "titre": "Baies magiques",
+     "tags": [
+      "L"
+     ],
+     "sort": true,
+     "texte": "Le druide doit se trouver devant un buisson ou un arbre vivant. Son incantation fait pousser PER fruits qu’il peut cueillir. Chaque fruit offre l’équivalent d’un repas et rend [1d4°+rang] PV après 1 min à celui qui le consomme. Les effets de ces fruits ne fonctionnent qu’une fois par jour et par personnage. En plus de ce sort, le druide ajoute son rang + 2 à tous les tests de vigilance et de discrétion en pleine nature."
+    },
+    {
+     "rang": 2,
+     "titre": "Forêt vivante",
+     "tags": [],
+     "sort": true,
+     "texte": "Après un rituel de 30 min, la forêt s’éveille dans un rayon de 1 km par rang et devient une alliée du druide pendant 24 h. Dans ce périmètre, les ennemis du druide sont désorientés et gênés par les branches et les racines. Ils divisent leur déplacement par deux et subissent un dé malus à tous les tests de survie, d’orientation, de perception ou de discrétion. Le druide peut lancer ce sort une seule fois par jour.\nSi deux druides essaient d’influencer la forêt, c’est celui dont le niveau est le plus élevé qui l’emporte."
+    },
+    {
+     "rang": 3,
+     "titre": "Régénération",
+     "tags": [],
+     "sort": true,
+     "texte": "Une cible touchée par le druide récupère [3d4°+PER] PV par un rituel de 10 min (la cible et le druide doivent rester au calme). À partir du rang 5, ce sort permet aussi de faire repousser les membres ou les parties du corps amputées. Une cible peut bénéficier de ce sort seulement une fois par jour."
+    },
+    {
+     "rang": 4,
+     "titre": "Perception héroïque",
+     "tags": [],
+     "sort": false,
+     "texte": "Le druide augmente sa PER de +1. Désormais, il obtient un dé bonus aux tests de PER. De plus, il ajoute désormais sa PER pour calculer ses PM (en plus de sa VOL)."
+    },
+    {
+     "rang": 5,
+     "titre": "Forme d'arbre",
+     "tags": [
+      "A"
+     ],
+     "sort": true,
+     "texte": "Le druide peut se transformer en arbre (environ 5 m de hauteur) pendant PER minutes. Il prend les mêmes caractéristiques (à l’exception de l’INT, de la PER et de la VOL) que l’arbre animé (voir plus loin), y compris les PV. Sous cette forme, il ne peut pas parler, mais peut utiliser les sorts des voies du protecteur et des végétaux. À la fin du sort, ou s’il est réduit à 0 PV, il reprend forme humaine et retrouve les PV que le personnage avait au début du sort.\nArbre animé : AGI -2 ; CON +3 ; FOR +3 ; PER -2 ; CHA -2 ; INT -2 ; VOL +0 ;\nDEF [10 + rang dans la voie] PV [niv. du druide × 5] Init. 8\nAttaque au contact [attaque magique du druide] · DM 1d4° + 3\nDéplacement 5 m par action de mouvement"
+    }
+   ]
+  },
+  {
+   "slug": "voie-des-vegetaux",
+   "nom": "Voie des végétaux",
+   "capacites": [
+    {
+     "rang": 1,
+     "titre": "Peau d'écorce",
+     "tags": [
+      "M"
+     ],
+     "sort": true,
+     "texte": "La peau du druide prend la consistance de l’écorce. Il bénéficie d’un bonus à la DEF égal à +2 pendant PER minutes. Ce bonus augmente de +1 aux rangs 3 et 5. Les effets du sort ne sont pas cumulables au bonus d’une armure métallique ou d’un autre sort de protection qui ajoute un bonus de DEF (à l’exception du Masque du prédateur). En plus de ce sort, le druide ajoute son rang + 2 aux tests pour identifier les plantes et connaître leurs propriétés."
+    },
+    {
+     "rang": 2,
+     "titre": "Prison végétale",
+     "tags": [
+      "L"
+     ],
+     "sort": true,
+     "texte": "Le druide peut commander à la végétation de pousser et bloquer ses ennemis (mais pas ses alliés) dans une zone de 10 m de diamètre (portée 20 m) pendant PER minutes. Les cibles sont immobilisées. À son tour, une créature peut se libérer (action d’attaque) avec un test de FOR difficulté [10 + PER du druide]. En cas de réussite, elle n’est plus affectée par le sort pour le reste du combat."
+    },
+    {
+     "rang": 3,
+     "titre": "Flèche vivante",
+     "tags": [
+      "A"
+     ],
+     "sort": true,
+     "texte": "En une action, le druide enchante une flèche et la tire (il doit tenir un arc en main). Cette flèche a pour particularité de prendre racine dans la plaie et de devenir un arbuste. S’il réussit un test d’attaque à distance, il inflige les DM habituels de son attaque, et au round suivant, la flèche inflige 3d4° DM supplémentaires. Si la victime est réduite à 0 PV par ce sort, un jeune arbuste pousse sur son cadavre."
+    },
+    {
+     "rang": 4,
+     "titre": "Animation d'un arbre",
+     "tags": [
+      "L"
+     ],
+     "sort": true,
+     "texte": "Le druide peut animer un arbre en le touchant. Il combat à son service pendant [niveau du druide] rounds. Il peut animer un seul arbre à la fois.\nArbre animé : AGI -2 ; CON +3 ; FOR +3 ; PER -2 ; CHA -2 ; INT -2 ; VOL +0 ;\nDEF [10 + rang dans la voie] PV [niv. du druide × 5] Init. 8\nAttaque au contact [attaque magique du druide] · DM 1d4° + 3\nDéplacement 5 m par action de mouvement"
+    },
+    {
+     "rang": 5,
+     "titre": "Porte végétale",
+     "tags": [
+      "A"
+     ],
+     "sort": true,
+     "texte": "Une fois par jour, le druide peut pénétrer dans le tronc d’un gros arbre et sortir de celui d’un autre arbre appartenant à la même forêt et situé à une distance maximale de PER × 10 km. À partir du niveau 10 et tous les 4 niveaux supplémentaires, le druide peut emmener une personne avec lui."
+    }
+   ]
+  }
+ ],
+ "source": "https://drs.chroniques-oubliees.fr/fantasy/profils/druide"
+}

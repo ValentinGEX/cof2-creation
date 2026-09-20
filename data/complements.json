@@ -1,0 +1,638 @@
+{
+ "equipement": {
+  "arquebusier": {
+   "armureMax": "chemise-de-mailles",
+   "bouclier": false,
+   "citationArmure": "Les voies d’arquebusier limitent l’armure à la chemise de mailles et interdisent l’utilisation du bouclier.",
+   "equipement": [
+    {
+     "ref": "petoire"
+    },
+    {
+     "ref": "epee-longue"
+    },
+    {
+     "ref": "dague"
+    },
+    {
+     "ref": "cuir-renforce"
+    }
+   ]
+  },
+  "barde": {
+   "armureMax": "cuir-renforce",
+   "bouclier": false,
+   "citationArmure": "Les voies de barde limitent l’armure au cuir renforcé et interdisent l’utilisation du bouclier.",
+   "equipement": [
+    {
+     "ref": "rapiere"
+    },
+    {
+     "ref": "dague"
+    },
+    {
+     "libre": "Instrument de musique"
+    },
+    {
+     "ref": "cuir-simple"
+    }
+   ]
+  },
+  "rodeur": {
+   "armureMax": "cuir-renforce",
+   "bouclier": false,
+   "citationArmure": "Les voies de rôdeur limitent l’armure au cuir renforcé et interdisent le port du bouclier.",
+   "equipement": [
+    {
+     "ref": "epee-longue"
+    },
+    {
+     "choix": [
+      [
+       {
+        "ref": "arc-court"
+       },
+       {
+        "libre": "Carquois"
+       }
+      ],
+      [
+       {
+        "ref": "epee-courte",
+        "liste": [
+         "epee-courte",
+         "hachette",
+         "lance"
+        ],
+        "libelle": "une autre arme de contact (épée courte, hachette, lance)"
+       }
+      ]
+     ],
+     "libelle": "arc court et carquois (DM 1d6, portée 30 m) ou une autre arme de contact (épée courte, hachette, lance)"
+    },
+    {
+     "ref": "dague"
+    },
+    {
+     "ref": "cuir-renforce"
+    }
+   ]
+  },
+  "voleur": {
+   "armureMax": "cuir-simple",
+   "bouclier": false,
+   "citationArmure": "Les voies de voleur limitent l’armure au cuir simple et interdisent l’utilisation du bouclier.",
+   "equipement": [
+    {
+     "ref": "rapiere"
+    },
+    {
+     "ref": "dague",
+     "qte": 5
+    },
+    {
+     "libre": "Outils de crochetage"
+    },
+    {
+     "ref": "cuir-simple"
+    },
+    {
+     "libre": "Corde de 10 m"
+    }
+   ]
+  },
+  "barbare": {
+   "armureMax": "cuir-renforce",
+   "bouclier": true,
+   "citationArmure": "Les voies de barbare limitent l’armure au cuir renforcé. Le barbare peut en revanche utiliser tous les boucliers.",
+   "equipement": [
+    {
+     "choix": [
+      [
+       {
+        "ref": "hache-a-deux-mains"
+       }
+      ],
+      [
+       {
+        "ref": "epee-longue",
+        "liste": [
+         "epee-longue",
+         "epee-batarde",
+         "hache"
+        ],
+        "libelle": "Arme à une main (d8)"
+       },
+       {
+        "ref": "grand-bouclier"
+       }
+      ]
+     ],
+     "libelle": "Hache à deux mains (DM 2d6) ou Arme à une main (d8) et bouclier (+2 DEF)"
+    },
+    {
+     "ref": "javelot",
+     "qte": 2
+    },
+    {
+     "ref": "dague"
+    },
+    {
+     "ref": "cuir-simple"
+    }
+   ]
+  },
+  "chevalier": {
+   "armureMax": "armure-de-plaques",
+   "bouclier": true,
+   "citationArmure": "Les voies de chevalier limitent l’armure à celle de plaque (l’armure de plaque complète nécessite une capacité particulière). Il peut utiliser tous les boucliers.",
+   "equipement": [
+    {
+     "ref": "epee-longue"
+    },
+    {
+     "ref": "grand-bouclier"
+    },
+    {
+     "ref": "lance-de-cavalerie"
+    },
+    {
+     "ref": "dague"
+    },
+    {
+     "ref": "cotte-de-mailles"
+    }
+   ]
+  },
+  "guerrier": {
+   "armureMax": "cotte-de-mailles",
+   "bouclier": true,
+   "citationArmure": "Les voies de guerrier limitent l’armure à la cotte de mailles. Il peut utiliser tous les boucliers.",
+   "equipement": [
+    {
+     "ref": "epee-longue"
+    },
+    {
+     "choix": [
+      [
+       {
+        "ref": "epee-a-deux-mains"
+       }
+      ],
+      [
+       {
+        "ref": "hache-a-deux-mains"
+       }
+      ]
+     ],
+     "libelle": "épée ou hache à deux mains (DM 2d6)"
+    },
+    {
+     "choix": [
+      [
+       {
+        "ref": "dague"
+       }
+      ],
+      [
+       {
+        "ref": "hachette"
+       }
+      ]
+     ],
+     "libelle": "une dague ou une hachette de lancer"
+    },
+    {
+     "ref": "grand-bouclier"
+    },
+    {
+     "ref": "chemise-de-mailles"
+    }
+   ]
+  },
+  "ensorceleur": {
+   "armureMax": null,
+   "bouclier": false,
+   "citationArmure": "Les voies d’ensorceleur interdisent de porter une armure ou d’utiliser un bouclier.",
+   "equipement": [
+    {
+     "ref": "baton-ferre"
+    },
+    {
+     "ref": "dague",
+     "liste": [
+      "baton",
+      "baton-ferre",
+      "dague",
+      "epee-courte",
+      "fleau",
+      "gourdin",
+      "marteau",
+      "masse",
+      "rapiere",
+      "stylet",
+      "arbalete-de-poing",
+      "arbalete-legere",
+      "arc-court",
+      "couteaux-de-lancer",
+      "dague-lancee",
+      "fronde",
+      "hachette",
+      "javelot",
+      "lance-lancee",
+      "lance-pierre"
+     ],
+     "libelle": "dague (DM d4) ou autre arme maîtrisée au choix"
+    }
+   ]
+  },
+  "forgesort": {
+   "armureMax": "cuir-simple",
+   "bouclier": false,
+   "citationArmure": "Les voies de forgesort limitent l’armure au cuir simple et interdisent d’utiliser un bouclier.",
+   "equipement": [
+    {
+     "ref": "dague"
+    },
+    {
+     "ref": "baton-ferre"
+    },
+    {
+     "ref": "marteau"
+    }
+   ]
+  },
+  "magicien": {
+   "armureMax": null,
+   "bouclier": false,
+   "citationArmure": "Les voies de magicien interdisent de porter une armure ou d’utiliser un bouclier.",
+   "equipement": [
+    {
+     "ref": "baton-ferre"
+    },
+    {
+     "ref": "dague"
+    },
+    {
+     "libre": "Grimoire de sorts"
+    }
+   ]
+  },
+  "sorcier": {
+   "armureMax": null,
+   "bouclier": false,
+   "citationArmure": "Les voies de sorcier interdisent de porter une armure ou d’utiliser un bouclier.",
+   "equipement": [
+    {
+     "ref": "baton-ferre"
+    },
+    {
+     "ref": "dague"
+    },
+    {
+     "choix": [
+      [
+       {
+        "libre": "Grimoire de sorts"
+       }
+      ],
+      [
+       {
+        "libre": "Parchemins anciens"
+       }
+      ]
+     ],
+     "libelle": "grimoire de sorts ou parchemins anciens"
+    }
+   ]
+  },
+  "druide": {
+   "armureMax": "cuir-simple",
+   "bouclier": true,
+   "citationArmure": "Les voies de druide limitent l’armure au cuir simple. Il peut utiliser le petit bouclier en bois (DEF +1).",
+   "equipement": [
+    {
+     "choix": [
+      [
+       {
+        "ref": "baton-ferre"
+       }
+      ],
+      [
+       {
+        "ref": "epieu"
+       }
+      ]
+     ],
+     "libelle": "Bâton noueux (DM 1d6) ou épieu (DM 1d6 ou 1d10)"
+    },
+    {
+     "ref": "dague"
+    },
+    {
+     "ref": "arc-court"
+    },
+    {
+     "ref": "cuir-simple"
+    }
+   ]
+  },
+  "moine": {
+   "armureMax": null,
+   "bouclier": false,
+   "citationArmure": "Les voies de moine interdisent de porter une armure ou d’utiliser un bouclier.",
+   "equipement": [
+    {
+     "ref": "baton"
+    }
+   ]
+  },
+  "pretre": {
+   "armureMax": "chemise-de-mailles",
+   "bouclier": true,
+   "citationArmure": "Les voies de prêtre limitent l’armure à la chemise de mailles et permettent d’utiliser le petit bouclier (DEF +1).",
+   "equipement": [
+    {
+     "choix": [
+      [
+       {
+        "ref": "masse"
+       }
+      ],
+      [
+       {
+        "ref": "marteau"
+       }
+      ],
+      [
+       {
+        "ref": "baton-ferre"
+       }
+      ]
+     ],
+     "libelle": "Masse, marteau de guerre (DM 1d6) ou bâton ferré (DM 1d6, à deux mains)"
+    },
+    {
+     "ref": "petit-bouclier"
+    },
+    {
+     "ref": "chemise-de-mailles"
+    }
+   ]
+  }
+ },
+ "peuples": {
+  "demi-elfe": {
+   "modificateurs": [
+    {
+     "valeur": 1,
+     "choix": [
+      "PER",
+      "CHA"
+     ]
+    },
+    {
+     "valeur": -1,
+     "choix": [
+      "FOR",
+      "CON"
+     ]
+    }
+   ],
+   "langues": [
+    "Commun",
+    "Sylvestre"
+   ],
+   "citationLangues": "tables.json > langues : Commun — locuteurs « humains, halfelins » ; tables.json > langues : Sylvestre — locuteurs « elfes, fées, dryades, sylvaniens »"
+  },
+  "demi-orc": {
+   "modificateurs": [
+    {
+     "valeur": 1,
+     "choix": [
+      "FOR",
+      "CON"
+     ]
+    },
+    {
+     "valeur": -1,
+     "choix": [
+      "CHA",
+      "INT"
+     ]
+    }
+   ],
+   "langues": [
+    "Commun",
+    "Noir parlé"
+   ],
+   "citationLangues": "tables.json > langues : Commun — locuteurs « humains, halfelins » ; tables.json > langues : Noir parlé — locuteurs « orcs et goblinoïdes, trolls, ogres, de nombreuses créatures maléfiques »"
+  },
+  "elfe-haut": {
+   "modificateurs": [
+    {
+     "valeur": 1,
+     "choix": [
+      "INT",
+      "CHA"
+     ]
+    },
+    {
+     "valeur": -1,
+     "choix": [
+      "FOR"
+     ]
+    }
+   ],
+   "langues": [
+    "Commun",
+    "Sylvestre"
+   ],
+   "citationLangues": "tables.json > langues : Sylvestre — locuteurs « elfes, fées, dryades, sylvaniens »"
+  },
+  "elfe-sylvain": {
+   "modificateurs": [
+    {
+     "valeur": 1,
+     "choix": [
+      "AGI",
+      "PER"
+     ]
+    },
+    {
+     "valeur": -1,
+     "choix": [
+      "FOR"
+     ]
+    }
+   ],
+   "langues": [
+    "Commun",
+    "Sylvestre"
+   ],
+   "citationLangues": "tables.json > langues : Sylvestre — locuteurs « elfes, fées, dryades, sylvaniens »"
+  },
+  "gnome": {
+   "modificateurs": [
+    {
+     "valeur": 1,
+     "choix": [
+      "INT",
+      "PER"
+     ]
+    },
+    {
+     "valeur": -1,
+     "choix": [
+      "FOR"
+     ]
+    }
+   ],
+   "langues": [
+    "Commun",
+    "Runique"
+   ],
+   "citationLangues": "tables.json > langues : Runique — locuteurs « gnomes, nains, de nombreux géants, créatures élémentaires de la terre »"
+  },
+  "halfelin": {
+   "modificateurs": [
+    {
+     "valeur": 1,
+     "choix": [
+      "AGI",
+      "VOL"
+     ]
+    },
+    {
+     "valeur": -1,
+     "choix": [
+      "FOR"
+     ]
+    }
+   ],
+   "langues": [
+    "Commun"
+   ],
+   "citationLangues": "tables.json > langues : Commun — locuteurs « humains, halfelins »"
+  },
+  "humain": {
+   "modificateurs": [
+    {
+     "valeur": 1,
+     "regle": "deuxPlusFaibles"
+    }
+   ],
+   "langues": [
+    "Commun"
+   ],
+   "citationLangues": "tables.json > langues : Commun — locuteurs « humains, halfelins »"
+  },
+  "nain": {
+   "modificateurs": [
+    {
+     "valeur": 1,
+     "choix": [
+      "CON",
+      "VOL"
+     ]
+    },
+    {
+     "valeur": -1,
+     "choix": [
+      "AGI"
+     ]
+    }
+   ],
+   "langues": [
+    "Commun",
+    "Runique"
+   ],
+   "citationLangues": "tables.json > langues : Runique — locuteurs « gnomes, nains, de nombreux géants, créatures élémentaires de la terre »"
+  }
+ },
+ "sousChoix": {
+  "humain/voie-de-l-humain/1": {
+   "type": "origine",
+   "titre": "Diversité",
+   "libelle": "Choisir une origine géographique ou sociale (ou lancer 1d6) : elle donne +3 aux tests de ses deux domaines.",
+   "options": [
+    {
+     "nom": "Montagnard",
+     "domaines": [
+      "escalade",
+      "résistance au froid"
+     ]
+    },
+    {
+     "nom": "Citadin",
+     "domaines": [
+      "commerce",
+      "résistance aux maladies"
+     ]
+    },
+    {
+     "nom": "Campagnard",
+     "domaines": [
+      "météorologie",
+      "équitation"
+     ]
+    },
+    {
+     "nom": "Riverain",
+     "domaines": [
+      "natation",
+      "navigation"
+     ]
+    },
+    {
+     "nom": "Sauvage",
+     "domaines": [
+      "chasser",
+      "pister"
+     ]
+    },
+    {
+     "nom": "Nomade",
+     "domaines": [
+      "orientation",
+      "résistance à la chaleur ou au froid"
+     ]
+    }
+   ],
+   "citation": "Un humain obtient un bonus de +3 aux tests de deux domaines associés à son origine géographique ou sociale (voir ci-dessous)."
+  },
+  "gnome/voie-du-gnome/1": {
+   "type": "capacite",
+   "titre": "Don étrange",
+   "libelle": "Choisir une capacité de rang 1 parmi les cinq voies d’ensorceleur.",
+   "options": [
+    {
+     "voie": "voie-de-l-air",
+     "titre": "Murmures dans le vent",
+     "sort": true
+    },
+    {
+     "voie": "voie-de-la-divination",
+     "titre": "Divination",
+     "sort": true
+    },
+    {
+     "voie": "voie-de-l-envouteur",
+     "titre": "Injonction",
+     "sort": true
+    },
+    {
+     "voie": "voie-des-illusion",
+     "titre": "Mirage",
+     "sort": true
+    },
+    {
+     "voie": "voie-de-l-invocation",
+     "titre": "Choc",
+     "sort": true
+    }
+   ],
+   "citation": "il choisit une capacité de rang 1 d’ensorceleur"
+  }
+ }
+}

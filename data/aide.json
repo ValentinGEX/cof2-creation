@@ -1,0 +1,128 @@
+{
+ "caracs": {
+  "AGI": {
+   "titre": "Agilité (AGI)",
+   "texte": "L’Agilité (AGI) évalue la coordination générale, la vitesse, la souplesse, les réflexes et la dextérité.",
+   "actionsType": "faire des acrobaties, tenir en équilibre, grimper, sauter, sprinter, se déplacer en silence, crocheter, chaparder. Esquiver une attaque et attaquer à distance.",
+   "page": 26
+  },
+  "CON": {
+   "titre": "Constitution (CON)",
+   "texte": "La Constitution (CON) représente la santé, la vitalité, la résistance et l’endurance.",
+   "actionsType": "résister aux éléments, à la fatigue, aux poisons, aux privations, courir longtemps. Encaisser des blessures.",
+   "page": 26
+  },
+  "FOR": {
+   "titre": "Force (FOR)",
+   "texte": "La Force (FOR) mesure la puissance physique et musculaire. Elle est directement reliée au gabarit.",
+   "actionsType": "gagner un bras de fer, soulever, tordre, lancer un objet lourd, immobiliser un adversaire. Attaquer au contact et infliger des blessures.",
+   "page": 26
+  },
+  "PER": {
+   "titre": "Perception (PER)",
+   "texte": "La Perception (PER) représente les cinq sens, mais aussi l’intuition et la capacité à percevoir les émotions des autres. Elle permet d’analyser son environnement rapidement et donc de réagir vite. La PER détermine aussi l’ordre d’action en combat.",
+   "actionsType": "être vigilant, observer, entendre, détecter, repérer, pister, deviner, ressentir, faire preuve de psychologie et de spiritualité. Utiliser la magie druidique.",
+   "page": 26
+  },
+  "CHA": {
+   "titre": "Charisme (CHA)",
+   "texte": "Le Charisme (CHA) traduit la force de persuasion, la personnalité, les capacités de séduction, mais aussi la destinée du personnage. Les points de chance découlent du CHA.",
+   "actionsType": "bluffer, mentir, négocier, séduire, intimider, convaincre. Utiliser la magie innée ou divine (barde, ensorceleur, prêtre).",
+   "page": 26
+  },
+  "INT": {
+   "titre": "Intelligence (INT)",
+   "texte": "L’Intelligence (INT) représente l’érudition générale, la mémoire, les capacités d’apprentissage et de raisonnement. Un personnage avec une INT négative ne sait ni lire, ni écrire.",
+   "actionsType": "raisonner, comprendre, connaître, apprendre, se souvenir, chercher, trouver une information (livre). Utiliser la magie profane (magicien, forgesort, sorcier).",
+   "page": 26
+  },
+  "VOL": {
+   "titre": "Volonté (VOL)",
+   "texte": "La Volonté (VOL) correspond à la force de caractère, au courage, ainsi qu’à l’énergie interne. Elle détermine l’attaque magique et les points de mana, et est donc primordiale pour les lanceurs de sorts.",
+   "actionsType": "résister à la magie ou à la peur.",
+   "page": 26
+  }
+ },
+ "termes": {
+  "L": {
+   "titre": "Action limitée (L)",
+   "page": 210,
+   "texte": "L’action limitée (L) : utiliser une capacité limitée (indiquée par la mention [L] après le nom de cette capacité) ou faire une action complexe comme prendre et boire une potion ou équiper un bouclier. Normalement, un personnage qui utilise une action limitée ne peut faire que cela dans le round à l’exception d’une action gratuite. Toutefois, certaines capacités permettent d’obtenir des actions supplémentaires dans le même round."
+  },
+  "A": {
+   "titre": "Action d’attaque (A)",
+   "page": 210,
+   "texte": "L’action d’attaque (A) : effectuer une attaque de son choix avec une arme tenue en main ou faire une action peu rapide comme ramasser une arme au sol ou se relever."
+  },
+  "M": {
+   "titre": "Action de mouvement (M)",
+   "page": 210,
+   "texte": "L’action de mouvement (M) : se déplacer de 10 m ou faire une action rapide comme dégainer une arme ou rengainer une arme ou encore ouvrir une porte. S’il ne fait que cela, un personnage peut faire deux actions de mouvement à son tour."
+  },
+  "G": {
+   "titre": "Action gratuite (G)",
+   "page": 210,
+   "texte": "L’action gratuite (G) : cette action très rapide peut être réalisée en plus des actions normales du personnage (même une action limitée), par exemple, dire quelques mots ou lâcher une arme au sol. Certaines capacités permettent de réaliser une attaque ou un déplacement en action gratuite."
+  },
+  "sort": {
+   "titre": "Sort (*)",
+   "page": 210,
+   "texte": "Chaque capacité indique entre parenthèses le type d’action nécessaire à son utilisation, en particulier pour les sorts (signalés par le symbole *)."
+  },
+  "d4°": {
+   "titre": "Dé évolutif (d4°)",
+   "page": 38,
+   "texte": "De plus, à partir du niveau 6 et tous les 3 niveaux, son dé évolutif (d4°) augmente de la façon suivante : d4 devient d6 au niveau 6, puis d8 au niveau 9, etc."
+  },
+  "PV": {
+   "titre": "Points de vigueur (PV)",
+   "texte": "Au niveau 1, un personnage dispose d’un nombre de points de vigueur égal à la somme de sa valeur de CON et du double des PV de base de sa famille de profil.",
+   "page": 30
+  },
+  "DR": {
+   "titre": "Dé de récupération (DR)",
+   "texte": "Au niveau 1, chaque personnage reçoit [2 + CON] DR dont le type dépend de sa famille (voir ci-après).",
+   "page": 30
+  },
+  "PC": {
+   "titre": "Points de chance (PC)",
+   "texte": "Chaque personnage reçoit [2 + CHA] points de chance (PC).",
+   "page": 30
+  },
+  "PM": {
+   "titre": "Points de mana (PM)",
+   "texte": "Pour avoir des points de mana, un personnage doit avoir au moins une capacité signalée par un * (c’est-à-dire un sort).",
+   "page": 31
+  },
+  "INIT": {
+   "titre": "Initiative",
+   "texte": "À la création du personnage, son Initiative est égale à [10 + PER].",
+   "page": 31
+  },
+  "DEF": {
+   "titre": "Défense (DEF)",
+   "texte": "La DEF d’un personnage est égale à : 10 + AGI + éventuels modificateurs de capacités et d’armure (voir le chapitre « Équipement », page 181).",
+   "page": 31
+  },
+  "ATT": {
+   "titre": "Valeurs d’attaque",
+   "texte": "Les valeurs d’attaque d’un personnage dépendent de son niveau et des caractéristiques liées aux types d’attaque :",
+   "page": 32
+  },
+  "DM": {
+   "titre": "Dommages (DM)",
+   "texte": "Les DM de chaque arme sont indiqués au chapitre « Équipement », et ceux des sorts sont précisés dans la description des capacités concernées.",
+   "page": 32
+  },
+  "VOIES": {
+   "titre": "Voies et capacités",
+   "texte": "• Choisissez deux voies parmi les cinq du profil de votre personnage (voir les chapitres « Famille des aventuriers », « Famille des combattants », « Famille des mages » et « Familles des mystiques », à partir de la page 61).",
+   "page": 29
+  },
+  "FAMILLE": {
+   "titre": "Familles de profil",
+   "page": 23,
+   "texte": "Les quatorze profils sont répartis en quatre familles : aventuriers, combattants, mages et mystiques. La famille donne les points de vigueur de base, le dé de récupération et, pour certaines, un bonus."
+  }
+ }
+}

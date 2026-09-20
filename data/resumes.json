@@ -1,0 +1,227 @@
+{
+ "profils": {
+  "arquebusier": {
+   "nom": "Arquebusier",
+   "resume": "un spécialiste de l’usage des armes à feu et des explosifs, souvent mercenaire",
+   "caracsClesTexte": "Agilité, Intelligence, Constitution",
+   "caracsCles": [
+    "AGI",
+    "INT",
+    "CON"
+   ],
+   "caracMagie": null
+  },
+  "barde": {
+   "nom": "Barde",
+   "resume": "un artiste polyvalent capable d’utiliser la rapière autant que la magie",
+   "caracsClesTexte": "Charisme, Agilité, Volonté",
+   "caracsCles": [
+    "CHA",
+    "AGI",
+    "VOL"
+   ],
+   "caracMagie": "CHA"
+  },
+  "rodeur": {
+   "nom": "Rôdeur",
+   "resume": "un spécialiste de la survie en milieu naturel, ami des animaux et archer hors pair",
+   "caracsClesTexte": "Agilité, Perception, Constitution",
+   "caracsCles": [
+    "AGI",
+    "PER",
+    "CON"
+   ],
+   "caracMagie": null
+  },
+  "voleur": {
+   "nom": "Voleur",
+   "resume": "un filou agile et sournois taillé pour l’infiltration ou la criminalité",
+   "caracsClesTexte": "Agilité, Intelligence, Charisme",
+   "caracsCles": [
+    "AGI",
+    "INT",
+    "CHA"
+   ],
+   "caracMagie": null
+  },
+  "barbare": {
+   "nom": "Barbare",
+   "resume": "un guerrier sauvage issu d’une culture primitive capable d’entrer en rage",
+   "caracsClesTexte": "Force, Constitution, Agilité",
+   "caracsCles": [
+    "FOR",
+    "CON",
+    "AGI"
+   ],
+   "caracMagie": null
+  },
+  "chevalier": {
+   "nom": "Chevalier",
+   "resume": "un héros en armure rutilante qui chevauche une monture magique",
+   "caracsClesTexte": "Force, Charisme, Constitution",
+   "caracsCles": [
+    "FOR",
+    "CHA",
+    "CON"
+   ],
+   "caracMagie": null
+  },
+  "guerrier": {
+   "nom": "Guerrier",
+   "resume": "un spécialiste du combat au corps à corps, un soldat d’élite",
+   "caracsClesTexte": "Force, Constitution, Agilité",
+   "caracsCles": [
+    "FOR",
+    "CON",
+    "AGI"
+   ],
+   "caracMagie": null
+  },
+  "ensorceleur": {
+   "nom": "Ensorceleur",
+   "resume": "un magicien charismatique qui emploie une magie subtile",
+   "caracsClesTexte": "Charisme, Volonté, Agilité",
+   "caracsCles": [
+    "CHA",
+    "VOL",
+    "AGI"
+   ],
+   "caracMagie": "CHA"
+  },
+  "forgesort": {
+   "nom": "Forgesort",
+   "resume": "un magicien et artisan qui crée des élixirs ou inscrit des runes",
+   "caracsClesTexte": "Intelligence, Volonté, Constitution",
+   "caracsCles": [
+    "INT",
+    "VOL",
+    "CON"
+   ],
+   "caracMagie": "INT"
+  },
+  "magicien": {
+   "nom": "Magicien",
+   "resume": "un intellectuel qui pratique une magie académique efficace et directe",
+   "caracsClesTexte": "Intelligence, Volonté, Agilité",
+   "caracsCles": [
+    "INT",
+    "VOL",
+    "AGI"
+   ],
+   "caracMagie": "INT"
+  },
+  "sorcier": {
+   "nom": "Sorcier",
+   "resume": "un adepte de la magie noire qui contrôle les morts et les démons",
+   "caracsClesTexte": "Intelligence, Volonté, Constitution",
+   "caracsCles": [
+    "INT",
+    "VOL",
+    "CON"
+   ],
+   "caracMagie": "INT"
+  },
+  "druide": {
+   "nom": "Druide",
+   "resume": "un protecteur de la nature et un magicien des forces naturelles",
+   "caracsClesTexte": "Perception, Volonté, Constitution ou Agilité",
+   "caracsCles": [
+    "PER",
+    "VOL",
+    [
+     "CON",
+     "AGI"
+    ]
+   ],
+   "caracMagie": "PER"
+  },
+  "moine": {
+   "nom": "Moine",
+   "resume": "un ascète qui endurcit son corps, son esprit et maîtrise le combat à mains nues",
+   "caracsClesTexte": "Volonté, Perception, Agilité",
+   "caracsCles": [
+    "VOL",
+    "PER",
+    "AGI"
+   ],
+   "caracMagie": null
+  },
+  "pretre": {
+   "nom": "Prêtre",
+   "resume": "le bras armé d’une religion capable de soigner ceux qui en ont besoin comme d’occire les infidèles",
+   "caracsClesTexte": "Charisme, Volonté, Force",
+   "caracsCles": [
+    "CHA",
+    "VOL",
+    "FOR"
+   ],
+   "caracMagie": "CHA"
+  }
+ },
+ "peuples": {
+  "demi-elfe": {
+   "nom": "Demi-elfe",
+   "resume": "un être entre deux cultures, souvent d’une grande sensibilité",
+   "profilsTypiques": [
+    "barde",
+    "pretre"
+   ]
+  },
+  "demi-orc": {
+   "nom": "Demi-orc",
+   "resume": "une force de la nature en butte aux préjugés",
+   "profilsTypiques": [
+    "barbare",
+    "guerrier"
+   ]
+  },
+  "elfe-haut": {
+   "nom": "Elfe haut",
+   "resume": "un peuple d’intellectuels et d’artistes",
+   "profilsTypiques": [
+    "barde",
+    "magicien",
+    "ensorceleur"
+   ]
+  },
+  "elfe-sylvain": {
+   "nom": "Elfe sylvain",
+   "resume": "le peuple de la forêt, vif et en alerte",
+   "profilsTypiques": [
+    "druide",
+    "rodeur"
+   ]
+  },
+  "gnome": {
+   "nom": "Gnome",
+   "resume": "un petit peuple passé maître dans les sciences",
+   "profilsTypiques": [
+    "forgesort",
+    "arquebusier"
+   ]
+  },
+  "halfelin": {
+   "nom": "Halfelin",
+   "resume": "un petit peuple discret, mais plein d’astuce et de courage",
+   "profilsTypiques": [
+    "voleur",
+    "rodeur"
+   ]
+  },
+  "humain": {
+   "nom": "Humain",
+   "resume": "le peuple le plus polyvalent",
+   "profilsTypiques": [
+    "tous"
+   ]
+  },
+  "nain": {
+   "nom": "Nain",
+   "resume": "un peuple bourru, idéaliste et résistant",
+   "profilsTypiques": [
+    "guerrier",
+    "pretre"
+   ]
+  }
+ }
+}

@@ -1,0 +1,239 @@
+{
+ "slug": "voleur",
+ "nom": "Voleur",
+ "famille": "aventuriers",
+ "description": "Le voleur crochète les portes, détecte les pièges et préfère piller les cadavres des ennemis que se salir les mains pendant le combat. Toutefois, s’il doit combattre, il possède un répertoire impressionnant de coups tordus qui font de lui un redoutable adversaire.",
+ "pvText": "Points de vigueur au niveau 1 : 8 + CON · Points de vigueur / niveau : 4 · Dé de récupération : d8 · Points de chance : 3 + CHA",
+ "armesArmures": "Le voleur sait manier les armes de contact à une main et toutes les armes à distance.\nLes voies de voleur limitent l’armure au cuir simple et interdisent l’utilisation du bouclier.",
+ "equipementTexte": "Rapière (DM 1d6, Crit 19-20), 5 dagues (DM 1d4, portée 5 m), outils de crochetage, armure de cuir (DEF +2), une corde de 10 m.",
+ "voies": [
+  {
+   "slug": "voie-de-l-assassin",
+   "nom": "Voie de l'assassin",
+   "capacites": [
+    {
+     "rang": 1,
+     "titre": "Discrétion",
+     "tags": [],
+     "sort": false,
+     "texte": "Le voleur ajoute son rang + 2 à tous les tests de discrétion, de déguisement ou pour cacher une arme sur lui. Il apprend le langage silencieux à base de signe des voleurs (argotien) et enfin il obtient un dé bonus en attaque lorsqu’il attaque un adversaire surpris."
+    },
+    {
+     "rang": 2,
+     "titre": "Attaque sournoise",
+     "tags": [
+      "L"
+     ],
+     "sort": false,
+     "texte": "Une fois par round, quand il attaque un adversaire surpris ou de dos** avec une arme légère, le voleur inflige +2d4° DM supplémentaires. Les DM infligés par cette capacité augmentent de 1d4° à chaque fois qu’il atteint le rang 4 dans une voie de voleur (pour un maximum de 7d4°). Cette capacité nécessite l’utilisation d’une arme légère (dague, éventuellement lancée, épée courte, rapière) dans tous les autres cas, le bonus aux DM est divisé par deux (cela comprend les armes à distance).\n** Attaquer de dos : lorsque le voleur attaque la même créature qu’un allié au contact de cette cible, on considère qu’il peut attaquer celle-ci de dos (sauf si la cible peut se placer dos à un obstacle infranchissable).\nIl est possible de réaliser une attaque sournoise à distance, mais pas à portée longue et uniquement contre un adversaire surpris (pas avec la règle d’attaque de dos ci-dessus)."
+    },
+    {
+     "rang": 3,
+     "titre": "Attaque par surprise",
+     "tags": [
+      "A"
+     ],
+     "sort": false,
+     "texte": "Contre un adversaire surpris, le voleur peut réaliser une Attaque sournoise en utilisant une action d’attaque plutôt qu’une action limitée et il augmente les DM de son attaque sournoise de 2d4°."
+    },
+    {
+     "rang": 4,
+     "titre": "Disparition",
+     "tags": [
+      "M"
+     ],
+     "sort": false,
+     "texte": "Une fois par combat, le voleur peut disparaître dans un flash lumineux et un nuage de fumée. Aucun adversaire ne peut l’attaquer pendant qu’il a disparu, mais il peut subir des DM de zone. Il ne réapparaît qu’au début de son prochain tour à une distance maximale de 20 m de sa position initiale. À ce moment, si le voleur a l’initiative, il peut réaliser une Attaque sournoise."
+    },
+    {
+     "rang": 5,
+     "titre": "Ouverture mortelle",
+     "tags": [
+      "L"
+     ],
+     "sort": false,
+     "texte": "Une fois par combat, le voleur obtient une réussite critique automatique contre la cible de son choix. Il profite donc d’une réussite automatique, des dommages multipliés par 2 prévus dans ce cas et d’une Attaque sournoise (dont les DM ne sont pas doublés)."
+    }
+   ]
+  },
+  {
+   "slug": "voie-de-l-aventurier",
+   "nom": "Voie de l'aventurier",
+   "capacites": [
+    {
+     "rang": 1,
+     "titre": "Baratin",
+     "tags": [],
+     "sort": false,
+     "texte": "Le voleur ajoute son rang + 2 aux tests destinés à baratiner, séduire, négocier, mentir ou pour trouver un objet au marché noir. De plus, il devient capable d’utiliser les parchemins ou les baguettes magiques en réussissant un test d’attaque magique (L) contre une difficulté de (10 + (2 x rang du sort inscrit)). En cas d’échec, le sort n’est pas lancé et le voleur peut faire une nouvelle tentative."
+    },
+    {
+     "rang": 2,
+     "titre": "Provocation",
+     "tags": [
+      "L"
+     ],
+     "sort": false,
+     "texte": "Le voleur maîtrise l’art de se rendre désagréable, voire insupportable. S’il emporte un test opposé de CHA contre INT d’un adversaire humanoïde à moins de 10 m, il force la cible à l’attaquer à son prochain tour. À ce moment-là, si le voleur est au contact, il peut riposter par une attaque de contact gratuite pour laquelle il bénéficie au choix d’une attaque sournoise ou d’un bonus de 1d4° aux DM."
+    },
+    {
+     "rang": 3,
+     "titre": "Souplesse du félin",
+     "tags": [],
+     "sort": false,
+     "texte": "Le voleur possède une démarche et une façon de se déplacer à la fois élégante, féline et souple. Il ajoute +2 en DEF et en Initiative. Ce bonus passe à +3 au rang 5. Il lui faut seulement une action de mouvement pour se relever."
+    },
+    {
+     "rang": 4,
+     "titre": "Charisme héroïque",
+     "tags": [],
+     "sort": false,
+     "texte": "Le voleur augmente sa valeur de CHA de +1. Désormais, il obtient un dé bonus aux tests de CHA."
+    },
+    {
+     "rang": 5,
+     "titre": "Attaque paralysante",
+     "tags": [
+      "L"
+     ],
+     "sort": false,
+     "texte": "Une fois par combat, le voleur peut, en réussissant une attaque de contact, paralyser un adversaire humanoïde de douleur. La cible ne subit aucun DM, mais elle est immobilisée pendant 1d4 rounds ou, si son NC est inférieur à la moitié du niveau du voleur, elle est paralysée. De plus, le voleur peut désormais utiliser au choix l’attaque sournoise (s’il détient cette capacité) ou infliger +1d4° DM contre tout adversaire immobilisé ou paralysé."
+    }
+   ]
+  },
+  {
+   "slug": "voie-du-deplacement",
+   "nom": "Voie du déplacement",
+   "capacites": [
+    {
+     "rang": 1,
+     "titre": "Agile",
+     "tags": [],
+     "sort": false,
+     "texte": "Le voleur ajoute son rang + 2 à tous tests liés à un déplacement (esquive, saut, course, équilibre, escalade, se glisser entre des barreaux ou échapper à une créature qui l’agrippe). De plus, il bénéficie d’un bonus de +1 en DEF et en Initiative. Ce bonus passe à +2 au rang 3 et +3 au rang 5."
+    },
+    {
+     "rang": 2,
+     "titre": "Réflexes félins",
+     "tags": [],
+     "sort": false,
+     "texte": "Le voleur divise par 2 tous les DM de chute. De plus, une fois par combat, il obtient une action de mouvement supplémentaire à son tour. Au rang 5, il peut réaliser cet exploit 2 fois par combat (mais pas plus d’une fois par round)."
+    },
+    {
+     "rang": 3,
+     "titre": "Acrobaties",
+     "tags": [
+      "G"
+     ],
+     "sort": false,
+     "texte": "Une fois par round, si le voleur réussit un test d’AGI difficulté 15, il peut effectuer une acrobatie pour franchir un obstacle (qui peut être un adversaire) ou attaquer de dos un adversaire au contact. Il peut alors au choix utiliser l’attaque sournoise ou infliger +1d4° DM."
+    },
+    {
+     "rang": 4,
+     "titre": "Agilité héroïque",
+     "tags": [],
+     "sort": false,
+     "texte": "Le voleur augmente sa valeur d’AGI de +1. Désormais, il obtient un dé bonus aux tests d’AGI."
+    },
+    {
+     "rang": 5,
+     "titre": "Esquive de la magie",
+     "tags": [
+      "G"
+     ],
+     "sort": false,
+     "texte": "Une fois par round, lorsqu’un sort qui inflige des DM physiques (feu, froid, projectile magique, etc.) le prend pour cible (y compris un sort de zone ou l’affectant en plus de la personne visée), le voleur peut effectuer un test d’attaque à distance opposé à un test d’attaque magique du lanceur sort. S’il réussit, il échappe au sort. S’il échoue, il subit les DM normaux."
+    }
+   ]
+  },
+  {
+   "slug": "voie-du-roublard",
+   "nom": "Voie du roublard",
+   "capacites": [
+    {
+     "rang": 1,
+     "titre": "Doigts agiles",
+     "tags": [],
+     "sort": false,
+     "texte": "Le voleur ajoute son rang + 2 aux tests liés à la précision manuelle (crocheter une serrure, désamorcer un piège, pickpocket…) ainsi qu’aux tests pour évaluer un objet précieux (joyaux, bijoux, etc.). De plus il obtient +1 aux DM des attaques à distance avec les dagues et couteaux. Ce bonus passe à +2 au rang 3 de la voie et +3 au rang 5."
+    },
+    {
+     "rang": 2,
+     "titre": "Aux aguets",
+     "tags": [],
+     "sort": false,
+     "texte": "Le voleur ajoute son rang + 2 aux tests effectués pour fouiller une pièce à la recherche d’un trésor, détecter un piège (même magique), un passage secret ou même une embuscade (Vigilance). De plus, il divise par 2 les DM infligés par des pièges."
+    },
+    {
+     "rang": 3,
+     "titre": "Feindre la mort",
+     "tags": [
+      "G"
+     ],
+     "sort": false,
+     "texte": "Une fois par combat, le voleur peut feindre la mort après avoir reçu une blessure (même à 0 PV). Il peut ainsi passer pour mort aussi longtemps qu’il le souhaite et un test d’INT difficulté 20 est nécessaire pour révéler la supercherie. Lorsqu’il décide de se relever (action gratuite), le voleur récupère immédiatement 1d4° PV et s’il est au contact d’un adversaire, celui-ci est surpris. Un adversaire qui a déjà été victime de cette stratégie du voleur lors d’un précédent combat ne se laisse pas surprendre une seconde fois (sauf si son INT est de -4)."
+    },
+    {
+     "rang": 4,
+     "titre": "Expert en criminalité",
+     "tags": [],
+     "sort": false,
+     "texte": "Le voleur obtient un dé bonus sur tous les tests de recherche d’indice (Trouver une preuve [PER], Faire une déduction [INT] et Obtenir un aveu [CHA]) ainsi que pour tous les tests réalisés pour brouiller des pistes, réaliser de faux indices ou de faux documents. De plus, lorsqu’il est dans un lieu, s’il dépense 1 PC, le MJ devra lui donner un indice qui lui a échappé jusque-là. S’il n’y a pas d’indice, le PC n’est pas dépensé."
+    },
+    {
+     "rang": 5,
+     "titre": "Maître du poison",
+     "tags": [],
+     "sort": false,
+     "texte": "Le voleur peut utiliser 3 doses de poison par jour sans risque de s’empoisonner lui-même. Une dose permet d’enduire une dague, une flèche ou un carreau pour infliger +2d4° DM supplémentaire et demande un test de CON difficulté (10 + INT du voleur) ou une cible vivante est affaiblie pour le reste du combat. Alternativement, une dose peut être versée dans les aliments pour une personne ; si la cible rate son test de CON, elle sombre dans l’inconscience pour 2d6 min (4d6 min pour 2 doses, etc.)."
+    }
+   ]
+  },
+  {
+   "slug": "voie-du-spadassin",
+   "nom": "Voie du spadassin",
+   "capacites": [
+    {
+     "rang": 1,
+     "titre": "Attaque en finesse",
+     "tags": [],
+     "sort": false,
+     "texte": "Le voleur ajoute son AGI à son Init. et peut remplacer sa FOR par son AGI pour ses tests d’attaque au contact (mais pas aux DM) lorsqu’il utilise une arme légère à une main (dague, épée courte ou rapière). Enfin, il obtient un bonus égal à son rang + 2 aux tests d’intimidation."
+    },
+    {
+     "rang": 2,
+     "titre": "Esquive fatale",
+     "tags": [
+      "G"
+     ],
+     "sort": false,
+     "texte": "Une fois par combat, le voleur peut esquiver une attaque et s’arranger pour que celle-ci affecte un autre adversaire à son contact. Comparez le test d’attaque à la DEF de la nouvelle cible pour savoir si celle-ci subit des DM. Cette capacité ne peut pas être utilisée si le voleur n’a qu’un seul adversaire au contact et jamais contre une réussite critique (un critique touche toujours sa cible)."
+    },
+    {
+     "rang": 3,
+     "titre": "Frappe chirurgicale",
+     "tags": [],
+     "sort": false,
+     "texte": "Par sa science de l’escrime (et de la fourberie), le voleur augmente ses chances de faire des coups critiques avec une arme légère de 2 points (ainsi, au lieu de 20, le critique standard est obtenu entre 18 et 20). Toutefois, la valeur minimale requise pour obtenir un critique ne peut être inférieure à 16."
+    },
+    {
+     "rang": 4,
+     "titre": "Ambidextrie",
+     "tags": [
+      "G"
+     ],
+     "sort": false,
+     "texte": "Avec sa main gauche, le voleur peut effectuer une attaque au contact gratuite avec une dague ou une épée courte à chaque round. Cette attaque ne peut pas bénéficier des avantages d’une attaque sournoise."
+    },
+    {
+     "rang": 5,
+     "titre": "Botte secrète",
+     "tags": [],
+     "sort": false,
+     "texte": "Lorsque le voleur obtient un critique sur le dé d’une attaque au contact de sa main principale avec une arme légère (mais pas sur une ouverture mortelle), il inflige à sa cible un état préjudiciable au choix parmi affaibli, aveuglé, étourdi, immobilisé ou ralenti pendant 1 round. Vous ne pouvez infliger chaque état préjudiciable qu’une seule fois par combat. Alternativement, le voleur peut choisir que l’attaque devienne une attaque sournoise dont les DM s’ajoutent au critique (au lieu d’infliger un état préjudiciable)."
+    }
+   ]
+  }
+ ],
+ "source": "https://drs.chroniques-oubliees.fr/fantasy/profils/voleur"
+}

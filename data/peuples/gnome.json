@@ -1,0 +1,71 @@
+{
+ "slug": "gnome",
+ "nom": "Gnome",
+ "description": "Le gnome est une créature de petite taille pourvue d’un gros nez, d’une bonne nature et d’une curiosité insatiable pour la magie et les sciences. C’est un compagnon souvent agréable, bien qu’un peu original. Les nains et les halfelins l’apprécient, tandis que les « grandes » personnes se montrent plutôt indifférentes à leur égard.",
+ "modificateursTexte": "+1 en INT ou PER, -1 en FOR",
+ "reperes": {
+  "ageDepartTexte": "40+",
+  "esperanceVieTexte": "250 ans",
+  "tailleTexte": "1 m à 1,20 m",
+  "poidsTexte": "30 à 50 kg",
+  "traits": "Petit et rondouillard, gros nez. Moustaches et rouflaquettes pour les gnomes, couettes pour les gnomettes. Oreilles un peu pointues ou grandes et rondes."
+ },
+ "noms": {
+  "intro": "Les gnomes aiment les prénoms que les humains jugent désuets. Ils ont aussi un nom de famille compliqué et long, qu’ils accolent toujours à ce prénom. Un habitant de notre monde pourrait trouver que ces noms ont des consonances germaniques et étranges.",
+  "masculin": [
+   "Albert Blumdenplick",
+   "Eustache Dimtigballen",
+   "Firmin Vondemacht",
+   "Isidore Kolerbiltag",
+   "Nestor Wurmenship"
+  ],
+  "feminin": [
+   "Thérèse Aliserwilp",
+   "Huguette Uhldimmerstelp",
+   "Rose Molkenpulp",
+   "Eugénie Bimpbelinedor"
+  ]
+ },
+ "voie": {
+  "slug": "voie-du-gnome",
+  "nom": "Voie du gnome",
+  "capacites": [
+   {
+    "rang": 1,
+    "titre": "Don étrange",
+    "tags": [],
+    "sort": false,
+    "texte": "Le gnome possède un talent inné pour les sciences, qu’elles soient occultes ou plus ordinaires. Il gagne un bonus de +3 à tous les tests scientifiques (INT) et il choisit une capacité de rang 1 d’ensorceleur. S’il porte une armure, il ne peut pas utiliser ce sort plus d’une fois par jour (il doit payer le coût en PM de façon normale). Dans le noir total, le gnome voit comme dans la pénombre jusqu’à 10 m."
+   },
+   {
+    "rang": 2,
+    "titre": "Petit pote",
+    "tags": [],
+    "sort": false,
+    "texte": "Le gnome est un compagnon sympathique et difficile à considérer comme dangereux ou malintentionné. Il gagne +3 à tous les tests d’interaction sociale sauf pour intimider. Il gagne aussi 1 point de chance."
+   },
+   {
+    "rang": 3,
+    "titre": "Insignifiant",
+    "tags": [],
+    "sort": false,
+    "texte": "Le gnome sait comment échapper aux attaques des grandes créatures comme les géants. Il gagne un bonus de +2 en DEF contre les créatures de taille grande ou supérieure. Ce bonus passe à +3 au rang 5."
+   },
+   {
+    "rang": 4,
+    "titre": "Merveille technologique",
+    "tags": [],
+    "sort": false,
+    "texte": "Le gnome sait utiliser les arbalètes (et les armes à poudre si votre MJ autorise leur usage), quel que soit son profil. Il ajoute son AGI aux DM qu’il inflige avec ces armes."
+   },
+   {
+    "rang": 5,
+    "titre": "Bonne nature",
+    "tags": [],
+    "sort": false,
+    "texte": "Le gnome augmente ses valeurs de CON et de CHA de +1."
+   }
+  ]
+ },
+ "source": "https://drs.chroniques-oubliees.fr/fantasy/peuples/gnome"
+}

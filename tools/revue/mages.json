@@ -1,0 +1,187 @@
+{
+  "equipement": {
+    "ensorceleur": {
+      "armureMax": null,
+      "bouclier": false,
+      "citationArmure": "Les voies d’ensorceleur interdisent de porter une armure ou d’utiliser un bouclier.",
+      "equipement": [
+        {
+          "ref": "baton-ferre"
+        },
+        {
+          "ref": "dague",
+          "liste": [
+            "baton",
+            "baton-ferre",
+            "dague",
+            "epee-courte",
+            "fleau",
+            "gourdin",
+            "marteau",
+            "masse",
+            "rapiere",
+            "stylet",
+            "arbalete-de-poing",
+            "arbalete-legere",
+            "arc-court",
+            "couteaux-de-lancer",
+            "dague-lancee",
+            "fronde",
+            "hachette",
+            "javelot",
+            "lance-lancee",
+            "lance-pierre"
+          ],
+          "libelle": "dague (DM d4) ou autre arme maîtrisée au choix"
+        }
+      ]
+    },
+    "forgesort": {
+      "armureMax": "cuir-simple",
+      "bouclier": false,
+      "citationArmure": "Les voies de forgesort limitent l’armure au cuir simple et interdisent d’utiliser un bouclier.",
+      "equipement": [
+        {
+          "ref": "dague"
+        },
+        {
+          "ref": "baton-ferre"
+        },
+        {
+          "ref": "marteau"
+        }
+      ]
+    },
+    "magicien": {
+      "armureMax": null,
+      "bouclier": false,
+      "citationArmure": "Les voies de magicien interdisent de porter une armure ou d’utiliser un bouclier.",
+      "equipement": [
+        {
+          "ref": "baton-ferre"
+        },
+        {
+          "ref": "dague"
+        },
+        {
+          "libre": "Grimoire de sorts"
+        }
+      ]
+    },
+    "sorcier": {
+      "armureMax": null,
+      "bouclier": false,
+      "citationArmure": "Les voies de sorcier interdisent de porter une armure ou d’utiliser un bouclier.",
+      "equipement": [
+        {
+          "ref": "baton-ferre"
+        },
+        {
+          "ref": "dague"
+        },
+        {
+          "choix": [
+            [
+              {
+                "libre": "Grimoire de sorts"
+              }
+            ],
+            [
+              {
+                "libre": "Parchemins anciens"
+              }
+            ]
+          ],
+          "libelle": "grimoire de sorts ou parchemins anciens"
+        }
+      ]
+    }
+  },
+  "effets": {
+    "ensorceleur/voie-de-l-air/1": {
+      "titre": "Murmures dans le vent",
+      "effets": [
+        {
+          "cible": "INIT",
+          "valeur": 1
+        },
+        {
+          "cible": "DEF",
+          "valeur": 1
+        }
+      ],
+      "citation": "l’ensorceleur gagne un bonus permanent de +1 en Init. et en DEF"
+    },
+    "ensorceleur/voie-de-la-divination/1": {
+      "titre": "Divination",
+      "effets": [
+        {
+          "cible": "INIT",
+          "valeur": 1
+        },
+        {
+          "cible": "DEF",
+          "valeur": 1
+        }
+      ],
+      "citation": "En plus de ce sort, l’ensorceleur gagne +1 en Init. et en DEF."
+    },
+    "forgesort/voie-du-golem/1": {
+      "titre": "Grosse tête",
+      "effets": [
+        {
+          "cible": "PV",
+          "carac": "INT"
+        }
+      ],
+      "citation": "De plus, au niveau où il acquiert cette capacité, il peut ajouter son INT à ses PV à la place de sa CON s’il le souhaite."
+    },
+    "forgesort/voie-des-runes/1": {
+      "titre": "Runes de défense",
+      "effets": [
+        {
+          "cible": "DEF",
+          "valeur": 2
+        }
+      ],
+      "citation": "Il obtient un bonus de +2 en DEF."
+    },
+    "magicien/voie-de-la-magie-universelle/2": {
+      "titre": "Familier",
+      "effets": [
+        {
+          "cible": "INIT",
+          "valeur": 2
+        },
+        {
+          "cible": "DEF",
+          "valeur": 2
+        }
+      ],
+      "citation": "Il gagne +2 en Initiative et en DEF lorsque son familier est en vue."
+    },
+    "sorcier/voie-de-l-outre-tombe/2": {
+      "titre": "Armure d'os",
+      "effets": [
+        {
+          "cible": "DEF",
+          "valeur": 3
+        }
+      ],
+      "citation": "Le sorcier peut désormais porter une armure d’os (souvent camouflée sous une robe) qui lui offre un bonus de +3 en DEF et n’empêche pas l’utilisation des capacités de sorcier."
+    }
+  },
+  "remarques": [
+    "Voie du mage : aucun effet permanent chiffrable aux rangs 1 et 2. Le rang 1 (« Capacité de peuple + occultisme ») est un SOUS-CHOIX implicite : « Le mage conserve sa capacité de peuple de rang 1 », donc l'effet dépend du peuple choisi (ex. Petite taille du halfelin +1 DEF, Diversité de l'humain +1 PC) : à récupérer dans la revue des peuples, pas ici. Le rang 2 (« Maîtrise de la magie ») n'a aucun effet permanent.",
+    "« Tour de magie » (celle qui donne +1 DEF et +2 PM en plus du PM du sort) est au RANG 3 de la voie du mage, donc inaccessible au niveau 1 (le mage ne prend que du rang 1 et une capacité de rang 2). Elle n'est donc pas relevée ici : à prévoir seulement si l'app gère un jour les niveaux supérieurs. Aucune capacité de rang 1 ou 2 des quatre profils ne donne de PM supplémentaire.",
+    "Magicien / Familier (voie de la magie universelle, rang 2) : le +2 Init et +2 DEF est conditionné (« lorsque son familier est en vue »), condition hors de la liste autorisée (sansArmure / armureLégère / avecBouclier). Je l'ai relevé SANS condition (le familier est normalement toujours là). À arbitrer : appliquer par défaut, ou ajouter une condition « familierEnVue » avec une case à cocher sur la feuille.",
+    "Sorcier / Armure d'os (voie de l'outre-tombe, rang 2) : +3 DEF permanent, mais c'est littéralement une armure, alors que « les voies de sorcier interdisent de porter une armure » (d'où armureMax = null). La capacité précise qu'elle « n'empêche pas l'utilisation des capacités de sorcier ». À arbitrer : ce +3 doit-il se cumuler avec une autre source d'armure (aucune au niveau 1), et faut-il l'afficher comme armure dans l'équipement ? Elle demande aussi d'être confectionnée et entretenue 10 min/jour.",
+    "Forgesort / Grosse tête (voie du golem, rang 1) : ce n'est pas un bonus mais un REMPLACEMENT optionnel (« ajouter son INT à ses PV à la place de sa CON s'il le souhaite »). Relevé comme {cible PV, carac INT} : le moteur doit comprendre substitution de CON par INT (non cumulable avec CON), et laisser le choix au joueur. Le brief prévoyait déjà la forme {cible PV, carac FOR} pour le barbare, qui elle est bien un ajout : les deux formes ne se comportent pas pareil.",
+    "Forgesort / Bâton de mage (voie des artefacts, rang 1) : « Lorsqu'il utilise son bâton, le forgesort inflige [1d4°+INT] DM magiques ». C'est permanent et chiffrable, mais c'est un remplacement de la formule de DM d'une arme précise (et l'attaque reste une attaque de contact), pas un bonus numérique sur DM_CONTACT : aucune forme d'effet prévue ne convient. Non relevé ; à traiter sans doute comme une variante d'arme sur la feuille.",
+    "Temporaires vus et volontairement non relevés (conformément à la règle) : Armure de mana (magicien, +3 DEF pendant INT minutes), Morsure de la forge (forgesort, +2 DM de feu pendant INT minutes), Maîtrise des éléments (magicien, -rang+2 aux DM élémentaires), Image décalée (ensorceleur), Sang mordant / Beauté de la succube / Masque mortuaire (sorcier), Sous tension (ensorceleur). Ainsi que les bonus aux tests (Injonction, Mirage, Fortifiant, Grosse tête, Ténèbres, Morsure de la forge, rang 1 de la voie du mage).",
+    "Forgesort / Golem (voie du golem, rang 2) : ne modifie aucune valeur de la feuille, mais crée une créature avec ses propres caractéristiques (DEF 10 + rang, PV niv × 5, Init. = celle du forgesort). Idem Familier du magicien (DEF 13 + rang, PV = niv.). Si l'app doit afficher un encart compagnon, ces deux capacités de rang 2 sont concernées.",
+    "Ensorceleur / équipement : « Bâton ferré (DM 1d6), dague (DM d4) ou autre arme maîtrisée au choix ». J'ai interprété que le « ou autre arme » porte sur la dague (choix ouvert, défaut = dague), le bâton ferré étant toujours acquis. La liste proposée applique armesArmures (« une arme supplémentaire de son choix […] sans dépasser 1d6 DM » + arbalète légère explicitement éligible) : 20 armes. J'en ai écarté épieu et lance (1d6 à une main mais 1d10 à deux mains, donc dépassent 1d6) et mains nues : à confirmer.",
+    "Petit écart de source : magicien, sorcier et forgesort « savent manier la dague et le bâton » (armesArmures) mais leur équipement de départ liste un « Bâton ferré (DM 1d6) », qui est une arme distincte du « bâton » (1d4) dans armes.json. J'ai suivi equipementTexte et mis baton-ferre partout.",
+    "Aucun des quatre profils ne porte de bouclier ; seul le forgesort a une armure (cuir simple). Les trois autres ont armureMax = null."
+  ]
+}

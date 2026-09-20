@@ -1,0 +1,105 @@
+{
+ "_source": "Chroniques Oubliées Fantasy 2, chapitre 1. Textes du livre repris mot pour mot ; les textes de la clé « maison » sont écrits pour l'application.",
+ "livre": {
+  "role": "La première chose à déterminer est le rôle que vous voulez jouer. Avant de traiter votre personnage du point de vue des règles, il vous faut commencer par l’imaginer, par le rêver.\nEssayez de vous faire une image mentale de votre futur alter ego.\nVous ressemble-t-ilou est-il tout votre contraire ? Est-ce une guerrière aux muscles d’acier ou un magicien chétif doté de grands pouvoirs ? Quel rôle avez-vous envie de tenir au sein de votre équipe de héros en herbe ?\nUn combattant sans peur ? Une lanceuse de sorts ? Un mystique habité par la foi ? Une aventurière polyvalente ? Un voleur pernicieux ? Souhaitez-vous plutôt jouer une naine bourrue ou un gracieux elfe ? À moins qu’un humain ne vous semble moins caricatural à interpréter…\nSi vous manquez d’idées, il est souvent plus aisé de partir d’une illustration. Elle peut être choisie dans cet ouvrage, mais Internet fourmille de propositions grandioses et inspirantes. Ce peut être un très bon point de départ. Et si vous n’avez pas plus d’idées que ça au départ, ce n’est pas grave du tout : vous pouvez très bien commencer avec un concept vague (un guerrier, une magicienne…), le reste viendra au fur et à mesure de la création du personnage, voire plus tard, en cours d’aventure.\nEnfin, il est toujours bon de tenir compte des autres joueurs. L’idéal est que les joueurs soient réunis pour créer leurs personnages de façon à créer un groupe équilibré. Ils auront moins de difficultés à surmonter les défis qui leur seront proposés si les personnages sont complémentaires plutôt que concurrents, et chacun pourra briller à son tour. La diversité est une force, qu’on se le dise !",
+  "etapes": [
+   "Rôle",
+   "Profil",
+   "Peuple",
+   "Caractéristiques",
+   "Voies et capacités",
+   "Points de vigueur",
+   "Dé de récupération",
+   "Points de chance",
+   "Points de mana",
+   "Initiative",
+   "Équipement",
+   "Défense",
+   "Valeurs d’attaque",
+   "Dommages",
+   "Touche finale"
+  ],
+  "caracteristiquesIntro": "Le personnage est défini par sept caractéristiques (quatre physiques, et trois mentales) que l’on associe à certains types d’action. À la création, chaque caractéristique a une valeur comprise entre -2 à +5 (voir ci-après).",
+  "valeurDeBase": "À la création d’un personnage, commencez par choisir l’une des trois séries de valeurs suivantes (polyvalent, expert, spécialiste) selon ce",
+  "repartition": "Répartissez les sept valeurs de la série choisie dans les différentes caractéristiques dans l’ordre que vous souhaitez. Rappelez-vous toutefois que chaque profil est associé à trois caractéristiques ; il est vivement conseillé de leur affecter vos trois meilleures valeurs.",
+  "magie": "Magie. Si vous voulez que votre personnage pratique la magie, veillez à mettre au moins une valeur de +1 dans la caractéristique de magie correspondante (INT pour les sorts de magicien, de forgesort et de sorcier, CHA pour les sorts d’ensorceleur, de barde et prêtre, PER pour les sorts de druide).",
+  "modificateurPeuple": "Une fois les valeurs de base des caractéristiques attribuées, il convient de les ajuster en appliquant des modificateurs liés au peuple du personnage (voir la table « Modificateur de peuple »). Dans certains cas, vous aurez à choisir entre deux caractéristiques.",
+  "voies": "• Choisissez deux voies parmi les cinq du profil de votre personnage (voir les chapitres « Famille des aventuriers », « Famille des combattants », « Famille des mages » et « Familles des mystiques », à partir de la page 61).\n• Votre personnage reçoit automatiquement une troisième voie, la voie de peuple associée au peuple que vous avez choisi.\nNotez-les sur votre feuille de personnage (ou cochez les cases correspondantes si vous utilisez la feuille de personnage spécifique au profil que vous avez choisi).",
+  "pv": "Au niveau 1, un personnage dispose d’un nombre de points de vigueur égal à la somme de sa valeur de CON et du double des PV de base de sa famille de profil.\nParfois, une capacité peut venir modifier cette valeur.\nPV = (2 x PV de la famille) + CON",
+  "dr": "Au niveau 1, chaque personnage reçoit [2 + CON] DR dont le type dépend de sa famille (voir ci-après).\nAttention : les mystiques reçoivent 1 DR de plus que les autres profils à la création, soit [3 + CON] DR.\nCas particulier : un PJ ayant -2 en CON n’a pas de dé de récupération (2 – 2 = 0). Il ne peut donc pas régénérer ses PV en prenant une récupération rapide, mais seulement avec une récupération complète. Il doit alors toujours lancer le dé de récupération (il n’obtient pas le résultat maximal sur le dé).\nLe type du DR dépend de la famille du profil du PJ.\n• Aventuriers : d8\n• Combattants : d10\n• Mages : d6\n• Mystiques : d8\nExemple : Lhagva possède une CON de +2, elle a donc 4 DR. Comme elle est une barbare, son type de DR est le d10. Sur sa feuille de personnage, Anaïs indique donc : « DR : 4 d10 ».\nIonas ayant quant à lui +1 en CON, Salim note sur la feuille de son PJ : « DR : 3 d6 ».",
+  "pc": "Chaque personnage reçoit [2 + CHA] points de chance (PC).\nAttention : les PJ de la famille des aventuriers gagnent 1 PC de plus que les autres profils.\nExemple : avec son CHA de -1, Lhagva possède seulement 2 – 1 = 1 PC. Toutefois, en tant qu’humaine (voie de l’humain), elle gagne 1 PC supplémentaire pour un total de 2 PC.\nAvec +4 en CHA, Ionas obtient quant à lui 6 PC.",
+  "pm": "Pour avoir des points de mana, un personnage doit avoir au moins une capacité signalée par un * (c’est-à-dire un sort).\nLorsque c’est le cas, le PJ dispose d’un nombre de points de mana égal à la somme de sa VOL et du nombre de sorts appris.\nTotal de points de mana = VOL + Nbre de sorts",
+  "init": "À la création du personnage, son Initiative est égale à [10 + PER].\nExemple : Avec une Perception de +1, Lhagva a une Initiative de 11 (10 + 1). Toutefois la capacité Réflexes éclair (rang 1 de la voie du pourfendeur) augmente cette valeur de +3. Son Initiative finale est donc égale à 14.\nIonas n’a pas de bonus de Perception, mais sa capacité Murmure dans le vent lui octroie un bonus de +1. Son initiative est donc égale à 11.",
+  "equipement": "Votre personnage débute avec un sac d’aventurier qui contient :\n• une couverture,\n• une torche,\n• un briquet à silex,\n• une outre,\n• une gamelle,\n• une bourse de 2d6 pa.\nExemple : Lhagva obtient l’équipement standard d’un barbare. Elle préfère une arme à une main et un bouclier à une arme à deux mains.\nIonas pourrait maîtriser une arme supplémentaire, mais cela ne correspond pas à l’idée que Salim se fait de son personnage. Il négocie donc avec le MJ de ne pas avoir d’arme supplémentaire en échange de vêtements luxueux.",
+  "def": "La DEF d’un personnage est égale à : 10 + AGI + éventuels modificateurs de capacités et d’armure (voir le chapitre « Équipement », page 181).\nExemple : Lhagva porte une armure de cuir (DEF +2) et un bouclier (DEF +2), et son Agilité est de +1. Sa Défense est donc de 10 + 2 + 2 + 1 = 15.\nDe plus sa capacité Réflexes éclair de la voie du pourfendeur lui donne un bonus supplémentaire de +1 pour un total final de 16.\nIonas, lui, ne porte aucune armure et son bonus d’agilité est égal à +1. De plus, sa capacité Murmure dans le vent lui octroie un bonus de +1 en Défense, ce qui lui permet d’avoir finalement une Défense de 12.",
+  "attaques": "Les valeurs d’attaque d’un personnage dépendent de son niveau et des caractéristiques liées aux types d’attaque :\n• Attaque au contact = niveau + FOR\n• Attaque à distance = niveau + AGI\n• Attaque magique = niveau + VOL Ainsi, au niveau 1, les valeurs d’attaque sont les suivantes :\n• Attaque au contact = 1 + FOR\n• Attaque à distance = 1 + AGI\n• Attaque magique = 1 + VOL Exemple : Lhagva est un personnage de niveau 1.\nSa valeur d’attaque au contact est donc de +4 (niveau +1 et FOR +3) et sa valeur d’attaque à distance de +2 (niveau 1 et AGI +1). Sa valeur d’attaque magique est égale à +2 (niveau 1 et VOL +1).\nIonas possède un total de -1 en attaque au contact (niveau 1 et -2 en FOR), de +2 en attaque à distance (niveau 1 et +1 en AGI) et enfin de +3 en attaque magique (niveau 1 et +2 en VOL).",
+  "dm": "Les DM de chaque arme sont indiqués au chapitre « Équipement », et ceux des sorts sont précisés dans la description des capacités concernées.\nPar principe :\n• la FOR s’ajoute aux DM des armes de contact ;\n• aucune valeur n’est ajoutée aux DM des armes à distance ;\n• lorsqu’une attaque magique bénéficie d’un bonus aux DM, cela est précisé dans la description de la capacité.\nDans tous les cas, certaines capacités peuvent venir modifier cette règle générale (par exemple, ajouter la PER en attaque à distance pour simuler un bonus de perception).",
+  "toucheFinale": "Il ne vous reste plus qu’à donner un nom et un peu d’épaisseur à votre personnage pour vous lancer à l’aventure et le faire entrer dans la légende. Vous pouvez le créer en partant de zéro ou l’imaginer en vous inspirant de personnages connus de BD, de films ou de romans.",
+  "questionsDescription": "Votre personnage est-il grand ou petit ? Maigre ou gros ? De quelle couleur sont ses cheveux, ses yeux et sa peau ? A-t-il des signes distinctifs (tatouages, cicatrices, etc.) ? Quel est son caractère ?\nEst-il plutôt honnête ? Solitaire ? Timide ? Curieux ?",
+  "questionsHistoire": "D’où vient-il ? Qu’a-t-il fait durant sa jeunesse ?\nQuel événement l’a poussé à quitter son foyer ?\nQuel est son but (devenir riche, puissant, célèbre, rendre justice, servir sa nation, répandre ses idées, percer des mystères, réparer une humiliation…) ?",
+  "idealEtTravers": "Si vous n’avez pas d’idée ou si le MJ le souhaite, vous pouvez déterminer un idéal héroïque et un travers au hasard, en lançant un d20 et en consultant le résultat dans les listes ci-dessous. Cela vous donnera une sorte de boussole pour interpréter votre personnage afin de conserver un comportement à peu près cohérent d’une partie à l’autre.\nSi vous jouez une campagne dont le prérequis implique des héros avec des idéaux positifs, le meneur de jeu pourra vous indiquer de déterminer deux idéaux héroïques (ou éventuellement deux travers si c’est l’inverse).\nEnfin si vous tirez aléatoirement un idéal ou un travers qui ne correspond pas à votre envie de jouer ou à votre idée du personnage, n’hésitez pas à relancer.",
+  "secretsIntro": "Pour le moment, si vous n’avez pas particulièrement d’idée et que vous avez besoin d’un petit coup de pouce, n’hésitez pas à utiliser la table des secrets intimes ci-après : lancez un d20 sur chacune des colonnes et choisissez l’un des secrets obtenus ; si aucun des choix ne vous convient, rien ne vous oblige à avoir un secret intime. Vous pouvez également lire ces deux listes et choisir un secret qui correspond à l’idée que vous vous faites de votre personnage. Parlez-en aussi avec votre MJ afin de savoir si cela ne risque pas d’entrer en contradiction avec le cadre de jeu ou les aventures qu’il a prévu de vous proposer.",
+  "age": "Vous trouverez ci-dessous l’âge moyen de début de carrière des personnages. Cette valeur sert surtout à donner un ordre d’idée pour les peuples non humains, mais vous êtes libre de créer un personnage un peu plus jeune ou nettement plus vieux. L’espérance de vie est indiquée pour un individu ayant vécu dans des conditions optimales, la moyenne dans les sociétés humaines par exemple est souvent de la moitié de cet âge.",
+  "taillePoids": "Ces quelques valeurs doivent vous permettre d’imaginer plus facilement les mensurations des personnages nouvellement créés.",
+  "langues": "Chaque personnage débute en sachant parler la langue officielle de la région où débutent les aventures (généralement la langue humaine locale) en plus de la langue de son peuple ou de son ethnie.\n• Un personnage avec une Intelligence de +0 sait déchiffrer sa langue maternelle de façon hésitante.\n• Un personnage avec une valeur d’Intelligence négative ne sait pas lire. S’il veut apprendre à lire par la suite, il devra sacrifier 1 point de capacité à cet effet ou augmenter sa valeur d’Intelligence. Il sait parler la langue de son peuple, plus la langue commune des humains.\n• Un personnage avec une valeur d’INT de -2 ne parle que la langue de son peuple (souvent un patois dans le cas d’un humain) et à peine quelques mots dans la langue humaine officielle.\n• Un personnage avec une valeur d’Intelligence positive peut parler, lire et écrire une langue supplémentaire par point d’Intelligence. Selon l’historique du personnage, il peut les connaître dès le départ ou les apprendre par la suite durant ses aventures s’il n’a pas encore appris toutes les langues étrangères que son Intelligence lui permet.\nExemple : Lhagva et Ionas ont une Intelligence de +0 et ne connaissent donc pas de langues supplémentaires. Toutefois, en temps qu’elfe haut, Ionas sait parler le sylvestre et le commun.\nTaille et poids du personnage Peuple Demi-elfe Demi-orc Elfe haut Elfe sylvain Gnome Halfelin Humain Nain Taille moyenne Poids moyen 1,50 m à 1,90 m 40 à 80 kg 1,70 m à 2,10 m 70 à 150 kg 1,50 m à 1,80 m 40 à 70 kg 1,40 m à 1,70 m 30 à 60 kg 1 m à 1,20 m 30 à 50 kg 80 cm à 1 m 20 à 30 kg 1,50 m à 2 m 40 à 120 kg 1,15 m à 1,35 m 50 à 100 kg",
+  "methodeRapide": "Si vous êtes débutant et que vous hésitez, nous vous conseillons la méthode suivante, gage d’efficacité et de sécurité pour obtenir un personnage cohérent.\nChoisissez la série de valeurs du personnage expert et assignez les trois plus hautes valeurs aux trois caractéristiques importantes indiquées pour votre profil au point 2, « Profil ». Assignez ensuite le dernier +1 et le -1, selon l’idée que vous vous faites de votre personnage. Les deux dernières caractéristiques reçoivent la valeur 0.",
+  "talentSecondaire": "Si votre MJ vous y autorise, vous pouvez remplacer une langue par un talent secondaire ou un loisir. Un talent secondaire ne procure aucun bonus en combat, il ne doit pas être confondu avec un métier. Il apporte un bonus de +3 sur les tests concernés (considéré comme un bonus de voie de peuple dans le cadre d’un cumul).\nExemple : jouer d’un instrument de musique au choix, jouer aux échecs ou aux cartes, calligraphie, cuisine, etc."
+ },
+ "familles": {
+  "aventuriers": "La famille des aventuriers regroupe tous ceux qui sont taillés pour l’aventure avec un grand A, le voyage et l’exploration et, dans une certaine mesure, le combat. Ce sont des personnages polyvalents et des débrouillards professionnels.\nLes aventuriers partagent une vigueur intermédiaire (4 PV) et la maîtrise d’une liste intermédiaire d’armes. Ils portent des armures légères (cuir ou cuir renforcé) et leur caractéristique commune est l’Agilité.\nLes aventuriers débutent avec 1 point de chance (PC) de plus que les autres personnages.",
+  "combattants": "La famille des combattants regroupe tous ceux qui sont taillés pour le combat et l’art de la guerre.\nLes combattants partagent une vigueur élevée (5 PV) et la maîtrise de très nombreuses armes.\nIls portent des armures lourdes (cotte de mailles ou armure de plaque, même si le barbare est plus limité). Leur caractéristique commune est la Force.",
+  "mages": "La famille des mages regroupe tous ceux qui emploient la magie profane (par opposition à la magie divine des mystiques). Ils sont peu nombreux dans la société et détiennent entre leurs mains un pouvoir extraordinaire et dangereux.\nLes mages partagent une vigueur faible (3 PV), ils ne portent aucune armure (à l’exception du forgesort) et maîtrisent très peu d’armes. Leur caractéristique commune est l’Intelligence (remplacée par le Charisme pour l’ensorceleur).\nLes mages débutent avec 1 capacité de rang 2 en plus des capacités de rang 1 acquises par les autres personnages (voir le point 5, « Voies et capacités »).",
+  "mystiques": "La famille des mystiques regroupe tous ceux qui ont une vie spirituelle intense. Ils ont en commun la méditation et la prière ainsi que des capacités qui défient les lois naturelles habituelles, notamment en ce qui concerne la récupération. Ils bénéficient d’une combinaison de capacités magiques et de capacités de combat intermédiaires, et leur caractéristique commune est la Volonté (VOL), généralement associée à une autre caractéristique mentale.\nComme les Aventuriers, les mystiques gagnent des PV intermédiaires (4 PV).\nLes mystiques débutent avec 1 dé de récupération (DR) de plus que les autres personnages."
+ },
+ "echelle": {
+  "-3": "Catastrophique",
+  "-2": "Très faible",
+  "-1": "Faible, sous la moyenne pour un humain",
+  "0": "Moyen pour un humain",
+  "+1": "Supérieur à la moyenne pour un humain",
+  "+2": "Bon",
+  "+3": "Très bon",
+  "+4": "Excellent, maximum pour un humain à la création",
+  "+5": "Extraordinaire, maximum pour un héros non humain à la création"
+ },
+ "maison": {
+  "prologue": [
+   "Les Terres d’Osgild tiennent debout par habitude. Les royaumes humains sont les morceaux d’un vieil empire que plus personne ne sait recoller, les elfes comptent les saisons au fond de leurs forêts, les nains creusent des montagnes qui leur répondent, et aux frontières, des choses patientes attendent qu’on regarde ailleurs.",
+   "Une grande quête s’annonce. Elle réclame des héros — pas encore des statues, juste des héros. Et tout commence ici, par une naissance : la tienne. Avant d’enfiler l’armure, dis-nous qui tu es, toi, de ce côté-ci du personnage."
+  ],
+  "accueilTitre": "Créateur de personnage",
+  "accueilSousTitre": "Chroniques Oubliées Fantasy 2 — niveau 1",
+  "accueilTexte": "Quelques choix, trois jets de dés, et tu repars avec ta feuille de personnage remplie, prête à être envoyée à ton MJ.",
+  "guideHistoire": [
+   "Raconte d’où vient ton personnage, ce qu’il a traversé, et ce qui l’a poussé à prendre la route. Surtout, que ton histoire justifie à sa façon ton idéal, ton travers, ton secret et ta bizarrerie : c’est là que le personnage devient quelqu’un.",
+   "Une demi-page suffit. Laisse volontairement des zones d’ombre : ton MJ adore les combler, et c’est bien la seule chose qu’il fasse gratuitement."
+  ],
+  "noteObjetNegocie": "Ça peut être lié à ton histoire (un porte-bonheur, une lettre, un médaillon…) ou quelque chose de très pratique (une petite corde de 3 m, une cuillère pour manger…). Le MJ tranche.",
+  "avertissementModeLibre": "Tu es libre, mais une mauvaise répartition peut te handicaper. Exemple : un guerrier avec FOR à 0 touchera rarement ses adversaires et fera peu de dégâts.",
+  "notePrompt": "Ce prompt reprend tout ce que tu as choisi. Si le résultat ne te plaît pas, modifie-le librement avant de le coller dans ChatGPT.",
+  "noteBizarrerie": "Un petit grain de sel : de quoi faire rire la table au troisième round, pas de quoi saboter l’aventure.",
+  "noteTraits": "Les quatre sont obligatoires : relance les dés autant que tu veux, ou écris-les toi-même.",
+  "ecrans": {
+   "profil": "Qui es-tu quand ça tourne mal ?",
+   "peuple": "Et de quel coin du monde viens-tu ?",
+   "caracs": "Sept chiffres qui décideront de beaucoup de choses.",
+   "voies": "Deux voies à toi, une voie qui te vient de ton peuple.",
+   "equipement": "Ce que tu emportes, et ce que tu as réussi à négocier.",
+   "touche": "Les détails qui feront de toi quelqu’un plutôt que quelque chose.",
+   "histoire": "Ton passé, en une demi-page.",
+   "recap": "Ta fiche, ton portrait, et la porte de la taverne."
+  },
+  "bizarreries": [
+   "N’a pas de sous-vêtements. Jamais. Par principe.",
+   "Refuse de passer par les portes : il n’entre et ne sort que par les fenêtres.",
+   "Vomit dès qu’il aperçoit une personne âgée.",
+   "Parle de lui à la troisième personne dès qu’il est stressé.",
+   "Consulte sa cuillère avant toute décision importante, car elle « sait ».",
+   "Éternue bruyamment chaque fois que quelqu’un prononce le mot « dragon ».",
+   "Ne peut s’endormir que si quelqu’un lui chante une berceuse.",
+   "Collectionne les cailloux « qui ont une bonne tête » et leur donne des prénoms.",
+   "Salue solennellement chaque cheval qu’il croise, par respect.",
+   "Compte tout à voix haute (marches, pièces, ennemis) et se trompe toujours."
+  ]
+ }
+}

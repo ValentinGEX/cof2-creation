@@ -1,0 +1,262 @@
+{
+ "_source": "Chroniques Oubliées Fantasy 2, chapitre 1 (p. imprimées 33 à 37) ; la table des bizarreries est un ajout maison.",
+ "ideaux": [
+  "Abnégation",
+  "Clémence",
+  "Compassion",
+  "Courage",
+  "Égalité",
+  "Éducation",
+  "Fraternité",
+  "Frugalité",
+  "Générosité",
+  "Honnêteté",
+  "Honneur",
+  "Humilité",
+  "Justice",
+  "Liberté",
+  "Loyauté",
+  "Pacifisme",
+  "Protection",
+  "Sens du sacrifice",
+  "Solidarité",
+  "Vérité"
+ ],
+ "travers": [
+  "Alcoolique",
+  "Couard",
+  "Crédule",
+  "Cupide",
+  "Colérique",
+  "Distrait",
+  "Dragueur",
+  "Fanfaron",
+  "Gourmand",
+  "Grossier",
+  "Impatient",
+  "Indécis",
+  "Menteur",
+  "Orgueilleux",
+  "Paranoïaque",
+  "Paresseux",
+  "Phobie (au choix)",
+  "Timide",
+  "Violent",
+  "Voleur"
+ ],
+ "secrets1": [
+  "Je ne suis pas celui que je prétends être.",
+  "Je recherche un membre de ma famille.",
+  "Je suis victime d’une malédiction.",
+  "Je suis recherché pour un crime (mais l’ai-je commis ?).",
+  "J’ai perdu la mémoire d’une période de ma vie.",
+  "J’ai une phobie que j’ai honte d’avouer.",
+  "J’ai une addiction qui me cause du tort.",
+  "Il y a une chose en particulier qui me fait sortir de mes gonds.",
+  "Un membre de ma propre famille est devenu un ennemi mortel.",
+  "Je mène une double vie.",
+  "Je suis déjà mort une fois.",
+  "J’ai d’énormes dettes.",
+  "Ceci n’est pas mon corps (ou deux esprits cohabitent dans mon corps).",
+  "J’ai brisé un serment sacré.",
+  "Je possède un objet qui ne doit pas tomber entre de mauvaises mains.",
+  "Je porte un deuil terrible.",
+  "J’ai fui une amante ou un amant puissant (socialement).",
+  "Un terrible cauchemar me hante chaque nuit (est-ce que je m’en souviens ?).",
+  "Je n’ai pas réussi à empêcher un grand mal et je porte ce fardeau.",
+  "Je fais partie d’une organisation secrète (ou je la fuis)."
+ ],
+ "secrets2": [
+  "Toute ma famille est décédée ou m’a",
+  "J’ai été recruté pour surveiller/protéger/ espionner un autre membre du groupe.",
+  "On m’a prédit que je causerai une terrible catastrophe.",
+  "Je suis porteur d’une marque de naissance (j’en ignore l’origine et la signification).",
+  "Mon enfant/frère/sœur/amour a disparu sans explication.",
+  "Je possède un objet qui est un héritage familial et j’y tiens comme à ma vie.",
+  "J’ai passé un pacte secret avec un démon ou une entité supérieure.",
+  "J’ai été trahi et cela a bouleversé ma vie.",
+  "J’ai un handicap, mais je le surmonte à tout prix.",
+  "Je suis célèbre pour une histoire que je préfère oublier…",
+  "Je veux devenir célèbre pour gagner le cœur de quelqu’un.",
+  "Je veux prouver à mon père/ma mère que je vaux mieux que ce qu’il croit.",
+  "J’ai besoin de beaucoup d’argent pour une bonne cause.",
+  "J’ai un objectif affiché, mais ce n’est pas celui que je cherche à atteindre.",
+  "Je veux devenir puissant pour abattre un tyran/une créature.",
+  "J’ai fait quelque chose d’horrible et je tente de me racheter.",
+  "Je sais comment je vais mourir, je l’ai vu.",
+  "Je n’ai aucun secret ou originalité, alors je m’en invente.",
+  "Je suis le parfait compagnon, mais un jour tous devront ployer le genou devant moi.",
+  "Je viens d’un autre monde et tout ce qui m’entoure me semble étrange."
+ ],
+ "ages": {
+  "demi-elfe": [
+   20,
+   150
+  ],
+  "demi-orc": [
+   15,
+   60
+  ],
+  "elfe-haut": [
+   80,
+   450
+  ],
+  "elfe-sylvain": [
+   50,
+   350
+  ],
+  "gnome": [
+   40,
+   250
+  ],
+  "humain": [
+   18,
+   100
+  ],
+  "nain": [
+   40,
+   250
+  ],
+  "halfelin": [
+   20,
+   150
+  ]
+ },
+ "tailles": {
+  "demi-elfe": {
+   "tailleCm": [
+    150,
+    190
+   ],
+   "poidsKg": [
+    40,
+    80
+   ]
+  },
+  "demi-orc": {
+   "tailleCm": [
+    170,
+    210
+   ],
+   "poidsKg": [
+    70,
+    150
+   ]
+  },
+  "elfe-haut": {
+   "tailleCm": [
+    150,
+    180
+   ],
+   "poidsKg": [
+    40,
+    70
+   ]
+  },
+  "elfe-sylvain": {
+   "tailleCm": [
+    140,
+    170
+   ],
+   "poidsKg": [
+    30,
+    60
+   ]
+  },
+  "gnome": {
+   "tailleCm": [
+    100,
+    120
+   ],
+   "poidsKg": [
+    30,
+    50
+   ]
+  },
+  "halfelin": {
+   "tailleCm": [
+    80,
+    100
+   ],
+   "poidsKg": [
+    20,
+    30
+   ]
+  },
+  "humain": {
+   "tailleCm": [
+    150,
+    200
+   ],
+   "poidsKg": [
+    40,
+    120
+   ]
+  },
+  "nain": {
+   "tailleCm": [
+    115,
+    135
+   ],
+   "poidsKg": [
+    50,
+    100
+   ]
+  }
+ },
+ "langues": [
+  {
+   "nom": "Commun",
+   "locuteurs": "humains, halfelins"
+  },
+  {
+   "nom": "Sylvestre",
+   "locuteurs": "elfes, fées, dryades, sylvaniens"
+  },
+  {
+   "nom": "Runique",
+   "locuteurs": "gnomes, nains, de nombreux géants, créatures élémentaires de la terre"
+  },
+  {
+   "nom": "Noir parlé",
+   "locuteurs": "orcs et goblinoïdes, trolls, ogres, de nombreuses créatures maléfiques"
+  },
+  {
+   "nom": "Draconique",
+   "locuteurs": "dragons, kobolds, hommes-lézards"
+  },
+  {
+   "nom": "Abyssal",
+   "locuteurs": "démons, créatures élémentaires du feu"
+  },
+  {
+   "nom": "Célestien",
+   "locuteurs": "anges et créatures des plans supérieurs, créatures élémentaires de l’air"
+  },
+  {
+   "nom": "Argotien",
+   "locuteurs": "voleurs",
+   "note": "L’argotien est l’argot des voleurs et une langue des signes ; il compte pour deux langues si le profil principal du PJ n’est pas voleur ou barde."
+  },
+  {
+   "nom": "Profond",
+   "locuteurs": "créatures souterraines, dont les elfes des profondeurs"
+  },
+  {
+   "nom": "Aquarien",
+   "locuteurs": "créatures sous-marines, créatures élémentaires de l’eau"
+  }
+ ],
+ "bizarreries": [
+  "N’a pas de sous-vêtements. Jamais. Par principe.",
+  "Refuse de passer par les portes : il n’entre et ne sort que par les fenêtres.",
+  "Vomit dès qu’il aperçoit une personne âgée.",
+  "Parle de lui à la troisième personne dès qu’il est stressé.",
+  "Consulte sa cuillère avant toute décision importante, car elle « sait ».",
+  "Éternue bruyamment chaque fois que quelqu’un prononce le mot « dragon ».",
+  "Ne peut s’endormir que si quelqu’un lui chante une berceuse.",
+  "Collectionne les cailloux « qui ont une bonne tête » et leur donne des prénoms.",
+  "Salue solennellement chaque cheval qu’il croise, par respect.",
+  "Compte tout à voix haute (marches, pièces, ennemis) et se trompe toujours."
+ ]
+}

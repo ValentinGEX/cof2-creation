@@ -1,0 +1,269 @@
+{
+ "slug": "magicien",
+ "nom": "Magicien",
+ "famille": "mages",
+ "description": "Le magicien est un érudit qui a fait de longues études sur les fondements théoriques de la magie avant d’être capable de lancer ses premiers sorts. Toutefois, ce n’est pas qu’un rat de bibliothèque, il fait aussi appel à la magie pour se débarrasser de ses ennemis et pour aider ses compagnons. Son bien le plus précieux est son grimoire où il a inscrit tous ses sorts.",
+ "pvText": "Points de vigueur au niveau 1 : 6 + CON · Points de vigueur / niveau : 3 · Dé de récupération : d6 · Points de chance : 2 + CHA · +1 capacité de rang 2 à la création du personnage · Accès à la voie du mage en remplacement de la voie de peuple.",
+ "armesArmures": "Le magicien sait manier la dague et le bâton.\nLes voies de magicien interdisent de porter une armure ou d’utiliser un bouclier.",
+ "equipementTexte": "Bâton ferré (DM 1d6), dague (DM 1d4), grimoire de sorts.",
+ "voies": [
+  {
+   "slug": "voie-de-la-magie-des-arcanes",
+   "nom": "Voie de la magie des arcanes",
+   "capacites": [
+    {
+     "rang": 1,
+     "titre": "Projectile de mana",
+     "tags": [
+      "A"
+     ],
+     "sort": true,
+     "texte": "Le magicien choisit une cible visible située à moins de 30 m et lance sur elle un projectile d’énergie ésotérique pure, déformant la trame de la réalité. La cible subit automatiquement 1d4° DM. Si le joueur obtient le résultat maximal sur son dé de dommages, il peut le relancer et ajouter le nouveau résultat (une seule fois). Les DM du projectile de mana augmentent de +1 chaque fois que le personnage atteint le rang 4 dans une voie de magicien jusqu’à un maximum égal à sa valeur d’INT."
+    },
+    {
+     "rang": 2,
+     "titre": "Lévitation",
+     "tags": [
+      "M"
+     ],
+     "sort": true,
+     "texte": "Le magicien peut se déplacer verticalement de 5 m par action de mouvement vers le haut ou de 10 m vers le bas pendant INT minutes. Rester en vol stationnaire à la même hauteur demande une action de mouvement."
+    },
+    {
+     "rang": 3,
+     "titre": "Forme gazeuse",
+     "tags": [
+      "A"
+     ],
+     "sort": true,
+     "texte": "Le magicien prend la consistance d’un gaz pendant 1 min. Il se déplace au ras du sol (s’il chute, il le fait au ralenti) à une vitesse de 5 m par action de mouvement (M). Il peut s’introduire par les plus petits interstices (comme sous une porte), mais ne peut utiliser aucune capacité. Sous cette forme, les armes ordinaires ne lui infligent aucun DM, mais la magie et les armes magiques l’affectent normalement."
+    },
+    {
+     "rang": 4,
+     "titre": "Accélération",
+     "tags": [
+      "A"
+     ],
+     "sort": true,
+     "texte": "Le magicien voit son métabolisme s’accélérer pendant [1d4°+INT] rounds. Il reçoit immédiatement une action de mouvement supplémentaire, puis une action de mouvement supplémentaire à chaque round. À son tour, il peut choisir de sacrifier cette action de mouvement pour obtenir au choix +3 en DEF pendant un round ou -1 PM sur le lancement d’un sort à ce round. Il est possible de cumuler cette réduction de -1 PM avec une Concentration (L) (voir le chapitre « La magie »). Par exemple, une Désintégration lancée de cette façon coûtera 5 - 2 - 1=2 PM."
+    },
+    {
+     "rang": 5,
+     "titre": "Désintégration",
+     "tags": [
+      "A"
+     ],
+     "sort": true,
+     "texte": "Le magicien projette un rayon mortel dont la portée est de 20 m et qui annule la cohésion de la matière, ne laissant derrière lui qu’un amas de poussière. Un test d’attaque magique réussi contre la DEF de la cible inflige [5d4°+INT] DM. Si le magicien vise un objet porté par une créature, le test d’attaque subit un dé malus. Les objets magiques sont insensibles à ce sort et les objets normaux (jusqu’à 100 kg) sont réduits en poussière. Une créature réduite à 0 PV par ce sort est proprement désintégrée, ne laissant aucun cadavre derrière elle ! (Ses objets magiques sont épargnés)."
+    }
+   ]
+  },
+  {
+   "slug": "voie-de-la-magie-destructrice",
+   "nom": "Voie de la magie destructrice",
+   "capacites": [
+    {
+     "rang": 1,
+     "titre": "Arc de feu",
+     "tags": [
+      "A"
+     ],
+     "sort": true,
+     "texte": "Des flammes jaillissent des doigts tendus du magicien. Jusqu’à 3 cibles au contact subissent [1d4°+INT] DM, les cibles peuvent faire un test d’AGI difficulté [10 + INT] pour ne subir que la moitié des DM. Les DM passent à 2d4° au rang 4."
+    },
+    {
+     "rang": 2,
+     "titre": "Saper les forces",
+     "tags": [
+      "A"
+     ],
+     "sort": true,
+     "texte": "Le magicien choisit une cible vivante située à une distance maximum de 10 m. S’il réussit un test opposé d’attaque magique, la cible subit un malus de -2 à ses tests de FOR, d’attaque au contact et aux DM, jusqu’à la fin du combat. Le sort n’est pas cumulable plusieurs fois sur la même cible."
+    },
+    {
+     "rang": 3,
+     "titre": "Flèche de feu",
+     "tags": [
+      "A"
+     ],
+     "sort": true,
+     "texte": "Le magicien choisit une cible située à moins de 30 m. Si son attaque magique réussit (contre DEF), la cible subit [3d4°+INT] DM. Chaque round de combat suivant, le feu inflige 1d6 DM supplémentaires. Sur un résultat de 1 ou 2, le sort prend fin. Les DM sur la durée ne sont pas cumulables si le sort est lancé plusieurs fois."
+    },
+    {
+     "rang": 4,
+     "titre": "Explosion de feu",
+     "tags": [
+      "A"
+     ],
+     "sort": true,
+     "texte": "Le magicien choisit un point situé à moins de 30 m. Toutes les créatures (y compris le magicien et ses compagnons) se trouvant dans un rayon de 5 m autour de ce point subissent [4d4°+INT] DM et peuvent effectuer un test d’AGI difficulté [10 + INT] pour ne subir que la moitié des DM."
+    },
+    {
+     "rang": 5,
+     "titre": "Appel de la foudre",
+     "tags": [
+      "A"
+     ],
+     "sort": true,
+     "texte": "Le magicien projette des traits de foudre sur toutes les cibles de son choix dans un rayon de 10 m autour de lui. Il fait un seul test d’attaque magique et toutes les créatures ciblées dont il atteint la DEF subissent [2d4°+INT] DM d’électricité."
+    }
+   ]
+  },
+  {
+   "slug": "voie-de-la-magie-elementaire",
+   "nom": "Voie de la magie élémentaire",
+   "capacites": [
+    {
+     "rang": 1,
+     "titre": "Asphixie",
+     "tags": [
+      "A"
+     ],
+     "sort": true,
+     "texte": "Si le magicien réussit un test opposé d’attaque magique (avec une portée de 20 m), la créature ciblée est privée d’air. La victime étouffe progressivement et subit 1d4° DM par round pendant INT rounds. Les créatures qui ne respirent pas (morts-vivants, créatures artificielles) sont immunisées à ce sort. En revanche, les réductions de dommages (voie du colosse, par exemple) ne s’appliquent pas."
+    },
+    {
+     "rang": 2,
+     "titre": "Maîtrise des éléments",
+     "tags": [
+      "M"
+     ],
+     "sort": true,
+     "texte": "Le magicien retranche son rang + 2 à tous les DM de feu, de froid, d’électricité ou d’acide subis pendant INT minutes. De plus, pendant la durée du sort, lorsqu’il lance un sort d’un élément, le magicien peut échanger un élément contre un autre (par exemple, une Explosion de froid ou une Flèche acide)."
+    },
+    {
+     "rang": 3,
+     "titre": "Arme élémentaire",
+     "tags": [
+      "A",
+      "L"
+     ],
+     "sort": true,
+     "texte": "Le magicien peut enchanter, en la touchant, une arme au contact ou à distance pour INT minutes. S’il s’agit de son arme, l’incantation est une action d’attaque (A) ; si elle appartient à autrui, c’est une action limitée (L). Si l’arme change de main, le sort prend fin. L’arme inflige +1d4° DM de feu, de froid, d’électricité ou d’acide en plus des DM habituels. Le magicien doit choisir l’élément au moment de l’incantation. Tant qu’il tient l’arme élémentaire en main, les sorts basés sur cet élément lui coûtent 1 PM de moins pour être lancés (par exemple, Mains brûlantes ou Explosion de feu s’il a enflammé son bâton). Ce sort ne fait aucun effet sur une arme qui bénéficie déjà d’un bonus élémentaire aux DM."
+    },
+    {
+     "rang": 4,
+     "titre": "Respiration aquatique",
+     "tags": [
+      "A"
+     ],
+     "sort": true,
+     "texte": "Le magicien peut respirer sous l’eau pendant 10 minutes. Cette capacité peut être étendue à un compagnon par point d’INT."
+    },
+    {
+     "rang": 5,
+     "titre": "Armure de pierre",
+     "tags": [
+      "A"
+     ],
+     "sort": true,
+     "texte": "Pendant INT minutes, le magicien retranche 5 points à tous les DM subis. Le sort prend fin dès qu’il a absorbé [niveau du magicien × 3] DM. Cette réduction se cumule à celle offerte par la Maîtrise des éléments. Armure de pierre est incompatible avec le sort Déphasage (voie de la magie protectrice), il y met fin immédiatement."
+    }
+   ]
+  },
+  {
+   "slug": "voie-de-la-magie-protectrice",
+   "nom": "Voie de la magie protectrice",
+   "capacites": [
+    {
+     "rang": 1,
+     "titre": "Armure de mana",
+     "tags": [
+      "M"
+     ],
+     "sort": true,
+     "texte": "Le magicien fait apparaître une protection magique chatoyante qui recouvre son corps et produit des étincelles à chaque fois qu’il encaisse un coup. Pendant INT minutes, la DEF du magicien augmente de +3. Cette valeur passe à +4 lorsque le personnage atteint le rang 3 dans la voie et augmente de +1 supplémentaire chaque fois que le personnage atteint le rang 5 dans une voie de magicien (ou dans la voie du mage). Ce sort ne se cumule jamais à une armure (il est considéré comme une armure)."
+    },
+    {
+     "rang": 2,
+     "titre": "Chute ralentie",
+     "tags": [
+      "G"
+     ],
+     "sort": true,
+     "texte": "Le magicien peut désigner un nombre de cibles maximal (dont lui-même) égal à son INT à une portée de 10 m, même en dehors de son tour. Les cibles peuvent chuter de n’importe quelle hauteur sans subir de dommages. En cas de chute inattendue, le magicien doit faire un test d’INT difficulté 15 pour chacun de ses compagnons afin d’avoir le temps de lancer le sort (réussite automatique sur lui-même)."
+    },
+    {
+     "rang": 3,
+     "titre": "Déphasage",
+     "tags": [
+      "A"
+     ],
+     "sort": true,
+     "texte": "Pendant [1d4°+INT] rounds, le corps du magicien se désincarne par intermittence, son image se brouille et tous les DM des attaques de contact ou à distance qu’il subit et qu’il inflige sont divisés par 2. Les DM des sorts ne sont pas réduits. Un personnage sous l’effet d’un sort d’armure de pierre ne peut se déphaser."
+    },
+    {
+     "rang": 4,
+     "titre": "Cercle de protection",
+     "tags": [
+      "A"
+     ],
+     "sort": true,
+     "texte": "Le magicien peut tracer un cercle sur le sol (environ 2 m de diamètre) afin de se protéger et d’inclure à sa protection un nombre de personnes égal à son INT. Une fois par round, lorsqu’un sort prend pour cible un personnage protégé, le magicien fait un test d’attaque magique opposé avec l’auteur du sort. Si le test est réussi, le sort adverse est annulé et n’a aucun effet. De plus, toutes les créatures invoquées (élémentaires, démons) et les morts-vivants qui veulent attaquer une créature dans le cercle subissent un dé malus en attaque. Si le magicien sort du cercle, le sort est dissipé."
+    },
+    {
+     "rang": 5,
+     "titre": "Interruption du temps",
+     "tags": [
+      "A"
+     ],
+     "sort": true,
+     "texte": "Après avoir lancé ce sort, le personnage bénéficie d’INT rounds complets hors du temps durant lesquels il peut utiliser des sorts ou des objets (potions) sur lui-même. Il ne peut interagir avec son environnement, ni se déplacer, seulement utiliser son propre équipement ou ses capacités sur lui-même."
+    }
+   ]
+  },
+  {
+   "slug": "voie-de-la-magie-universelle",
+   "nom": "Voie de la magie universelle",
+   "capacites": [
+    {
+     "rang": 1,
+     "titre": "Lumière",
+     "tags": [
+      "L"
+     ],
+     "sort": true,
+     "texte": "Le magicien désigne un objet à moins de 10 m. Celui-ci produit de la lumière dans un rayon de 10 m pendant INT heures. Cette source de lumière n’émet pas de chaleur. Une fois par combat, le magicien peut lancer ce sort sur les yeux d’une créature dont le NC ne dépasse pas le rang atteint dans la voie. S’il réussit un test opposé d’attaque magique, elle est aveuglée pendant 1 round."
+    },
+    {
+     "rang": 2,
+     "titre": "Familier",
+     "tags": [
+      "A"
+     ],
+     "sort": true,
+     "texte": "Le magicien choisit un petit animal (écureuil, corbeau, chat, dragonnet). Il peut utiliser les sens de son familier (voir par ses yeux, entendre ce qu’il entend, etc.) et communiquer avec lui à distance illimitée. Il gagne +2 en Initiative et en DEF lorsque son familier est en vue.\nS’il est réduit à 0 PV, le familier disparaît dans un nuage de fumée et le personnage perd 1d4° PV en contrecoup. Toutefois, le maître pourra à nouveau invoquer son familier dès qu’il aura terminé une récupération complète (c’est toujours le même animal qui apparaît). Le familier récupère tous les PV perdus après une récupération rapide.\nFamilier : AGI +3 ; CON +0 ; FOR -4 ; PER +2 ; CHA -2 ; INT -2 ; VOL +2 ;\nDEF [13 + rang dans la voie] PV [niv. du magicien] Init. [Init. du magicien]\nUn familier est une créature trop petite pour attaquer et infliger des dommages."
+    },
+    {
+     "rang": 3,
+     "titre": "Invisibilité",
+     "tags": [
+      "A",
+      "L"
+     ],
+     "sort": true,
+     "texte": "Le magicien se rend invisible pendant [1d4°+INT] minutes. Une fois invisible, personne ne peut plus détecter sa présence ou lui porter d’attaque directe. Si le magicien attaque, il redevient visible. À partir du rang 5, le magicien peut lancer ce sort sur un allié au prix d’une action limitée."
+    },
+    {
+     "rang": 4,
+     "titre": "Vol",
+     "tags": [
+      "A"
+     ],
+     "sort": true,
+     "texte": "Le magicien peut voler pendant [2d4°+INT] minutes. Sa vitesse de déplacement est la même qu’au sol. Il peut rester en vol stationnaire s’il le désire et cela est une action gratuite."
+    },
+    {
+     "rang": 5,
+     "titre": "Téléportation",
+     "tags": [
+      "L"
+     ],
+     "sort": true,
+     "texte": "Une fois par jour, le magicien disparaît et réapparaît à un autre endroit situé à moins de (niveau x INT) kilomètres. Le lieu d’arrivée doit être soit en vue, soit parfaitement connu par le magicien. Le magicien peut emmener avec lui un allié à partir du niveau 10, un deuxième au niveau 13, un troisième au niveau 16 et enfin un quatrième au niveau 19."
+    }
+   ]
+  }
+ ],
+ "source": "https://drs.chroniques-oubliees.fr/fantasy/profils/magicien"
+}

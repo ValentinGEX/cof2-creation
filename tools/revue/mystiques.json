@@ -1,0 +1,140 @@
+{
+  "equipement": {
+    "druide": {
+      "armureMax": "cuir-simple",
+      "bouclier": true,
+      "citationArmure": "Les voies de druide limitent l’armure au cuir simple. Il peut utiliser le petit bouclier en bois (DEF +1).",
+      "equipement": [
+        {
+          "choix": [
+            [
+              {
+                "ref": "baton-ferre"
+              }
+            ],
+            [
+              {
+                "ref": "epieu"
+              }
+            ]
+          ],
+          "libelle": "Bâton noueux (DM 1d6) ou épieu (DM 1d6 ou 1d10)"
+        },
+        {
+          "ref": "dague"
+        },
+        {
+          "ref": "arc-court"
+        },
+        {
+          "ref": "cuir-simple"
+        }
+      ]
+    },
+    "moine": {
+      "armureMax": null,
+      "bouclier": false,
+      "citationArmure": "Les voies de moine interdisent de porter une armure ou d’utiliser un bouclier.",
+      "equipement": [
+        {
+          "ref": "baton"
+        }
+      ]
+    },
+    "pretre": {
+      "armureMax": "chemise-de-mailles",
+      "bouclier": true,
+      "citationArmure": "Les voies de prêtre limitent l’armure à la chemise de mailles et permettent d’utiliser le petit bouclier (DEF +1).",
+      "equipement": [
+        {
+          "choix": [
+            [
+              {
+                "ref": "masse"
+              }
+            ],
+            [
+              {
+                "ref": "marteau"
+              }
+            ],
+            [
+              {
+                "ref": "baton-ferre"
+              }
+            ]
+          ],
+          "libelle": "Masse, marteau de guerre (DM 1d6) ou bâton ferré (DM 1d6, à deux mains)"
+        },
+        {
+          "ref": "petit-bouclier"
+        },
+        {
+          "ref": "chemise-de-mailles"
+        }
+      ]
+    }
+  },
+  "effets": {
+    "druide/voie-du-fauve/1": {
+      "titre": "Vitesse du félin",
+      "effets": [
+        {
+          "cible": "INIT",
+          "valeur": 3
+        },
+        {
+          "cible": "DEF",
+          "valeur": 1
+        }
+      ],
+      "citation": "De plus, il gagne +3 en Initiative et +1 en DEF."
+    },
+    "moine/voie-de-la-maitrise/1": {
+      "titre": "Agilité du singe",
+      "effets": [
+        {
+          "cible": "DEF",
+          "valeur": 2
+        }
+      ],
+      "citation": "il gagne +2 en DEF"
+    },
+    "moine/voie-du-vent/1": {
+      "titre": "Pas du vent",
+      "effets": [
+        {
+          "cible": "INIT",
+          "valeur": 3
+        }
+      ],
+      "citation": "De plus, il gagne +3 en Initiative"
+    },
+    "pretre/voie-de-la-spiritualite/1": {
+      "titre": "Vêtements sacrés",
+      "effets": [
+        {
+          "cible": "DEF",
+          "valeur": 2,
+          "condition": "sansArmure"
+        }
+      ],
+      "citation": "Lorsqu’il ne porte aucune armure (bouclier autorisé), il obtient un dé bonus à tous les tests pour résister à un contrôle mental (injonction, charme, domination…) et +2 en DEF."
+    }
+  },
+  "remarques": [
+    "Moine / équipement : le texte de départ dit « Bâton (DM 1d6) », mais le tableau des armes donne Bâton = 1d4 et Bâton ferré = 1d6. J'ai retenu le slug « baton » (fidèle au nom) ; si c'est le DM 1d6 qui fait foi, il faut « baton-ferre ». À trancher.",
+    "Moine / Poings de fer (voie-du-poing, rang 1) : « il inflige [1d6+FOR] DM létaux ». Ce n'est pas un bonus chiffré sur DM_CONTACT mais un remplacement du dé de DM des mains nues (1d3 → 1d6), donc aucun effet relevé : il faudra un traitement spécifique « DM des mains nues » dans le moteur.",
+    "Moine / Poings de fer : « remplacer sa FOR par son AGI pour ses tests d'attaque au contact », uniquement à mains nues et au choix du joueur → substitution de caractéristique conditionnelle, non représentable avec les cibles autorisées. Non relevée.",
+    "Moine / Mains d'énergie (voie-de-l-energie-vitale, rang 1) : le bonus d'attaque (rang + 2) coûte une action limitée → pas permanent. La fin de la capacité (« remplacer sa FOR aux DM par sa VOL » pour les attaques à mains nues, au choix) est aussi une substitution de carac, non relevée. Les attaques à mains nues deviennent magiques : information à afficher, pas une valeur chiffrée.",
+    "Moine / Agilité du singe : le +2 en DEF n'est assorti d'aucune condition dans le texte de la capacité ; l'interdiction d'armure vient du profil (armureMax = null), pas de la capacité. Je n'ai donc pas mis de condition « sansArmure » — à confirmer.",
+    "Moine / Pacifisme (voie-de-la-meditation, rang 1) : +5 en DEF et DM subis divisés par deux, mais seulement « tant que le moine n'a réalisé aucune action offensive dans un combat ». Condition de combat hors de la liste autorisée (sansArmure / armureLegere / avecBouclier) → aucun effet relevé.",
+    "Druide / Peau d'écorce (voie-des-vegetaux, rang 1) : +2 en DEF, mais sort d'une durée de PER minutes (et non cumulable avec une armure métallique ou un autre sort de protection) → temporaire, aucun effet relevé.",
+    "Prêtre / Vêtements sacrés : la référence connue est confirmée (+2 en DEF sans armure, bouclier autorisé). Mais la capacité contient un sous-choix : « si le prêtre prie une divinité guerrière, il peut choisir d'obtenir la maîtrise de la cotte de mailles (DEF +5) » et d'utiliser les capacités de prêtre avec cette armure. Dans ce cas armureMax passerait de chemise-de-mailles à cotte-de-mailles et le +2 DEF sans armure devient sans objet → à gérer en sousChoix.",
+    "Prêtre / équipement : le troisième choix d'arme (bâton ferré) est une arme à deux mains, donc incompatible en pratique avec le petit bouclier fourni dans le même équipement de départ → avertissement non bloquant à prévoir. J'ai modélisé « Masse, marteau de guerre ou bâton ferré » comme un choix à trois options (masse / marteau / baton-ferre) ; « marteau de guerre » est rendu par le slug « marteau » (1d6, contondant), seule entrée correspondante du tableau.",
+    "Prêtre / Arme bénie (rang 1, voie-de-la-guerre-sainte) : relance des 1 sur le dé de DM et DM magiques → pas de valeur chiffrable sur la feuille. Prêtre / Prédicateur : « une fois par jour, il récupère 1 PC » est une récupération, pas une hausse du maximum de PC. Prêtre / Bénédiction et Récupération mineure : sorts à effet temporaire ou ponctuel. Aucun effet relevé.",
+    "Druide / Maître de la survie : « s'il utilise 1 DR, il guérit 1d4° PV supplémentaire » en milieu naturel → bonus de récupération, pas un modificateur permanent de la feuille. Druide / Langage des animaux et Baies magiques : bonus aux tests et sort → rien relevé.",
+    "Druide / armes-armures : le « petit bouclier en bois (DEF +1) » est autorisé (bouclier = true) mais ne figure pas dans l'équipement de départ ; le « bâton noueux » est explicitement « équivalent au bâton ferré », d'où le slug baton-ferre. L'épieu est bien l'arme de contact « Épieu » (1d6 / 1d10 à deux mains).",
+    "Bilan : chez les mystiques, aucune capacité de rang 1 ne touche PV, PM, PC, DR, ATT_CONTACT/DISTANCE/MAGIQUE ni DM_CONTACT/DISTANCE de façon permanente ; seules DEF et INIT sont concernées."
+  ]
+}

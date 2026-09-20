@@ -1,0 +1,263 @@
+{
+ "slug": "ensorceleur",
+ "nom": "Ensorceleur",
+ "famille": "mages",
+ "description": "L’ensorceleur tire son pouvoir d’un talent inné pour la magie. Il pratique une magie subtile à base de tromperie et de contrôle, et possède peu de sorts de destruction massive.",
+ "pvText": "Points de vigueur au niveau 1 : 6 + CON · Points de vigueur / niveau : 3 · Dé de récupération : d6 · Points de chance : 2 + CHA · +1 capacité de rang 2 à la création du personnage · Accès à la voie du mage en remplacement de la voie de peuple.",
+ "armesArmures": "L’ensorceleur sait manier la dague et le bâton ferré. De plus, chaque ensorceleur peut choisir une arme supplémentaire de son choix qu’il a appris à utiliser, sans dépasser 1d6 DM (malgré ses DM de 2d4, l’arbalète légère est aussi une arme éligible).\nLes voies d’ensorceleur interdisent de porter une armure ou d’utiliser un bouclier.",
+ "equipementTexte": "Bâton ferré (DM 1d6), dague (DM d4) ou autre arme maîtrisée au choix.",
+ "voies": [
+  {
+   "slug": "voie-de-l-air",
+   "nom": "Voie de l'air",
+   "capacites": [
+    {
+     "rang": 1,
+     "titre": "Murmures dans le vent",
+     "tags": [
+      "G"
+     ],
+     "sort": true,
+     "texte": "L’ensorceleur chuchote un message d’une dizaine de mots qui voyage jusqu’à son destinataire. Il peut entendre sa réponse immédiatement. La portée est de CHA × 100 m et le personnage doit connaître la cible ou la voir. En plus de ce sort, l’ensorceleur gagne un bonus permanent de +1 en Init. et en DEF, car parfois une bourrasque venue de nulle part vient gêner son attaquant, dévier un projectile ou lui permettre d’entendre un adversaire."
+    },
+    {
+     "rang": 2,
+     "titre": "Sous tension",
+     "tags": [
+      "M"
+     ],
+     "sort": true,
+     "texte": "L’ensorceleur se charge d’énergie électrique pour CHA minutes. Pendant toute la durée du sort, une créature qui le blesse par une attaque de contact ou le touche reçoit une décharge infligeant 1d4° DM. De plus, il peut utiliser une action d’attaque à chaque round pour délivrer une décharge électrique (test d’attaque magique contre DEF de la cible, portée 10 m) infligeant [1d4°+CHA] DM (aucun coût de mana)."
+    },
+    {
+     "rang": 3,
+     "titre": "Télékinésie",
+     "tags": [
+      "A"
+     ],
+     "sort": true,
+     "texte": "L’ensorceleur peut déplacer dans les airs un objet inerte (qui n’est pas tenu par un adversaire) ou une cible volontaire (par exemple lui-même) dont le poids n’excède pas 50 kg par rang, à une portée de 20 m et pendant CHA minutes. L’objet peut être maintenu en l’air ou déplacé de 5 m par action de mouvement. Il est possible de faire tomber un objet sur une cible surprise (test d’attaque magique, DM 1d6 par tranche de 50 kg)."
+    },
+    {
+     "rang": 4,
+     "titre": "Foudre",
+     "tags": [
+      "A"
+     ],
+     "sort": true,
+     "texte": "L’ensorceleur produit un éclair sur une ligne de 10 m. Toutes les créatures sur la trajectoire subissent [4d4°+CHA] DM ou seulement la moitié pour celles qui réussissent un test d’AGI difficulté [10 + CHA]."
+    },
+    {
+     "rang": 5,
+     "titre": "Forme éthérée",
+     "tags": [
+      "L"
+     ],
+     "sort": true,
+     "texte": "L’ensorceleur et tout son équipement deviennent translucides et intangibles pendant CHA minutes. Sous cette forme, il peut passer à travers murs et obstacles et ne peut subir aucun DM physiques (même infligés par une arme magique), ni en infliger, ni lancer de sorts. Il n’est pas affecté par la gravité et peut se déplacer dans toutes les directions. Il est stoppé par les barrières magiques et ne peut pas passer à travers les êtres vivants."
+    }
+   ]
+  },
+  {
+   "slug": "voie-de-la-divination",
+   "nom": "Voie de la divination",
+   "capacites": [
+    {
+     "rang": 1,
+     "titre": "Divination",
+     "tags": [
+      "L"
+     ],
+     "sort": true,
+     "texte": "S’il emporte un test opposé d’attaque magique contre une créature de NC inférieur à son niveau (portée 10 m), l’ensorceleur devine son nom d’usage, son métier et quelques autres renseignements, tous de notoriété publique (si la cible agit sous couverture, ce sont les informations qui concernent la couverture que l’ensorceleur apprend). Si la cible du sort est volontaire et qu’il lit les lignes de sa main, il n’y a pas besoin de test et l’ensorceleur peut utiliser ce sort sur une créature de NC supérieur ou égal à son niveau. En plus de ce sort, l’ensorceleur gagne +1 en Init. et en DEF. Ce bonus augmente de +1 au rang 3 de la voie et de +1 chaque fois que le personnage atteint le rang 5 dans une voie d’ensorceleur."
+    },
+    {
+     "rang": 2,
+     "titre": "Détection de l'invisible",
+     "tags": [
+      "L"
+     ],
+     "sort": true,
+     "texte": "Pendant CHA minutes, l’ensorceleur détecte les créatures invisibles (le sort révèle une silhouette, mais pas l’apparence exacte de la créature) ou cachées à moins de 20 m et si un sort de Clairvoyance affecte l’endroit. Aveuglé (par magie ou dans l’obscurité), ce sort lui permet de détecter les créatures présentes (et donc d’attaquer sans malus), mais pas de distinguer son environnement."
+    },
+    {
+     "rang": 3,
+     "titre": "Clairvoyance",
+     "tags": [
+      "A"
+     ],
+     "sort": true,
+     "texte": "L’ensorceleur peut voir et entendre à distance ce qui se passe dans un lieu qu’il connaît (pas de limite de portée) ou juste derrière une porte qu’il touche pendant CHA rounds (action limitée à chaque round). Les créatures présentes ont droit à un test de PER difficulté [12 + CHA de l’ensorceleur] : en cas de réussite, elles se sentent observées."
+    },
+    {
+     "rang": 4,
+     "titre": "Perception héroïque",
+     "tags": [],
+     "sort": false,
+     "texte": "L’ensorceleur augmente sa valeur de PER de +1. Désormais, il obtient un dé bonus aux tests de PER, et il ajoute sa PER au nombre de PM dont il bénéficie."
+    },
+    {
+     "rang": 5,
+     "titre": "Prescience",
+     "tags": [],
+     "sort": false,
+     "texte": "Une fois par combat, au début du round, le joueur peut décider qu’il a eu une vision des différents futurs possibles. Il bénéficie d’un bonus de +10 en attaque, en Défense et à tous les tests de PER pour tout le round, il divise tous les DM subis par 2 et il peut choisir d’agir à n’importe quel moment dans le round, sans considération d’initiative."
+    }
+   ]
+  },
+  {
+   "slug": "voie-de-l-envouteur",
+   "nom": "Voie de l'envoûteur",
+   "capacites": [
+    {
+     "rang": 1,
+     "titre": "Injonction",
+     "tags": [
+      "A"
+     ],
+     "sort": true,
+     "texte": "L’ensorceleur donne un ordre simple (mais pas suicidaire) de deux ou trois mots que la cible doit pouvoir comprendre. S’il réussit un test opposé d’attaque magique contre une cible à une portée de 20 m, la victime doit exécuter l’ordre pendant son prochain tour. En plus de ce sort, l’ensorceleur ajoute son rang + 2 aux tests de persuasion ou de séduction."
+    },
+    {
+     "rang": 2,
+     "titre": "Sommeil",
+     "tags": [
+      "L"
+     ],
+     "sort": true,
+     "texte": "Une fois par combat, l’ensorceleur vise une zone de 10 m de diamètre à une portée maximale de 20 m. Le sort affecte jusqu’à [1d4° + CHA] créatures vivantes de NC inférieur à 1. Le sort affecte les créatures de NC inférieur à 2 au rang 4 puis à 3 au rang 5. Les créatures perdent conscience pendant CHA minutes. Il est possible de les réveiller en les cognant violemment (action d’attaque, 1 DM)."
+    },
+    {
+     "rang": 3,
+     "titre": "Confusion",
+     "tags": [
+      "A"
+     ],
+     "sort": true,
+     "texte": "En réussissant un test opposé d’attaque magique contre sa cible (portée 20 m), l’ensorceleur désoriente sa victime pendant CHA rounds. Au tour de la victime, celui qui l’incarne lance 1d6 : sur 1-3 la victime n’agit pas, sur 4-6 elle attaque la créature la plus proche (au hasard). À la fin de son tour, elle peut mettre fin au sort prématurément en réussissant un test de VOL difficulté [12 + CHA de l’ensorceleur]."
+    },
+    {
+     "rang": 4,
+     "titre": "Amitié",
+     "tags": [
+      "L"
+     ],
+     "sort": true,
+     "texte": "Si l’ensorceleur réussit un test opposé d’attaque magique (portée 10 m) contre une cible humanoïde de niveau ou NC inférieur au sien, celle-ci se comporte comme un ami de longue date tant qu’elle n’est pas attaquée. La victime peut résister au sort avec un test de VOL difficulté [10 + CHA de l’ensorceleur] une fois par jour après chaque récupération complète. Si la cible est d’un niveau au moins égal au niveau du lanceur de sort, ce dernier obtient seulement un dé bonus à tous les tests de CHA qu’il effectue contre la victime pendant 10 min."
+    },
+    {
+     "rang": 5,
+     "titre": "Domination",
+     "tags": [
+      "A"
+     ],
+     "sort": true,
+     "texte": "En réussissant un test opposé d’attaque magique contre une cible de niveau ou NC inférieur au sien (portée 20 m), l’ensorceleur prend contrôle de sa cible pendant CHA minutes. Son propre corps devient inactif et s’écroule au sol. Si la créature meurt pendant la domination, l’ensorceleur réintègre son corps et subit 1d4° DM. Si la cible est d’un niveau trop élevé, il peut la forcer à faire une seule action de son choix (mouvement ou attaque); ensuite, il est éjecté et subit 1d4° DM."
+    }
+   ]
+  },
+  {
+   "slug": "voie-des-illusion",
+   "nom": "Voie des illusion",
+   "capacites": [
+    {
+     "rang": 1,
+     "titre": "Mirage",
+     "tags": [
+      "L"
+     ],
+     "sort": true,
+     "texte": "L’ensorceleur crée une illusion visuelle et sonore immobile d’une durée de CHA minutes. Le volume maximal de l’illusion est de 2 m de côté par rang dans la voie (portée 50 m). À partir du rang 4, l’illusion peut être animée, mais dans ce cas sa durée est exprimée en rounds. En plus de ce sort, l’ensorceleur ajoute son rang + 2 aux tests de supercherie ou à tout test qui lui servirait à mentir."
+    },
+    {
+     "rang": 2,
+     "titre": "Image décalée",
+     "tags": [
+      "M"
+     ],
+     "sort": true,
+     "texte": "L’ensorceleur crée des images décalées qui se superposent à sa silhouette pendant [1d4 + CHA] rounds. Lorsqu’une attaque au contact ou à distance le touche, l’ensorceleur lance 1d6 : sur 5-6, il ne subit pas les DM."
+    },
+    {
+     "rang": 3,
+     "titre": "Sort illusoire",
+     "tags": [
+      "A"
+     ],
+     "sort": true,
+     "texte": "L’ensorceleur lance un sort d’attaque qui n’est qu’une illusion. Il inflige [3d4°+CHA] DM contre une seule cible ou [2d4°+CHA] DM contre un maximum de cibles égal au rang atteint. Le joueur peut décrire la nature du sort à sa guise (une Explosion de feu, une nuée de criquets, une lance de glace, etc.), son imagination demeurant sa seule limite. Chaque cible peut faire un test de PER difficulté [10 + CHA de l’ensorceleur] pour ne subir aucun DM. Les créatures sans esprit (créatures artificielles, certaines plantes et morts-vivants) sont immunisées à ce sort. Les PV perdus de cette façon se récupèrent normalement."
+    },
+    {
+     "rang": 4,
+     "titre": "Imitation",
+     "tags": [
+      "A"
+     ],
+     "sort": true,
+     "texte": "Pendant CHA minutes, l’ensorceleur peut prendre l’apparence d’une créature de taille proche de la sienne (+ ou - 50 cm) qu’il voit au moment de l’incantation. Une créature qui touche l’ensorceleur se rend compte que quelque chose ne va pas et a le droit à un test d’INT difficulté [10 + CHA de l’ensorceleur] pour voir à travers l’illusion."
+    },
+    {
+     "rang": 5,
+     "titre": "Exécution mentale",
+     "tags": [
+      "A"
+     ],
+     "sort": true,
+     "texte": "Ce sort invoque les pires terreurs d’une créature humanoïde vivante et lui fait croire à sa propre mort. L’ensorceleur doit faire un test opposé d’attaque magique contre sa cible (portée 20 m). En cas de succès la victime tombe à 0 PV ou si la cible est de niveau supérieur ou égal à l’ensorceleur, elle est étourdie (-5 DEF et pas d’action) pendant 1 round. Une créature ne peut être la cible de ce sort qu’une fois par jour. Les créatures sans esprit (créatures artificielles, certaines plantes et certains morts-vivants) sont immunisées à ce sort."
+    }
+   ]
+  },
+  {
+   "slug": "voie-de-l-invocation",
+   "nom": "Voie de l'invocation",
+   "capacites": [
+    {
+     "rang": 1,
+     "titre": "Choc",
+     "tags": [
+      "A"
+     ],
+     "sort": true,
+     "texte": "Si l’ensorceleur réussit un test d’attaque magique réussi contre la DEF de son adversaire situé à une portée de 20 m, il lui inflige [1d4° + CHA] DM. Si la cible a un NC inférieur au rang atteint par l’ensorceleur dans la voie, elle doit réussir un test de FOR difficulté 10 pour ne pas être renversée."
+    },
+    {
+     "rang": 2,
+     "titre": "Serviteur invisible",
+     "tags": [
+      "L"
+     ],
+     "sort": true,
+     "texte": "Ce sort crée une force invisible pendant CHA minutes. Le serviteur peut effectuer à distance des tâches simples ne nécessitant pas de test de réussite avec une AGI et une\nINT de +0 et une FOR égale au CHA de l’ensorceleur (portée 20 m). Il peut par exemple rapporter un objet ou actionner un levier, voire faire la vaisselle. Le serviteur invisible se déplace à la même vitesse que l’ensorceleur, ne pèse rien, ne parle pas, n’a pas vraiment d’existence et peut se déplacer dans toutes les directions. Concevez-le davantage comme une force qui obéit aux injonctions télépathiques de son créateur que comme une créature. Il n’attaque pas et ne peut pas être combattu, mais il peut être dissipé grâce au sort de maîtrise de la magie."
+    },
+    {
+     "rang": 3,
+     "titre": "Arme de mana",
+     "tags": [
+      "A"
+     ],
+     "sort": true,
+     "texte": "Le sort crée une lame d’énergie lumineuse pendant [rang] rounds. Dès le premier round et à chaque round suivant, l’ensorceleur peut lui ordonner d’attaquer une cible de son choix à portée (action gratuite, portée 20 m). La lame doit réussir un test d’attaque magique contre la DEF de l’adversaire. Elle inflige [1d4° + CHA] DM en cas de réussite. L’ensorceleur ne peut maintenir actif qu’un seul sort d’arme de mana à la fois."
+    },
+    {
+     "rang": 4,
+     "titre": "Porte dimensionnelle",
+     "tags": [
+      "A"
+     ],
+     "sort": true,
+     "texte": "L’ensorceleur se téléporte lui-même et jusqu’à un allié par point de CHA à une distance maximale de 60 m. Le lieu d’arrivée doit être en vue."
+    },
+    {
+     "rang": 5,
+     "titre": "Mur de mana",
+     "tags": [
+      "A"
+     ],
+     "sort": true,
+     "texte": "L’ensorceleur crée un mur de force invisible et indestructible (portée 10 m, maximum 5 m de haut et 10 m de long, vertical, sans coudes), ou bien un hémisphère de 3 m de rayon centré sur lui-même, tous les deux immobiles. Le sort dure CHA minutes. Aucune matière ni force ne peut passer à travers le mur de force. En revanche, les attaques mentales ne sont pas stoppées et une porte dimensionnelle (ou une téléportation) permet de le franchir."
+    }
+   ]
+  }
+ ],
+ "source": "https://drs.chroniques-oubliees.fr/fantasy/profils/ensorceleur"
+}

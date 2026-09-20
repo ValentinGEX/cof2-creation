@@ -1,0 +1,104 @@
+{
+ "slug": "humain",
+ "nom": "Humain",
+ "description": "L’humain se distingue par sa capacité d’adaptation et son instinct qui le pousse à coloniser tous les territoires qui l’entourent. Le peuple humain est le plus représenté et le plus répandu dans les zones dites civilisées.",
+ "modificateursTexte": "Un personnage humain gagne +1 à la valeur d’une de ses deux plus faibles caractéristiques au choix.",
+ "reperes": {
+  "ageDepartTexte": "18+",
+  "esperanceVieTexte": "100 ans\nTaille : 1,50 m à 2 m",
+  "tailleTexte": "1,50 m à 2 m",
+  "poidsTexte": "40 à 120 kg",
+  "traits": "toute la diversité possible à l’exception des couleurs trop exotiques (cheveux violets, etc.)."
+ },
+ "noms": {
+  "intro": "Les humains ont les prénoms et les noms les plus variés qu’il soit. Vous pouvez vous inspirer d’anciens prénoms médiévaux, scandinaves, francs ou celtiques et les modifier légèrement pour leur donner une consonance plus fantastique. Pour les femmes, les noms de minéraux, de fleurs ou de couleurs peuvent aussi être utilisés.",
+  "masculin": [
+   "Adalrik",
+   "Arn",
+   "Bernulf",
+   "Brand",
+   "Edwald",
+   "Ketil",
+   "Ferwin",
+   "Gerulf",
+   "Godfred",
+   "Gunter",
+   "Halfdan",
+   "Ingvar",
+   "Knud",
+   "Lothar",
+   "Osvald",
+   "Roderick",
+   "Rurik",
+   "Sigfred",
+   "Sigmar",
+   "Sigvald",
+   "Stig",
+   "Svenn",
+   "Thorsten"
+  ],
+  "feminin": [
+   "Annia",
+   "Alaina",
+   "Berthille",
+   "Bérénia",
+   "Télinne",
+   "Koralie",
+   "Floraline",
+   "Gadrielle",
+   "Jocynthe",
+   "Kéline",
+   "Myrthinne",
+   "Marille",
+   "Naelwen",
+   "Natasha",
+   "Odaelle",
+   "Prescille",
+   "Sorsha",
+   "Véronelle",
+   "Wendoline"
+  ]
+ },
+ "voie": {
+  "slug": "voie-de-l-humain",
+  "nom": "Voie de l'humain",
+  "capacites": [
+   {
+    "rang": 1,
+    "titre": "Diversité",
+    "tags": [],
+    "sort": false,
+    "texte": "Un humain obtient un bonus de +3 aux tests de deux domaines associés à son origine géographique ou sociale (voir ci-dessous). De plus, il gagne 1 PC supplémentaire.\nLe MJ peut en inventer d’autres selon les cultures présentes dans son univers de jeu (troglodyte, marais, etc.). Éventuellement, le joueur peut remplacer un des bonus d’origine géographique par un bonus en relation avec son origine sociale ou un gagne-pain de son choix (serrurier, forgeron, scribe, maçon, chasseur, cuisinier, acrobate, pickpocket, bibliothécaire, étudiant, etc.). Le gagne-pain ne peut pas être un profil et le bonus obtenu ne s’applique jamais à des tests de combat.\nExemple : Un citadin étudiant en magie pourrait obtenir un bonus de +3 aux tests de commerce et +3 aux tests d’érudition occulte, même si son personnage est finalement devenu guerrier."
+   },
+   {
+    "rang": 2,
+    "titre": "Instinct de survie",
+    "tags": [],
+    "sort": false,
+    "texte": "Une fois par combat, lorsqu’une attaque devrait amener l’humain à 0 PV, les DM qu’elle inflige sont divisés par 2 (minimum 1). Après avoir bénéficié de cette capacité, l’humain gagne pour le reste du combat un bonus de +2 en DEF."
+   },
+   {
+    "rang": 3,
+    "titre": "Touche-à-tout",
+    "tags": [],
+    "sort": false,
+    "texte": "Le personnage obtient une capacité de rang 1 ou 2 de n’importe quel profil au choix du joueur. Si la capacité est de rang 2 ou accorde un bonus de DEF, il doit respecter les limitations d’armure."
+   },
+   {
+    "rang": 4,
+    "titre": "Loup parmi les loups",
+    "tags": [],
+    "sort": false,
+    "texte": "Une fois par round, l’humain gagne +1d4° aux DM qu’il inflige lorsqu’il combat un adversaire humanoïde de taille moyenne. Ce bonus ne s’applique qu’aux DM initiaux d’une attaque, pas aux DM sur la durée."
+   },
+   {
+    "rang": 5,
+    "titre": "Polyvalence",
+    "tags": [],
+    "sort": false,
+    "texte": "Le personnage augmente sa caractéristique la plus faible de +1 et sa Volonté de +1."
+   }
+  ]
+ },
+ "source": "https://drs.chroniques-oubliees.fr/fantasy/peuples/humain"
+}

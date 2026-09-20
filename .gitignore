@@ -1,0 +1,12 @@
+# Les deux PDF sources ne sont pas versionnés : le livre est un achat personnel (filigrané au
+# nom de Valentin) et la feuille d'origine est déjà copiée dans assets/feuille.pdf.
+CBHS_06_Chroniques_Oubliees_2_web_v2.pdf
+941_cof2_a12_feuille_de_personnage_editable_v0.pdf
+
+# caches des outils de développement
+tools/.cache-drs/
+tools/.cache-pdf/
+__pycache__/
+*.pyc
+
+.DS_Store

@@ -1,0 +1,293 @@
+{
+ "peuples": {
+  "demi-elfe": {
+   "modificateurs": [
+    {
+     "valeur": 1,
+     "choix": [
+      "PER",
+      "CHA"
+     ]
+    },
+    {
+     "valeur": -1,
+     "choix": [
+      "FOR",
+      "CON"
+     ]
+    }
+   ],
+   "langues": [
+    "Commun",
+    "Sylvestre"
+   ],
+   "citationLangues": "tables.json > langues : Commun — locuteurs « humains, halfelins » ; tables.json > langues : Sylvestre — locuteurs « elfes, fées, dryades, sylvaniens »"
+  },
+  "demi-orc": {
+   "modificateurs": [
+    {
+     "valeur": 1,
+     "choix": [
+      "FOR",
+      "CON"
+     ]
+    },
+    {
+     "valeur": -1,
+     "choix": [
+      "CHA",
+      "INT"
+     ]
+    }
+   ],
+   "langues": [
+    "Commun",
+    "Noir parlé"
+   ],
+   "citationLangues": "tables.json > langues : Commun — locuteurs « humains, halfelins » ; tables.json > langues : Noir parlé — locuteurs « orcs et goblinoïdes, trolls, ogres, de nombreuses créatures maléfiques »"
+  },
+  "elfe-haut": {
+   "modificateurs": [
+    {
+     "valeur": 1,
+     "choix": [
+      "INT",
+      "CHA"
+     ]
+    },
+    {
+     "valeur": -1,
+     "choix": [
+      "FOR"
+     ]
+    }
+   ],
+   "langues": [
+    "Commun",
+    "Sylvestre"
+   ],
+   "citationLangues": "tables.json > langues : Sylvestre — locuteurs « elfes, fées, dryades, sylvaniens »"
+  },
+  "elfe-sylvain": {
+   "modificateurs": [
+    {
+     "valeur": 1,
+     "choix": [
+      "AGI",
+      "PER"
+     ]
+    },
+    {
+     "valeur": -1,
+     "choix": [
+      "FOR"
+     ]
+    }
+   ],
+   "langues": [
+    "Commun",
+    "Sylvestre"
+   ],
+   "citationLangues": "tables.json > langues : Sylvestre — locuteurs « elfes, fées, dryades, sylvaniens »"
+  },
+  "gnome": {
+   "modificateurs": [
+    {
+     "valeur": 1,
+     "choix": [
+      "INT",
+      "PER"
+     ]
+    },
+    {
+     "valeur": -1,
+     "choix": [
+      "FOR"
+     ]
+    }
+   ],
+   "langues": [
+    "Commun",
+    "Runique"
+   ],
+   "citationLangues": "tables.json > langues : Runique — locuteurs « gnomes, nains, de nombreux géants, créatures élémentaires de la terre »"
+  },
+  "halfelin": {
+   "modificateurs": [
+    {
+     "valeur": 1,
+     "choix": [
+      "AGI",
+      "VOL"
+     ]
+    },
+    {
+     "valeur": -1,
+     "choix": [
+      "FOR"
+     ]
+    }
+   ],
+   "langues": [
+    "Commun"
+   ],
+   "citationLangues": "tables.json > langues : Commun — locuteurs « humains, halfelins »"
+  },
+  "humain": {
+   "modificateurs": [
+    {
+     "valeur": 1,
+     "regle": "deuxPlusFaibles"
+    }
+   ],
+   "langues": [
+    "Commun"
+   ],
+   "citationLangues": "tables.json > langues : Commun — locuteurs « humains, halfelins »"
+  },
+  "nain": {
+   "modificateurs": [
+    {
+     "valeur": 1,
+     "choix": [
+      "CON",
+      "VOL"
+     ]
+    },
+    {
+     "valeur": -1,
+     "choix": [
+      "AGI"
+     ]
+    }
+   ],
+   "langues": [
+    "Commun",
+    "Runique"
+   ],
+   "citationLangues": "tables.json > langues : Runique — locuteurs « gnomes, nains, de nombreux géants, créatures élémentaires de la terre »"
+  }
+ },
+ "effets": {
+  "halfelin/voie-du-halfelin/1": {
+   "titre": "Petite taille",
+   "effets": [
+    {
+     "cible": "DEF",
+     "valeur": 1
+    }
+   ],
+   "citation": "Le halfelin obtient un bonus de +1 en DEF"
+  },
+  "humain/voie-de-l-humain/1": {
+   "titre": "Diversité",
+   "effets": [
+    {
+     "cible": "PC",
+     "valeur": 1
+    }
+   ],
+   "citation": "De plus, il gagne 1 PC supplémentaire."
+  }
+ },
+ "sousChoix": {
+  "humain/voie-de-l-humain/1": {
+   "type": "origine",
+   "titre": "Diversité",
+   "libelle": "Choisir une origine géographique ou sociale (ou lancer 1d6) : elle donne +3 aux tests de ses deux domaines.",
+   "options": [
+    {
+     "nom": "Montagnard",
+     "domaines": [
+      "escalade",
+      "résistance au froid"
+     ]
+    },
+    {
+     "nom": "Citadin",
+     "domaines": [
+      "commerce",
+      "résistance aux maladies"
+     ]
+    },
+    {
+     "nom": "Campagnard",
+     "domaines": [
+      "météorologie",
+      "équitation"
+     ]
+    },
+    {
+     "nom": "Riverain",
+     "domaines": [
+      "natation",
+      "navigation"
+     ]
+    },
+    {
+     "nom": "Sauvage",
+     "domaines": [
+      "chasser",
+      "pister"
+     ]
+    },
+    {
+     "nom": "Nomade",
+     "domaines": [
+      "orientation",
+      "résistance à la chaleur ou au froid"
+     ]
+    }
+   ],
+   "citation": "Un humain obtient un bonus de +3 aux tests de deux domaines associés à son origine géographique ou sociale (voir ci-dessous)."
+  },
+  "gnome/voie-du-gnome/1": {
+   "type": "capacite",
+   "titre": "Don étrange",
+   "libelle": "Choisir une capacité de rang 1 parmi les cinq voies d’ensorceleur.",
+   "options": [
+    {
+     "voie": "voie-de-l-air",
+     "titre": "Murmures dans le vent",
+     "sort": true
+    },
+    {
+     "voie": "voie-de-la-divination",
+     "titre": "Divination",
+     "sort": true
+    },
+    {
+     "voie": "voie-de-l-envouteur",
+     "titre": "Injonction",
+     "sort": true
+    },
+    {
+     "voie": "voie-des-illusion",
+     "titre": "Mirage",
+     "sort": true
+    },
+    {
+     "voie": "voie-de-l-invocation",
+     "titre": "Choc",
+     "sort": true
+    }
+   ],
+   "citation": "il choisit une capacité de rang 1 d’ensorceleur"
+  }
+ },
+ "remarques": [
+  "demi-elfe : aucune entrée dans \"effets\" ni \"sousChoix\" — data/peuples/demi-elfe.json a \"voie\": null et un champ \"voieAuChoix\" (peuples : humain, elfe-sylvain, elfe-haut, source « livre, p. imprimée 46 »). Le rang 1 à appliquer est celui de la voie choisie : si le joueur prend la voie de l’humain, l’effet +1 PC et le sous-choix d’origine de \"humain/voie-de-l-humain/1\" s’appliquent.",
+  "demi-elfe / langues : aucune ligne de tables.json > langues ne cite les demi-elfes. Choix retenu = Commun + Sylvestre, car la ligne « Sylvestre » a pour locuteurs « elfes, fées, dryades, sylvaniens » et le demi-elfe est né d’un parent humain et d’un parent elfe (description du peuple). Le Commun couvre déjà sa part humaine (ligne « Commun » : « humains, halfelins »), le Sylvestre sert donc de « langue de son peuple ou de son ethnie ». À arbitrer si le MJ préfère lier la langue au lieu d’éducation, comme le fait le champ voieAuChoix pour la voie.",
+  "demi-orc / langues : aucune ligne ne cite les demi-orcs. Choix retenu = Commun + Noir parlé, car la ligne « Noir parlé » a pour locuteurs « orcs et goblinoïdes, trolls, ogres, de nombreuses créatures maléfiques ». Le texte des noms du demi-orc (« Les demi-orcs utilisent des prénoms humains, à moins qu’ils aient été élevés chez les orcs ») confirme la double appartenance humain/orc.",
+  "humain et halfelin : leur langue de peuple EST le Commun (ligne « Commun », locuteurs « humains, halfelins »). Ils ne reçoivent donc qu’une seule langue de départ, contre deux pour les autres peuples. À confirmer côté règles : le livre dit « le Commun en plus de la langue de son peuple », ce qui est ici la même langue.",
+  "elfe haut et elfe sylvain partagent la même ligne « Sylvestre » (locuteurs « elfes, fées, dryades, sylvaniens ») ; tables.json ne distingue pas un dialecte par culture elfique.",
+  "Aucun effet permanent chiffrable au rang 1 pour : demi-orc « Impressionnant » (+3 intimidation, vision dans le noir 30 m), elfe haut « Lumière intérieure » (pénombre sous les étoiles, +3 érudition/artistique), elfe sylvain « Lumière des étoiles » (pénombre, +3 survie en forêt), gnome « Don étrange » (+3 tests scientifiques, vision 10 m) et nain « Habitant des tunnels » (vision 30 m, +3 pierre/architecture/mines). Ces voies n’ont donc pas d’entrée dans \"effets\".",
+  "halfelin « Petite taille » : seul le +1 DEF est retenu. Les restrictions d’armes (pas d’arme à une main au-delà de 1d6, deux mains de 1d8 à 1d10, rien au-dessus de 1d10, ni arc long ni arbalète lourde) sont des contraintes d’équipement, pas des valeurs de la feuille : à traiter dans le module armes, pas ici.",
+  "humain « Diversité » : la table des six origines n’est PAS dans data/peuples/humain.json (le texte extrait dit « voir ci-dessous » puis enchaîne sur le paragraphe du MJ ; le tableau a été perdu au scraping). Les six options ci-dessus sont reprises telles quelles de la page DRS brute conservée dans tools/.cache-drs/peuple-humain.html : « Origine géographique ou sociale (choisissez ou lancez un d6) », 1 Montagnard (escalade et résistance au froid), 2 Citadin (commerce et résistance aux maladies), 3 Campagnard (météorologie et équitation), 4 Riverain (natation et navigation), 5 Sauvage (chasser et pister), 6 Nomade (orientation et résistance à la chaleur ou au froid). Le champ \"citation\" reste, lui, une phrase exacte de data/peuples/humain.json. Les options sont dans l’ordre du d6 (1 à 6). À corriger à la source : data/peuples/humain.json devrait réintégrer ce tableau.",
+  "humain « Diversité » : le texte autorise en plus « remplacer un des bonus d’origine géographique par un bonus en relation avec son origine sociale ou un gagne-pain de son choix » (liste ouverte, non exhaustive, hors profil et hors tests de combat). Ce cas libre n’est pas modélisé dans \"options\" : prévoir une saisie libre à côté de la liste.",
+  "gnome « Don étrange » : les 5 options viennent de data/profils/ensorceleur.json, une par voie, rang 1. Le slug de la voie des illusions y est écrit \"voie-des-illusion\" et son nom \"Voie des illusion\" (coquille présente dans la source, conservée telle quelle pour que la clé reste résolvable). Les cinq capacités sont des sorts (sort: true) : la capacité précise « S’il porte une armure, il ne peut pas utiliser ce sort plus d’une fois par jour (il doit payer le coût en PM de façon normale) » — restriction à gérer au moment du choix de l’armure, aucun effet chiffré sur la feuille de niveau 1.",
+  "Aucun autre sous-choix au rang 1 : demi-orc, elfe haut, elfe sylvain, halfelin et nain n’en ont pas. Les choix de capacité d’un autre profil existent mais à des rangs supérieurs (demi-orc rang 2 « Talent pour la violence », elfe sylvain rang 2 « Enfant de la forêt », elfe haut rang 3 « Talent pour la magie », humain rang 3 « Touche-à-tout ») : hors périmètre niveau 1.",
+  "humain / modificateurs : « +1 à la valeur d’une de ses deux plus faibles caractéristiques au choix » est encodé en regle \"deuxPlusFaibles\" ; en cas d’égalité entre plusieurs caractéristiques basses, le livre ne tranche pas — l’app devra proposer toutes les caractéristiques à égalité sur la 2e place.",
+  "modificateurs : les textes sources mélangent « +1 PER ou CHA » et « +1 en INT ou PER » (avec/sans « en ») et « , » ou « et » comme séparateur ; aucun impact, la lecture est identique. Le -1 du demi-elfe (« -1 FOR ou CON ») et celui du demi-orc (« -1 CHA ou INT ») sont bien des choix, pas des malus cumulés."
+ ]
+}

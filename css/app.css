@@ -1,0 +1,448 @@
+/* Ambiance parchemin : fond crème, cadres or-brun repris de la feuille de personnage
+   officielle, titres en capitales serif. Tous les ornements sont faits en CSS, aucun
+   fichier graphique n'est repris du DRS ni du livre. */
+
+:root {
+  --creme: #f4ecd8;
+  --creme-clair: #fbf6ea;
+  --parchemin: #efe3c8;
+  --or: #a67c2e;
+  --or-fonce: #8a6a2b;
+  --or-clair: #d9c089;
+  --encre: #3a2d1b;
+  --encre-pale: #6b5a41;
+  --rouge: #8c2f24;
+  --vert: #4a6b34;
+  --ombre: 0 2px 6px rgba(58, 45, 27, .18);
+  --rayon: 3px;
+}
+
+* { box-sizing: border-box; }
+
+[hidden] { display: none !important; }
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at 20% 10%, #fbf5e6 0%, transparent 55%),
+    radial-gradient(circle at 85% 80%, #f7efdb 0%, transparent 45%),
+    var(--creme);
+  color: var(--encre);
+  font-family: 'EB Garamond', Georgia, 'Times New Roman', serif;
+  font-size: 17px;
+  line-height: 1.5;
+}
+
+h1, h2, h3, h4, .titre-serif {
+  font-family: Cinzel, Georgia, serif;
+  font-weight: 600;
+  letter-spacing: .04em;
+  margin: 0 0 .5rem;
+}
+
+h1 { font-size: 1.6rem; }
+h2 { font-size: 1.25rem; color: var(--or-fonce); }
+h3 { font-size: 1.05rem; }
+
+p { margin: 0 0 .7rem; }
+
+a { color: var(--or-fonce); }
+
+/* ---------------------------------------------------------------- bandeau et pied */
+
+.bandeau {
+  text-align: center;
+  padding: 1.2rem 1rem .6rem;
+}
+
+.bandeau-titre {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.bandeau-titre h1 { margin: 0; color: var(--or-fonce); text-transform: uppercase; }
+
+.ornement { color: var(--or); font-size: 1.3rem; }
+
+.bandeau-sous-titre {
+  margin: .2rem 0 0;
+  color: var(--encre-pale);
+  font-style: italic;
+}
+
+.pied {
+  text-align: center;
+  font-size: .78rem;
+  color: var(--encre-pale);
+  padding: 1.5rem 1rem 2.5rem;
+}
+
+/* ---------------------------------------------------------------- mise en page */
+
+.application {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 19rem;
+  gap: 1.2rem;
+  max-width: 78rem;
+  margin: 0 auto;
+  padding: 0 1.2rem;
+  align-items: start;
+}
+
+.application.sans-fiche { grid-template-columns: minmax(0, 1fr); }
+
+/* cadre à coins ornés, dans l'esprit de la feuille officielle */
+.cadre {
+  position: relative;
+  background: var(--creme-clair);
+  border: 1px solid var(--or);
+  border-radius: var(--rayon);
+  box-shadow: var(--ombre);
+  padding: 1.4rem 1.5rem;
+}
+
+.cadre::before, .cadre::after {
+  content: '';
+  position: absolute;
+  width: 14px; height: 14px;
+  border: 1px solid var(--or);
+  pointer-events: none;
+}
+
+.cadre::before { top: 5px; left: 5px; border-width: 2px 0 0 2px; }
+.cadre::after { bottom: 5px; right: 5px; border-width: 0 2px 2px 0; }
+
+.ecran { min-height: 26rem; }
+
+.chargement { color: var(--encre-pale); font-style: italic; }
+
+/* ---------------------------------------------------------------- navigation */
+
+.navigation {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  max-width: 78rem;
+  margin: 1rem auto 0;
+  padding: 0 1.2rem;
+}
+
+.navigation .erreurs { flex: 1; color: var(--rouge); font-size: .9rem; }
+
+.bouton {
+  font-family: Cinzel, Georgia, serif;
+  font-size: .95rem;
+  letter-spacing: .05em;
+  padding: .55rem 1.3rem;
+  border: 1px solid var(--or-fonce);
+  border-radius: var(--rayon);
+  background: linear-gradient(180deg, #c89b46, var(--or));
+  color: #fffaf0;
+  cursor: pointer;
+  box-shadow: var(--ombre);
+}
+
+.bouton:hover { filter: brightness(1.07); }
+.bouton:disabled { opacity: .45; cursor: not-allowed; filter: none; }
+
+.bouton-secondaire {
+  background: var(--creme);
+  color: var(--or-fonce);
+}
+
+.bouton-petit { padding: .3rem .7rem; font-size: .82rem; }
+
+.bouton-lien {
+  background: none; border: none; box-shadow: none;
+  color: var(--or-fonce); text-decoration: underline; cursor: pointer;
+  font-family: inherit; font-size: .9rem; padding: 0;
+}
+
+/* ---------------------------------------------------------------- cartes */
+
+.grille-cartes {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
+  gap: .9rem;
+  margin: 1rem 0;
+}
+
+.carte {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--or-clair);
+  border-radius: var(--rayon);
+  background: var(--parchemin);
+  padding: .7rem .8rem .8rem;
+  cursor: pointer;
+  text-align: left;
+  font: inherit;
+  color: inherit;
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+
+.carte:hover { transform: translateY(-2px); box-shadow: var(--ombre); }
+
+.carte[aria-pressed="true"] {
+  border-color: var(--or);
+  border-width: 2px;
+  background: #f7e9c9;
+  box-shadow: 0 0 0 2px rgba(166, 124, 46, .25);
+}
+
+.carte h3 { margin: 0 0 .2rem; font-size: 1rem; }
+
+.carte .resume { font-size: .85rem; color: var(--encre-pale); margin: 0 0 .4rem; flex: 1; }
+
+.carte .caracs-cles {
+  font-family: Cinzel, serif;
+  font-size: .72rem;
+  letter-spacing: .08em;
+  color: var(--or-fonce);
+}
+
+.carte-image {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  border: 1px solid var(--or-clair);
+  border-radius: 2px;
+  margin-top: .5rem;
+  background: repeating-linear-gradient(135deg, #e8dcbe, #e8dcbe 8px, #e2d4b0 8px, #e2d4b0 16px);
+}
+
+.carte-image-absente {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: Cinzel, serif;
+  font-size: .75rem;
+  color: var(--or-fonce);
+  padding: .5rem;
+}
+
+/* ---------------------------------------------------------------- blocs et listes */
+
+.bloc-repliable {
+  border: 1px solid var(--or-clair);
+  border-radius: var(--rayon);
+  background: var(--parchemin);
+  padding: .4rem .8rem;
+  margin: .7rem 0;
+}
+
+.bloc-repliable > summary {
+  cursor: pointer;
+  font-family: Cinzel, serif;
+  font-size: .85rem;
+  color: var(--or-fonce);
+  letter-spacing: .04em;
+}
+
+.bloc-repliable > div { padding-top: .5rem; font-size: .93rem; }
+
+.encadre {
+  border-left: 3px solid var(--or);
+  background: var(--parchemin);
+  padding: .6rem .9rem;
+  margin: .8rem 0;
+  border-radius: 0 var(--rayon) var(--rayon) 0;
+}
+
+.encadre.avertissement { border-left-color: var(--rouge); }
+.encadre.maison { font-style: italic; }
+
+.liste-nue { list-style: none; padding: 0; margin: 0; }
+
+.separateur {
+  border: none;
+  border-top: 1px solid var(--or-clair);
+  margin: 1.2rem 0;
+}
+
+.separateur-orne {
+  text-align: center;
+  color: var(--or);
+  margin: 1.2rem 0;
+  font-size: .9rem;
+}
+
+/* ---------------------------------------------------------------- infobulles */
+
+.aide {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.05rem;
+  height: 1.05rem;
+  margin-left: .25rem;
+  border: 1px solid var(--or);
+  border-radius: 50%;
+  color: var(--or-fonce);
+  font-size: .7rem;
+  font-family: Cinzel, serif;
+  cursor: help;
+  background: var(--creme);
+  vertical-align: middle;
+}
+
+.infobulle {
+  position: absolute;
+  z-index: 40;
+  max-width: 24rem;
+  background: #fffaf0;
+  border: 1px solid var(--or);
+  border-radius: var(--rayon);
+  box-shadow: 0 4px 14px rgba(58, 45, 27, .25);
+  padding: .6rem .8rem;
+  font-size: .87rem;
+  line-height: 1.4;
+}
+
+.infobulle h4 { margin: 0 0 .25rem; font-size: .9rem; color: var(--or-fonce); }
+.infobulle .source { display: block; margin-top: .4rem; font-size: .75rem; color: var(--encre-pale); }
+
+/* ---------------------------------------------------------------- formulaires */
+
+label { display: block; margin: .8rem 0 .2rem; font-size: .9rem; color: var(--encre-pale); }
+
+input[type="text"], input[type="number"], textarea, select {
+  width: 100%;
+  font: inherit;
+  color: var(--encre);
+  background: var(--creme-clair);
+  border: 1px solid var(--or-clair);
+  border-radius: var(--rayon);
+  padding: .45rem .6rem;
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: 2px solid var(--or-clair);
+  border-color: var(--or);
+}
+
+textarea { min-height: 7rem; resize: vertical; line-height: 1.5; }
+
+.ligne { display: flex; gap: .8rem; align-items: flex-end; flex-wrap: wrap; }
+.ligne > * { flex: 1; min-width: 8rem; }
+.ligne > .fixe { flex: 0 0 auto; min-width: 0; }
+
+.compteur { font-size: .8rem; color: var(--encre-pale); text-align: right; }
+.compteur.trop { color: var(--rouge); }
+
+/* ---------------------------------------------------------------- caractéristiques */
+
+.table-caracs { width: 100%; border-collapse: collapse; }
+.table-caracs th, .table-caracs td { padding: .35rem .4rem; text-align: left; }
+.table-caracs th { font-family: Cinzel, serif; font-size: .78rem; color: var(--or-fonce); }
+.table-caracs tbody tr:nth-child(odd) { background: rgba(166, 124, 46, .06); }
+
+.valeur-carac {
+  font-family: Cinzel, serif;
+  font-size: 1.05rem;
+  min-width: 2.4rem;
+  text-align: center;
+  display: inline-block;
+}
+
+.pastille {
+  display: inline-block;
+  min-width: 1.9rem;
+  text-align: center;
+  padding: .1rem .35rem;
+  border: 1px solid var(--or-clair);
+  border-radius: var(--rayon);
+  background: var(--parchemin);
+  font-family: Cinzel, serif;
+  font-size: .85rem;
+}
+
+.pastille.libre { cursor: pointer; }
+.pastille.choisie { background: var(--or); color: #fffaf0; border-color: var(--or-fonce); }
+
+.budget {
+  font-family: Cinzel, serif;
+  color: var(--or-fonce);
+}
+
+.budget.depasse { color: var(--rouge); }
+
+/* ---------------------------------------------------------------- dés */
+
+.de {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.4rem;
+  height: 2.4rem;
+  border: 1px solid var(--or-fonce);
+  border-radius: 6px;
+  background: linear-gradient(160deg, #fffaf0, #eadfc2);
+  font-family: Cinzel, serif;
+  font-size: 1.1rem;
+  box-shadow: var(--ombre);
+}
+
+.de.roule { animation: secousse .5s ease-in-out; }
+
+@keyframes secousse {
+  0% { transform: rotate(0) scale(1); }
+  25% { transform: rotate(-14deg) scale(1.12); }
+  50% { transform: rotate(12deg) scale(1.08); }
+  75% { transform: rotate(-6deg) scale(1.04); }
+  100% { transform: rotate(0) scale(1); }
+}
+
+.tirage { display: flex; align-items: center; gap: .6rem; flex-wrap: wrap; margin: .4rem 0; }
+
+/* ---------------------------------------------------------------- panneau fiche */
+
+.fiche { position: sticky; top: 1rem; font-size: .9rem; }
+.fiche h2 { font-size: 1rem; }
+.fiche dl { display: grid; grid-template-columns: auto 1fr; gap: .15rem .6rem; margin: .4rem 0; }
+.fiche dt { color: var(--encre-pale); font-size: .82rem; }
+.fiche dd { margin: 0; font-family: Cinzel, serif; font-size: .9rem; }
+.fiche .detail { font-family: 'EB Garamond', serif; font-size: .75rem; color: var(--encre-pale); }
+.fiche .avertissements { margin-top: .6rem; font-size: .8rem; color: var(--rouge); }
+
+/* ---------------------------------------------------------------- récapitulatif */
+
+.recap-colonnes { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: 1rem; }
+
+.portrait-apercu {
+  max-width: 12rem;
+  border: 1px solid var(--or);
+  border-radius: var(--rayon);
+  margin-top: .5rem;
+}
+
+.capacite {
+  border-top: 1px solid var(--or-clair);
+  padding: .5rem 0;
+}
+
+.capacite .titre-capacite { font-family: Cinzel, serif; font-size: .92rem; }
+.capacite .tag {
+  display: inline-block;
+  background: var(--or);
+  color: #fffaf0;
+  font-size: .7rem;
+  padding: 0 .3rem;
+  border-radius: 2px;
+  margin-left: .2rem;
+}
+.capacite .sort { color: var(--rouge); font-weight: bold; margin-left: .15rem; }
+.capacite .texte { font-size: .9rem; margin: .25rem 0 0; }
+
+.prompt-zone textarea { min-height: 11rem; font-size: .88rem; }
+
+.succes { color: var(--vert); font-size: .85rem; }
+
+@media (max-width: 62rem) {
+  .application { grid-template-columns: minmax(0, 1fr); }
+  .fiche { position: static; }
+}

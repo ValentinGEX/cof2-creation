@@ -1,0 +1,29 @@
+{
+ "slug": "demi-elfe",
+ "nom": "Demi-elfe",
+ "description": "Le demi-elfe a hérité des qualités de ses deux parents (humain et elfe). Il est généralement traité avec condescendance parmi les elfes et perçu comme un elfe parmi les humains.",
+ "modificateursTexte": "+1 PER ou CHA, -1 FOR ou CON",
+ "reperes": {
+  "ageDepartTexte": "20+",
+  "esperanceVieTexte": "150 ans",
+  "tailleTexte": "1,50 m à 1,90 m",
+  "poidsTexte": "40 à 80 kg",
+  "traits": "grâce naturelle, oreilles légèrement pointues, pilosité faible."
+ },
+ "noms": {
+  "intro": "Les noms des personnages demi-elfes reflètent souvent leur double nature et ils se composent d’un prénom elfique et d’un nom de famille humain. L’inverse est plus rare car les elfes n’acceptent pas qu’une créature avec une durée de vie aussi brève porte le nom de leur lignée.",
+  "masculin": [],
+  "feminin": []
+ },
+ "voie": null,
+ "source": "https://drs.chroniques-oubliees.fr/fantasy/peuples/demi-elfe",
+ "voieAuChoix": {
+  "texte": "Le demi-elfe ne possède pas de voie de peuple dédiée, selon l’héritage culturel et le lieu de l’éducation de son personnage, le joueur devra choisir entre la voie de l’humain ou une des voies de peuple d’elfe (elfe sylvain ou elfe haut).",
+  "peuples": [
+   "humain",
+   "elfe-sylvain",
+   "elfe-haut"
+  ],
+  "source": "livre, p. imprimée 46"
+ }
+}

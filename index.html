@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Créateur de personnage — Chroniques Oubliées Fantasy 2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+
+<header class="bandeau">
+  <div class="bandeau-titre">
+    <span class="ornement">❧</span>
+    <h1>Créateur de personnage</h1>
+    <span class="ornement">❧</span>
+  </div>
+  <p class="bandeau-sous-titre">Chroniques Oubliées Fantasy 2 — niveau 1</p>
+</header>
+
+<main id="application" class="application">
+  <section id="ecran" class="ecran cadre" aria-live="polite">
+    <p class="chargement">Ouverture du grimoire…</p>
+  </section>
+
+  <aside id="fiche" class="fiche cadre" hidden>
+    <h2>Fiche en construction</h2>
+    <div id="fiche-contenu"></div>
+  </aside>
+</main>
+
+<nav id="navigation" class="navigation" hidden>
+  <button type="button" id="precedent" class="bouton bouton-secondaire">← Retour</button>
+  <span id="erreurs" class="erreurs" role="alert"></span>
+  <button type="button" id="suivant" class="bouton">Suivant →</button>
+</nav>
+
+<footer class="pied">
+  Textes de règles © Black Book Éditions — Chroniques Oubliées Fantasy 2.
+  Outil personnel, non public, sans lien avec l'éditeur.
+</footer>
+
+<div id="infobulle" class="infobulle" role="tooltip" hidden></div>
+
+<script src="vendor/pdf-lib.min.js"></script>
+<script src="js/pdf-repair.js"></script>
+<script src="js/rules.js"></script>
+<script src="js/state.js"></script>
+<script src="js/data.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/dice.js"></script>
+<script src="js/prompt.js"></script>
+<script src="js/pdf.js"></script>
+<script src="js/steps/accueil.js"></script>
+<script src="js/steps/prologue.js"></script>
+<script src="js/steps/profil.js"></script>
+<script src="js/steps/peuple.js"></script>
+<script src="js/steps/caracs.js"></script>
+<script src="js/steps/voies.js"></script>
+<script src="js/steps/equipement.js"></script>
+<script src="js/steps/touche.js"></script>
+<script src="js/steps/histoire.js"></script>
+<script src="js/steps/recap.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

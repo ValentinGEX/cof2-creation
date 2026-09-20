@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Tests du moteur — COF2</title>
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; margin: 2rem; background: #f4ecd8; color: #3a2d1b; }
+  h1 { font-size: 1.4rem; }
+  #bilan { font-weight: bold; padding: .6rem 1rem; border-radius: 4px; display: inline-block; }
+  .vert { background: #2e7d32; color: #fff; }
+  .rouge { background: #a11; color: #fff; }
+  ul { list-style: none; padding: 0; max-width: 60rem; }
+  li { padding: .3rem .6rem; border-bottom: 1px solid #d8c9a8; }
+  li.ok::before { content: '✔ '; color: #2e7d32; }
+  li.ko::before { content: '✘ '; color: #a11; }
+  .message { color: #a11; font-family: ui-monospace, monospace; font-size: .85rem; display: block; margin-left: 1.4rem; }
+</style>
+</head>
+<body>
+<h1>Tests du moteur de règles</h1>
+<p>Lancer depuis un serveur local : <code>python3 -m http.server 8000</code> puis
+<code>http://localhost:8000/tests/tests.html</code>.</p>
+<p id="bilan">Chargement des données…</p>
+<ul id="liste"></ul>
+
+<script>window.BASE_DONNEES = '../';</script>
+<script src="../js/rules.js"></script>
+<script src="../js/state.js"></script>
+<script src="../js/data.js"></script>
+<script src="tests.js"></script>
+<script>
+(async () => {
+  const bilan = document.getElementById('bilan');
+  const liste = document.getElementById('liste');
+  let DATA;
+  try {
+    DATA = await loadAll();
+  } catch (e) {
+    bilan.className = 'rouge';
+    bilan.textContent = 'Données non chargées : ' + e.message;
+    return;
+  }
+  const resultats = lancerTests(DATA);
+  const rates = resultats.filter((r) => !r.ok);
+  bilan.className = rates.length ? 'rouge' : 'vert';
+  bilan.textContent = rates.length
+    ? rates.length + ' test(s) en échec sur ' + resultats.length
+    : resultats.length + ' tests au vert';
+  for (const r of resultats) {
+    const li = document.createElement('li');
+    li.className = r.ok ? 'ok' : 'ko';
+    li.textContent = r.nom;
+    if (!r.ok) {
+      const span = document.createElement('span');
+      span.className = 'message';
+      span.textContent = r.message;
+      li.appendChild(span);
+    }
+    liste.appendChild(li);
+  }
+})();
+</script>
+</body>
+</html>

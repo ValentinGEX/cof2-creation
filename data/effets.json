@@ -1,0 +1,267 @@
+{
+ "rodeur/voie-de-l-archer/1": {
+  "titre": "Archer émérite",
+  "effets": [
+   {
+    "cible": "DM_DISTANCE",
+    "carac": "PER",
+    "armes": [
+     "arc-court",
+     "arc-long"
+    ]
+   },
+   {
+    "cible": "INIT",
+    "valeur": 1
+   }
+  ],
+  "citation": "Le rôdeur ajoute sa PER aux DM qu’il inflige à l’arc et +1 par rang dans la voie en initiative."
+ },
+ "voleur/voie-du-deplacement/1": {
+  "titre": "Agile",
+  "effets": [
+   {
+    "cible": "DEF",
+    "valeur": 1
+   },
+   {
+    "cible": "INIT",
+    "valeur": 1
+   }
+  ],
+  "citation": "il bénéficie d’un bonus de +1 en DEF et en Initiative"
+ },
+ "voleur/voie-du-roublard/1": {
+  "titre": "Doigts agiles",
+  "effets": [
+   {
+    "cible": "DM_DISTANCE",
+    "valeur": 1,
+    "armes": [
+     "dague-lancee",
+     "couteaux-de-lancer"
+    ]
+   }
+  ],
+  "citation": "il obtient +1 aux DM des attaques à distance avec les dagues et couteaux"
+ },
+ "voleur/voie-du-spadassin/1": {
+  "titre": "Attaque en finesse",
+  "effets": [
+   {
+    "cible": "INIT",
+    "carac": "AGI"
+   }
+  ],
+  "citation": "Le voleur ajoute son AGI à son Init.",
+  "note": "Tu peux remplacer ta FOR par ton AGI pour tes tests d’attaque au contact avec une arme légère à une main."
+ },
+ "barbare/voie-de-la-brute/1": {
+  "titre": "Argument de taille",
+  "effets": [
+   {
+    "cible": "PV",
+    "carac": "FOR"
+   }
+  ],
+  "citation": "Le barbare ajoute sa FOR à son maximum de PV"
+ },
+ "barbare/voie-du-pagne/1": {
+  "titre": "Vigueur",
+  "effets": [
+   {
+    "cible": "PV",
+    "valeur": 1
+   }
+  ],
+  "citation": "il gagne 1 PV supplémentaire par rang atteint dans la voie."
+ },
+ "barbare/voie-du-pourfendeur/1": {
+  "titre": "Réflexes éclair",
+  "effets": [
+   {
+    "cible": "INIT",
+    "valeur": 3
+   },
+   {
+    "cible": "DEF",
+    "valeur": 1
+   }
+  ],
+  "citation": "il gagne +3 en Init. et +1 en DEF"
+ },
+ "barbare/voie-du-primitif/1": {
+  "titre": "Proche de la nature",
+  "effets": [
+   {
+    "cible": "PV",
+    "valeur": 1
+   }
+  ],
+  "citation": "De plus, il gagne 1 PV supplémentaire."
+ },
+ "guerrier/voie-du-combat/1": {
+  "titre": "Vivacité",
+  "effets": [
+   {
+    "cible": "INIT",
+    "valeur": 3
+   }
+  ],
+  "citation": "Le guerrier gagne +3 en Initiative"
+ },
+ "guerrier/voie-de-la-resistance/1": {
+  "titre": "Robustesse",
+  "effets": [
+   {
+    "cible": "PV",
+    "valeur": 3
+   }
+  ],
+  "citation": "Le guerrier augmente sa valeur maximale de PV de rang + 2."
+ },
+ "ensorceleur/voie-de-l-air/1": {
+  "titre": "Murmures dans le vent",
+  "effets": [
+   {
+    "cible": "INIT",
+    "valeur": 1
+   },
+   {
+    "cible": "DEF",
+    "valeur": 1
+   }
+  ],
+  "citation": "l’ensorceleur gagne un bonus permanent de +1 en Init. et en DEF"
+ },
+ "ensorceleur/voie-de-la-divination/1": {
+  "titre": "Divination",
+  "effets": [
+   {
+    "cible": "INIT",
+    "valeur": 1
+   },
+   {
+    "cible": "DEF",
+    "valeur": 1
+   }
+  ],
+  "citation": "En plus de ce sort, l’ensorceleur gagne +1 en Init. et en DEF."
+ },
+ "forgesort/voie-du-golem/1": {
+  "titre": "Grosse tête",
+  "effets": [],
+  "citation": "De plus, au niveau où il acquiert cette capacité, il peut ajouter son INT à ses PV à la place de sa CON s’il le souhaite.",
+  "optionnels": [
+   {
+    "cible": "PV",
+    "caracRemplace": {
+     "de": "CON",
+     "par": "INT"
+    },
+    "libelle": "Utiliser l’INT à la place de la CON pour les PV"
+   }
+  ]
+ },
+ "forgesort/voie-des-runes/1": {
+  "titre": "Runes de défense",
+  "effets": [
+   {
+    "cible": "DEF",
+    "valeur": 2
+   }
+  ],
+  "citation": "Il obtient un bonus de +2 en DEF."
+ },
+ "magicien/voie-de-la-magie-universelle/2": {
+  "titre": "Familier",
+  "effets": [],
+  "citation": "Il gagne +2 en Initiative et en DEF lorsque son familier est en vue.",
+  "note": "+2 en Initiative et en DEF lorsque le familier est en vue (non compté ici)."
+ },
+ "sorcier/voie-de-l-outre-tombe/2": {
+  "titre": "Armure d'os",
+  "effets": [
+   {
+    "cible": "DEF",
+    "valeur": 3
+   }
+  ],
+  "citation": "Le sorcier peut désormais porter une armure d’os (souvent camouflée sous une robe) qui lui offre un bonus de +3 en DEF et n’empêche pas l’utilisation des capacités de sorcier."
+ },
+ "druide/voie-du-fauve/1": {
+  "titre": "Vitesse du félin",
+  "effets": [
+   {
+    "cible": "INIT",
+    "valeur": 3
+   },
+   {
+    "cible": "DEF",
+    "valeur": 1
+   }
+  ],
+  "citation": "De plus, il gagne +3 en Initiative et +1 en DEF."
+ },
+ "moine/voie-de-la-maitrise/1": {
+  "titre": "Agilité du singe",
+  "effets": [
+   {
+    "cible": "DEF",
+    "valeur": 2
+   }
+  ],
+  "citation": "il gagne +2 en DEF"
+ },
+ "moine/voie-du-vent/1": {
+  "titre": "Pas du vent",
+  "effets": [
+   {
+    "cible": "INIT",
+    "valeur": 3
+   }
+  ],
+  "citation": "De plus, il gagne +3 en Initiative"
+ },
+ "pretre/voie-de-la-spiritualite/1": {
+  "titre": "Vêtements sacrés",
+  "effets": [
+   {
+    "cible": "DEF",
+    "valeur": 2,
+    "condition": "sansArmure"
+   }
+  ],
+  "citation": "Lorsqu’il ne porte aucune armure (bouclier autorisé), il obtient un dé bonus à tous les tests pour résister à un contrôle mental (injonction, charme, domination…) et +2 en DEF."
+ },
+ "halfelin/voie-du-halfelin/1": {
+  "titre": "Petite taille",
+  "effets": [
+   {
+    "cible": "DEF",
+    "valeur": 1
+   }
+  ],
+  "citation": "Le halfelin obtient un bonus de +1 en DEF"
+ },
+ "humain/voie-de-l-humain/1": {
+  "titre": "Diversité",
+  "effets": [
+   {
+    "cible": "PC",
+    "valeur": 1
+   }
+  ],
+  "citation": "De plus, il gagne 1 PC supplémentaire."
+ },
+ "barde/voie-de-l-escrime/1": {
+  "titre": null,
+  "effets": [],
+  "note": "Tu peux remplacer ta FOR par ton AGI pour tes tests d’attaque au contact avec une arme légère à une main."
+ },
+ "moine/voie-du-poing/1": {
+  "titre": null,
+  "effets": [],
+  "note": "Tes attaques à mains nues infligent 1d6 + FOR DM létaux au lieu de 1d3 DM temporaires."
+ }
+}

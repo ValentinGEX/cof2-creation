@@ -1,0 +1,87 @@
+{
+ "slug": "nain",
+ "nom": "Nain",
+ "description": "Le nain est petit mais robuste. Célèbre pour sa barbe, il aime les profondeurs de la terre, dont il extrait des métaux et des pierres précieuses. Isolé, il est généralement ouvert et chaleureux, mais la société naine peut paraître sévère, car le travail et l’entraînement militaire y sont des obligations.",
+ "modificateursTexte": "+1 en CON ou VOL, -1 en AGI",
+ "reperes": {
+  "ageDepartTexte": "40+",
+  "esperanceVieTexte": "250 ans",
+  "tailleTexte": "1,15 m à 1,35 m",
+  "poidsTexte": "50 à 100 kg",
+  "traits": "robuste et trapu. Pilosité très développée, tresses dans les cheveux et la barbe, bijoux et piercing. Non, les naines n’ont pas de barbe, tout juste un fin duvet avec l’âge."
+ },
+ "noms": {
+  "intro": "Les nains ont des prénoms courts et percutants, les principales terminaisons sont en -in, -un, -ik, ou -ir, mais il en existe d’autres. Suit généralement le nom de leur clan, qu’ils traduisent en langue commune pour mettre en avant l’idée qu’il véhicule.\nChez les femmes, la terminaison en -hild ou -id est la plus courante.",
+  "masculin": [
+   "Gloin Mâchefer",
+   "Krorin Briseroc",
+   "Thorin Forgefer",
+   "Buldur Tranchetroll",
+   "Trorin Cassegranit",
+   "Orik Briselame",
+   "Durok Écu-de-chêne",
+   "Guerann Marteleur",
+   "Korik Peau-de-pierre"
+  ],
+  "feminin": [
+   "Astrid",
+   "Arnhild",
+   "Berthild",
+   "Brynild",
+   "Eldrid",
+   "Ermenhild",
+   "Frida",
+   "Gerda",
+   "Grimhild",
+   "Gudrun",
+   "Helga",
+   "Hilda",
+   "Ingrid",
+   "Klothild",
+   "Sigrid",
+   "Strida"
+  ]
+ },
+ "voie": {
+  "slug": "voie-du-nain",
+  "nom": "Voie du nain",
+  "capacites": [
+   {
+    "rang": 1,
+    "titre": "Habitant des tunnels",
+    "tags": [],
+    "sort": false,
+    "texte": "Dans le noir total, le nain voit comme dans la pénombre jusqu’à 30 m. De plus, il obtient un bonus de +3 à tous les tests en rapport avec la pierre, l’architecture ou les mines ainsi qu’avec les passages secrets et les pièges dans les murs et les parois rocheuses."
+   },
+   {
+    "rang": 2,
+    "titre": "Haches et marteaux",
+    "tags": [],
+    "sort": false,
+    "texte": "Le nain gagne un bonus de +1 en attaque et aux DM lorsqu’il utilise une hache ou un marteau de guerre. Il sait utiliser ces armes, quel que soit son profil."
+   },
+   {
+    "rang": 3,
+    "titre": "Résistance à la magie",
+    "tags": [],
+    "sort": false,
+    "texte": "Une fois par jour, le nain peut choisir d’ignorer les effets d’un sort qui le prend pour cible (mais pas un sort de zone). Les créatures dont le niveau (NC) est au moins égal au double du nain ignorent cette capacité."
+   },
+   {
+    "rang": 4,
+    "titre": "Fils du roc",
+    "tags": [],
+    "sort": false,
+    "texte": "Le nain réduit tous les DM subis de 2 points (mais il subit toujours au moins 1 DM par attaque reçue). La réduction passe à 3 au niveau 10. Elle est cumulable avec d’autres sources de réduction des DM comme la peau d’acier du barbare."
+   },
+   {
+    "rang": 5,
+    "titre": "Ténacité",
+    "tags": [],
+    "sort": false,
+    "texte": "Le nain augmente ses valeurs de CON et de VOL de +1."
+   }
+  ]
+ },
+ "source": "https://drs.chroniques-oubliees.fr/fantasy/peuples/nain"
+}

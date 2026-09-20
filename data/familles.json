@@ -1,0 +1,42 @@
+{
+ "aventuriers": {
+  "nom": "Aventuriers",
+  "pv": 4,
+  "pcBonus": 1,
+  "drBonus": 0,
+  "rang2Mage": false,
+  "resume": "4 PV et 1 PC supplémentaire",
+  "dr": "d8",
+  "description": "La famille des aventuriers regroupe tous ceux qui sont taillés pour l’aventure avec un grand A, le voyage et l’exploration et, dans une certaine mesure, le combat. Ce sont des personnages polyvalents et des débrouillards professionnels.\nLes aventuriers partagent une vigueur intermédiaire (4 PV) et la maîtrise d’une liste intermédiaire d’armes. Ils portent des armures légères (cuir ou cuir renforcé) et leur caractéristique commune est l’Agilité.\nLes aventuriers débutent avec 1 point de chance (PC) de plus que les autres personnages."
+ },
+ "combattants": {
+  "nom": "Combattants",
+  "pv": 5,
+  "pcBonus": 0,
+  "drBonus": 0,
+  "rang2Mage": false,
+  "resume": "5 PV",
+  "dr": "d10",
+  "description": "La famille des combattants regroupe tous ceux qui sont taillés pour le combat et l’art de la guerre.\nLes combattants partagent une vigueur élevée (5 PV) et la maîtrise de très nombreuses armes.\nIls portent des armures lourdes (cotte de mailles ou armure de plaque, même si le barbare est plus limité). Leur caractéristique commune est la Force."
+ },
+ "mages": {
+  "nom": "Mages",
+  "pv": 3,
+  "pcBonus": 0,
+  "drBonus": 0,
+  "rang2Mage": true,
+  "resume": "3 PV et 1 capacité de rang 2 supplémentaire",
+  "dr": "d6",
+  "description": "La famille des mages regroupe tous ceux qui emploient la magie profane (par opposition à la magie divine des mystiques). Ils sont peu nombreux dans la société et détiennent entre leurs mains un pouvoir extraordinaire et dangereux.\nLes mages partagent une vigueur faible (3 PV), ils ne portent aucune armure (à l’exception du forgesort) et maîtrisent très peu d’armes. Leur caractéristique commune est l’Intelligence (remplacée par le Charisme pour l’ensorceleur).\nLes mages débutent avec 1 capacité de rang 2 en plus des capacités de rang 1 acquises par les autres personnages (voir le point 5, « Voies et capacités »)."
+ },
+ "mystiques": {
+  "nom": "Mystiques",
+  "pv": 4,
+  "pcBonus": 0,
+  "drBonus": 1,
+  "rang2Mage": false,
+  "resume": "4 PV et +1 DR supplémentaire",
+  "dr": "d8",
+  "description": "La famille des mystiques regroupe tous ceux qui ont une vie spirituelle intense. Ils ont en commun la méditation et la prière ainsi que des capacités qui défient les lois naturelles habituelles, notamment en ce qui concerne la récupération. Ils bénéficient d’une combinaison de capacités magiques et de capacités de combat intermédiaires, et leur caractéristique commune est la Volonté (VOL), généralement associée à une autre caractéristique mentale.\nComme les Aventuriers, les mystiques gagnent des PV intermédiaires (4 PV).\nLes mystiques débutent avec 1 dé de récupération (DR) de plus que les autres personnages."
+ }
+}

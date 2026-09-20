@@ -1,0 +1,127 @@
+{
+  "equipement": {
+    "barbare": {
+      "armureMax": "cuir-renforce",
+      "bouclier": true,
+      "citationArmure": "Les voies de barbare limitent l’armure au cuir renforcé. Le barbare peut en revanche utiliser tous les boucliers.",
+      "equipement": [
+        {
+          "choix": [
+            [
+              { "ref": "hache-a-deux-mains" }
+            ],
+            [
+              {
+                "ref": "epee-longue",
+                "liste": ["epee-longue", "epee-batarde", "hache"],
+                "libelle": "Arme à une main (d8)"
+              },
+              { "ref": "grand-bouclier" }
+            ]
+          ],
+          "libelle": "Hache à deux mains (DM 2d6) ou Arme à une main (d8) et bouclier (+2 DEF)"
+        },
+        { "ref": "javelot", "qte": 2 },
+        { "ref": "dague" },
+        { "ref": "cuir-simple" }
+      ]
+    },
+    "chevalier": {
+      "armureMax": "armure-de-plaques",
+      "bouclier": true,
+      "citationArmure": "Les voies de chevalier limitent l’armure à celle de plaque (l’armure de plaque complète nécessite une capacité particulière). Il peut utiliser tous les boucliers.",
+      "equipement": [
+        { "ref": "epee-longue" },
+        { "ref": "grand-bouclier" },
+        { "ref": "lance-de-cavalerie" },
+        { "ref": "dague" },
+        { "ref": "cotte-de-mailles" }
+      ]
+    },
+    "guerrier": {
+      "armureMax": "cotte-de-mailles",
+      "bouclier": true,
+      "citationArmure": "Les voies de guerrier limitent l’armure à la cotte de mailles. Il peut utiliser tous les boucliers.",
+      "equipement": [
+        { "ref": "epee-longue" },
+        {
+          "choix": [
+            [ { "ref": "epee-a-deux-mains" } ],
+            [ { "ref": "hache-a-deux-mains" } ]
+          ],
+          "libelle": "épée ou hache à deux mains (DM 2d6)"
+        },
+        {
+          "choix": [
+            [ { "ref": "dague" } ],
+            [ { "ref": "hachette" } ]
+          ],
+          "libelle": "une dague ou une hachette de lancer"
+        },
+        { "ref": "grand-bouclier" },
+        { "ref": "chemise-de-mailles" }
+      ]
+    }
+  },
+  "effets": {
+    "barbare/voie-de-la-brute/1": {
+      "titre": "Argument de taille",
+      "effets": [
+        { "cible": "PV", "carac": "FOR" }
+      ],
+      "citation": "Le barbare ajoute sa FOR à son maximum de PV"
+    },
+    "barbare/voie-du-pagne/1": {
+      "titre": "Vigueur",
+      "effets": [
+        { "cible": "PV", "valeur": 1 }
+      ],
+      "citation": "il gagne 1 PV supplémentaire par rang atteint dans la voie."
+    },
+    "barbare/voie-du-pourfendeur/1": {
+      "titre": "Réflexes éclair",
+      "effets": [
+        { "cible": "INIT", "valeur": 3 },
+        { "cible": "DEF", "valeur": 1 }
+      ],
+      "citation": "il gagne +3 en Init. et +1 en DEF"
+    },
+    "barbare/voie-du-primitif/1": {
+      "titre": "Proche de la nature",
+      "effets": [
+        { "cible": "PV", "valeur": 1 }
+      ],
+      "citation": "De plus, il gagne 1 PV supplémentaire."
+    },
+    "guerrier/voie-du-combat/1": {
+      "titre": "Vivacité",
+      "effets": [
+        { "cible": "INIT", "valeur": 3 }
+      ],
+      "citation": "Le guerrier gagne +3 en Initiative"
+    },
+    "guerrier/voie-de-la-resistance/1": {
+      "titre": "Robustesse",
+      "effets": [
+        { "cible": "PV", "valeur": 3 }
+      ],
+      "citation": "Le guerrier augmente sa valeur maximale de PV de rang + 2."
+    }
+  },
+  "remarques": [
+    "Chevalier : aucune de ses 5 capacités de rang 1 ne produit d'effet permanent chiffrable, donc 0 effet relevé. C'est le seul profil des combattants dans ce cas — à confirmer que ce n'est pas un oubli de scraping.",
+    "Chevalier / voie-de-la-guerre / rang 1 « Armure sur mesure » : le +1 DEF existe mais seulement « lorsqu'il porte une armure lourde (plaque ou plaque complète) » ET « à chaque fois qu'il atteint le rang 5 dans une voie de chevalier » — donc rien au niveau 1. La première moitié (moitié de la DEF ajoutée à la difficulté des tests pénalisés par l'armure) est un effet sur les tests, pas sur une valeur de la feuille : non relevé.",
+    "Chevalier / voie-du-cavalier / rang 1 « Fidèle monture » : donne un cheval de guerre. Pas une valeur chiffrée, mais c'est un élément concret qui mériterait peut-être d'apparaître dans l'équipement / la feuille. À trancher par le commanditaire.",
+    "Guerrier / voie-du-maitre-d-armes / rang 1 « Armes de prédilection » : SOUS-CHOIX. Le joueur choisit une catégorie (épées, haches, masses, lances, armes de jet, mains nues) et gagne « +1 en attaque » avec les armes de cette catégorie. Chiffrable (ATT_CONTACT ou ATT_DISTANCE selon la catégorie choisie) mais conditionné à un sous-choix ET à l'arme réellement utilisée : aucun effet inscrit, à gérer via un `sousChoix` + un bonus par arme.",
+    "Barbare / voie-du-pagne / rang 1 « Vigueur » : le texte dit « 1 PV supplémentaire par rang atteint dans la voie » — au niveau 1 le rang atteint est 1, donc +1 PV. Valeur retenue : 1.",
+    "Barbare / voie-du-pourfendeur / rang 1 « Réflexes éclair » : « Le bonus de DEF passe à +2 au rang 5 » — au niveau 1 c'est donc +1 DEF. Conforme à la référence fournie (+3 Init, +1 DEF).",
+    "Guerrier / voie-de-la-resistance / rang 1 « Robustesse » : « augmente sa valeur maximale de PV de rang + 2 » → rang 1 + 2 = +3 PV. Cette capacité n'était pas dans les références fournies, je la signale car c'est le seul effet chiffré non listé dans le brief.",
+    "Barbare, équipement : « bouclier (+2 DEF) » → grand-bouclier (def 2 dans armures.json) ; « armure de cuir (DEF +2) » → cuir-simple (def 2), et non cuir-renforce (def 3) malgré la limite du profil. Le bonus chiffré prime sur le nom générique « cuir ».",
+    "Barbare, équipement : « Arme à une main (d8) » — j'ai retenu les 3 armes de contact à une main de DM 1d8 présentes dans armes.json : epee-longue, epee-batarde (1d8 à une main, 1d12 à deux), hache. Le BRIEF-EXECUTION.md §7 n'en cite que deux (epee-longue, hache) : faut-il exclure l'épée bâtarde ?",
+    "Barbare, équipement : le BRIEF-EXECUTION.md §7 utilise le pseudo-slug \"arme-une-main-1d8\" comme `ref`. La consigne de cette revue exige que tout `ref` existe dans armes.json/armures.json, j'ai donc mis epee-longue comme valeur par défaut avec la `liste` à côté. Convention à harmoniser entre le brief et l'implémentation.",
+    "Guerrier, équipement : « une dague ou une hachette de lancer » est ambigu. J'ai lu « une dague » (arme de contact, slug dague) OU « une hachette de lancer » (slug hachette). L'autre lecture possible est « une dague de lancer » (slug dague-lancee) ou « une hachette de lancer », les deux en armes de jet. À trancher.",
+    "Chevalier : armureMax = armure-de-plaques (def 6). Le texte exclut explicitement plaque-complete sans « une capacité particulière ». Par ailleurs « il dédaigne les armes à distance qu'il considère comme des armes de couard » : c'est un interdit de rôle, pas une limitation de règle — à ne pas transformer en blocage dans l'appli, sauf avis contraire.",
+    "Barbare : la limite d'armure évolue en cours de jeu (rang 2 « Tour de force » → chemise de mailles ; rang 5 « Briseur d'os » → cotte de mailles). Sans objet au niveau 1, mais armureMax n'est donc pas une constante du profil.",
+    "Aucune condition autre que celles autorisées (sansArmure, armureLegere, avecBouclier) n'a été nécessaire : aucun effet de rang 1 des combattants n'en utilise. Les capacités conditionnées à l'armure (barbare « Armure de vent », « Peau de pierre ») sont toutes de rang 2 ou plus."
+  ]
+}

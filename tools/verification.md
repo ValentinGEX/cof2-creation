@@ -1,0 +1,126 @@
+# Journal de vérification des données
+
+Ce fichier consigne les contrôles faits sur les données et les écarts constatés entre les
+trois sources : le **DRS officiel** (source des capacités, des profils et des peuples), le
+**livre** (source du chapitre 1, des tables et de l'équipement) et les **fiches des
+personnages prétirés** du livre (utilisées uniquement comme fixtures de test).
+
+Règle appliquée partout : en cas de contradiction, **le texte des règles fait foi**, l'écart
+est consigné ici (décision de Valentin, §5.18 du brief).
+
+---
+
+## 1. Contrôles automatiques
+
+| Contrôle | Commande | Résultat |
+|---|---|---|
+| Intégrité des données | `python3 tools/check_data.py` | 390 capacités, 36 armes, 9 armures, 21 sorts de rang 1 — conforme |
+| Recoupement DRS ↔ livre | `python3 tools/crosscheck.py` | 390 capacités comparées : 8 titres de graphie différente, 2 textes différents, 3 écarts de tags |
+| Moteur de règles | `tests/tests.html` | 24 tests au vert, dont les 12 prétirés du livre |
+
+`check_data.py` vérifie notamment : 14 profils × 5 voies × 5 capacités, 7 voies de peuple
+(le demi-elfe n'en a pas), la voie du mage, les rangs consécutifs, les titres uniques, les
+textes d'au moins 40 caractères, l'absence de caractère non encodable dans la feuille PDF
+(WinAnsi), les tags ⊂ {L, A, M, G}, les trois caractéristiques clés par profil, toutes les
+références d'équipement, les tables de 20 idéaux / 20 travers / 2 × 20 secrets / 10
+bizarreries / 10 langues, et les 21 sorts de rang 1 attendus.
+
+## 2. Écarts entre le DRS et le livre
+
+Aucun écart de fond. Huit titres diffèrent par la graphie, deux textes par un renvoi de page.
+
+| Capacité | DRS (retenu) | Livre | Rang |
+|---|---|---|---|
+| Barde, voie du musicien | Chant du réconfort | Chant de réconfort | 2 |
+| Barde, voie du saltimbanque | Lanceur de couteaux | Lanceur de couteau | 3 |
+| Barde, voie de la séduction | Dentelle et rapière | Dentelles et rapière | 2 |
+| Guerrier, voie du combat | Manoœuvre *(coquille du DRS)* | Manœuvre | 2 |
+| **Magicien, voie de la magie élémentaire** | **Asphixie** *(coquille du DRS)* | **Asphyxie** | **1** |
+| Sorcier, voie du sang | Rituel du sang | Rituel de sang | 4 |
+| Sorcier, voie de la sombre magie | Manteau de l'ombre | Manteau d'ombre | 4 |
+| Moine, voie de l'énergie vitale | Projection de ki | Projection du ki | 2 |
+
+* **À arbitrer par Valentin** : « Asphixie » est une capacité de **rang 1**, donc susceptible
+  d'être imprimée sur une feuille de personnage. Le DRS est suivi tel quel (règle du brief) ;
+  un mot suffit pour corriger la graphie en « Asphyxie ».
+* Deux textes diffèrent d'un renvoi de pagination absent du DRS : chevalier « Fidèle monture »
+  (« (voir page suivante) ») et voleur « Attaque sournoise ».
+
+Écarts de notation (aucun au rang 1, donc sans effet sur l'application) :
+
+* Prêtre, voie des soins, rang 2 « Vigueur divine » : le livre note `(L)*`, le DRS ne met ni
+  tag ni astérisque.
+* Elfe sylvain, rang 4 « Flèche sanglante » : le livre note `(L)`, le DRS rien.
+
+## 3. Écarts entre les règles et les fiches des prétirés
+
+Ces fiches ne servent qu'aux tests. Le moteur suit la règle ; l'écart est indiqué en
+commentaire dans `tests/tests.js`.
+
+| Personnage | Fiche du livre | Règle appliquée | Explication |
+|---|---|---|---|
+| Lhagva (humaine barbare) | PV 15 | **PV 12** | (2 × 5) + CON 2 ; aucune de ses capacités ne donne de PV |
+| Kamshaka (demi-orc rôdeur) | PC 1, DR 4d8 | **PC 2, DR 3d8** | correspond à l'échange PC → DR de la capacité « Éclaireur », que sa fiche ne liste pas |
+| Mahardil (humain chevalier) | PC 4 | **PC 5** | « Diversité » (voie de l'humain) donne 1 PC de plus |
+| Keyrel (demi-elfe magicien) | PC 3 | **PC 4** | idem, la capacité de peuple est conservée par la voie du mage |
+| Helga (naine forgesort) | AGI +0 et attaque à distance +2 | **+1** | la fiche est incohérente avec elle-même (niveau + AGI) |
+| Yellen (elfe sylvaine moine) | DR 3d6 | **4d8** | mystique : 3 + CON dés, type d8 |
+| Elluwëe (elfe haute prêtresse) | DR 3d8 | **4d8** | mystique : 3 + CON dés |
+
+## 4. Points relevés pendant la revue des capacités
+
+Revue faite profil par profil (une passe par famille) et pour les huit peuples, à partir des
+textes du DRS, chaque effet étant justifié par la phrase citée dans `tools/revue/*.json`.
+
+* **Effets permanents retenus au niveau 1** : 20 capacités seulement modifient une valeur de
+  la feuille (PV, DEF, Init, PC). Tout le reste (bonus aux tests, vision nocturne, bonus
+  temporaires, sorts) n'entre pas dans les calculs.
+* **Bonus réservés à certaines armes** : « Archer émérite » (PER aux DM à l'arc) et « Doigts
+  agiles » (+1 aux DM des dagues et couteaux lancés) sont appliqués arme par arme.
+* **Effet facultatif** : forgesort « Grosse tête » permet de compter les PV avec l'INT *à la
+  place* de la CON ; c'est une case à cocher, décochée par défaut.
+* **Non appliqués, rappelés au joueur** : magicien « Familier » (+2 Init et DEF *lorsque le
+  familier est en vue*), substitutions FOR → AGI du voleur et du barde, dés de dommages des
+  mains nues du moine. Ces règles restent visibles dans le texte de la capacité.
+* **Chevalier** : aucune de ses cinq capacités de rang 1 ne modifie une valeur chiffrée.
+* **Sous-choix de rang 1** : seulement deux, comme prévu — humain « Diversité » (six origines)
+  et gnome « Don étrange » (une capacité de rang 1 d'ensorceleur).
+
+## 5. Corrections apportées aux sources
+
+* `tools/scrape_drs.py` cherchait le titre « Armes & armures » ; les pages des quatre
+  aventuriers titrent « Armes & armures maîtrisées ». Corrigé, les 14 profils sont complets.
+* **Demi-elfe** : le livre (p. imprimée 46) précise qu'il « ne possède pas de voie de peuple
+  dédiée » et choisit entre la voie de l'humain, de l'elfe sylvain ou de l'elfe haut. Le DRS,
+  lui, affiche la voie de l'elfe haut sur sa page : on suit le livre et l'application propose
+  les trois voies.
+* **Demi-orc** : le brief supposait « +1 FOR, +1 AGI ou CON, -1 CHA ou INT ». Le DRS **et** le
+  tableau du livre (p. imprimée 28) donnent « +1 FOR ou CON, -1 CHA ou INT ». C'est cette
+  version qui est appliquée.
+* **Noms de demi-elfe** : le DRS ne donne aucune liste, seulement la règle de composition
+  (« un prénom elfique et un nom de famille humain »). L'application propose donc les prénoms
+  des deux peuples elfes et affiche la phrase du DRS.
+* **Table des origines de « Diversité »** : elle est dans un tableau HTML du DRS que le
+  scraper ne reprend pas dans le texte de la capacité ; elle a été relevée dans la page
+  d'origine et figure dans `data/complements.json` (sous-choix), pas dans le texte de règle.
+* La coquille de slug `voie-des-illusion` (« Voie des illusion », au singulier) vient du DRS
+  et a été conservée telle quelle.
+
+## 6. Feuille de personnage (phase 0)
+
+* La feuille fournie a été ré-enregistrée par Aperçu : `/AcroForm/Fields` liste des copies
+  orphelines des 163 champs, alors que les widgets affichés sont les annotations des pages.
+  Un remplissage sans réparation **ne s'affiche pas** (vérifié : PDF produit, rendu vide).
+  `js/pdf-repair.js` reconstruit `/AcroForm/Fields` à partir des annotations des pages ; le
+  remplissage devient visible (vérifié page par page en rendu image).
+* 165 widgets pour 163 champs (le champ « Niv » des attaques en a trois).
+* Le champ de l'idéal héroïque existe bien : il s'appelle `IDÉAL HÉROÎQUE` (avec un î), d'où
+  son absence de la liste brute du brief. Les champs « spécial/portée » s'appellent
+  `SPÉCIALPORTÉE`, `SPÉCIALPORTÉE_2` et `SPÉCIALPORTÉE_3`.
+* Noms inversés par rapport au visuel dans le bloc des points de vigueur : le petit champ
+  marqué MAX s'appelle `PV` et le grand champ `PV MAX` (les deux reçoivent la même valeur au
+  niveau 1).
+* 13 cases à cocher de la page 2 sont cochées à l'origine : toutes les cases sont remises à
+  zéro avant remplissage.
+* La carte complète des champs est dans `assets/fields-map.json`, produite par
+  `tools/dump_fields.html` puis `tools/build_fields_map.py`.

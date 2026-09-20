@@ -1,0 +1,297 @@
+{
+ "_lisezMoi": [
+  "Carte des champs de la feuille officielle COF2 (assets/feuille.pdf), produite par",
+  "tools/dump_fields.html puis tools/build_fields_map.py. Les noms sont ceux du PDF.",
+  "La feuille a été ré-enregistrée par Aperçu : /AcroForm/Fields liste des copies",
+  "orphelines, il faut appeler reparerChamps() (js/pdf-repair.js) après PDFDocument.load,",
+  "sinon le remplissage n'apparaît pas à l'écran.",
+  "Sur la page 1, le petit champ marqué MAX du bloc PTS DE VIGUEUR s'appelle « PV » et",
+  "le grand champ à côté « PV MAX » (noms inversés par rapport au visuel) ; on écrit la",
+  "même valeur dans les deux au niveau 1.",
+  "Les cases « undefined_NN » de la page 2 sont les cases de rang des six blocs de voies ;",
+  "plusieurs sont cochées à l'origine, il faut toutes les remettre à zéro."
+ ],
+ "genere": "2026-09-20",
+ "format": [
+  473.386,
+  609.449
+ ],
+ "page1": {
+  "nomPersonnage": "NOM PERSONNAGE",
+  "joueur": "JOUEUR",
+  "niveau": "NIVEAU",
+  "niveauAttaques": "Niv",
+  "famille": "FAMILLE",
+  "profil": "PROFIL",
+  "ideal": "IDÉAL HÉROÎQUE",
+  "travers": "TRAVERS",
+  "init": "INIT",
+  "def": "DEF",
+  "pvMax": "PV",
+  "pvActuels": "PV MAX",
+  "pcMax": "PCmax",
+  "drType": "TypeDR",
+  "drMax": "DRmax",
+  "pmMax": "PM MAX",
+  "pmActuels": "PM",
+  "caracs": {
+   "AGI": "AGI",
+   "CON": "CON",
+   "FOR": "FOR",
+   "PER": "PER",
+   "CHA": "CHA",
+   "INT": "INT",
+   "VOL": "VOL"
+  },
+  "notes": {
+   "AGI": "NOTES AGI",
+   "CON": "NOTES CON",
+   "FOR": "NOTES FOR",
+   "PER": "NOTES PER",
+   "CHA": "NOTES CHA",
+   "INT": "NOTES INT",
+   "VOL": "NOTES VOL"
+  },
+  "attaques": {
+   "contact": "Contact",
+   "distance": "Dist",
+   "magique": "Mag"
+  },
+  "modsAttaque": {
+   "contact": "mFOR",
+   "distance": "mAGI",
+   "magique": "mVOL"
+  },
+  "armes": [
+   {
+    "nom": "ARME 1",
+    "att": "ATT1",
+    "dm": "DM1",
+    "special": "SPÉCIALPORTÉE"
+   },
+   {
+    "nom": "ARME 2",
+    "att": "ATT2",
+    "dm": "DM2",
+    "special": "SPÉCIALPORTÉE_2"
+   },
+   {
+    "nom": "ARME 3",
+    "att": "ATT3",
+    "dm": "DM3",
+    "special": "SPÉCIALPORTÉE_3"
+   }
+  ],
+  "equipement": "EQUIPEMENT",
+  "voiePeuple": {
+   "nomVoie": "PEUPLE",
+   "cases": {
+    "1": "Rang 1",
+    "2": "Rang 2",
+    "3": "Rang 3_2",
+    "4": "Rang 4",
+    "5": "Rang 5"
+   },
+   "titres": {
+    "1": "PEUPLE RG1",
+    "2": "PEUPLE RG2",
+    "3": "PEUPLE RG3",
+    "4": "PEUPLE RG4",
+    "5": "PEUPLE RG5"
+   },
+   "textes": {
+    "1": "VP RG1",
+    "2": "VP RG2",
+    "3": "VP RG3",
+    "4": "VP RG4",
+    "5": "VP RG5"
+   }
+  }
+ },
+ "page2": {
+  "description": "DESCRIPTION DU PERSONNAGE",
+  "voies": {
+   "1": {
+    "nomVoie": "VOIE1",
+    "cases": {
+     "1": "undefined_19",
+     "2": "undefined_22",
+     "3": "undefined_25",
+     "4": "undefined_28",
+     "5": "undefined_31"
+    },
+    "titres": {
+     "1": "Titre Rang 1_1",
+     "2": "Titre Rang 2_1",
+     "3": "Titre Rang 3_1",
+     "4": "Titre Rang 4_1",
+     "5": "Titre Rang 5_1"
+    },
+    "textes": {
+     "1": "Rang 1_1",
+     "2": "Rang 2_1",
+     "3": "Rang 3_1",
+     "4": "Rang 4_1",
+     "5": "Rang 5_1"
+    }
+   },
+   "2": {
+    "nomVoie": "VOIE2",
+    "cases": {
+     "1": "undefined_20",
+     "2": "undefined_23",
+     "3": "undefined_26",
+     "4": "undefined_29",
+     "5": "undefined_32"
+    },
+    "titres": {
+     "1": "Titre Rang 1_2",
+     "2": "Titre Rang 2_2",
+     "3": "Titre Rang 3_2",
+     "4": "Titre Rang 4_2",
+     "5": "Titre Rang 5_2"
+    },
+    "textes": {
+     "1": "Rang 1_2",
+     "2": "Rang 2_2",
+     "3": "Rang 3__2",
+     "4": "Rang 4_2",
+     "5": "Rang 5_2"
+    }
+   },
+   "3": {
+    "nomVoie": "VOIE3",
+    "cases": {
+     "1": "undefined_21",
+     "2": "undefined_24",
+     "3": "undefined_27",
+     "4": "undefined_30",
+     "5": "undefined_33"
+    },
+    "titres": {
+     "1": "Titre Rang 1_3",
+     "2": "Titre Rang 2_3",
+     "3": "Titre Rang 3_3",
+     "4": "Titre Rang 4_3",
+     "5": "Titre Rang 5_3"
+    },
+    "textes": {
+     "1": "Rang 1_3",
+     "2": "Rang 2_3",
+     "3": "Rang 3_3",
+     "4": "Rang 4_3",
+     "5": "Rang 5_3"
+    }
+   },
+   "4": {
+    "nomVoie": "VOIE4",
+    "cases": {
+     "1": "undefined_34",
+     "2": "undefined_37",
+     "3": "undefined_40",
+     "4": "undefined_43",
+     "5": "undefined_46"
+    },
+    "titres": {
+     "1": "Titre Rang 1_4",
+     "2": "Titre Rang 2_4",
+     "3": "Titre Rang 3_4",
+     "4": "Titre Rang 4_4",
+     "5": "Titre Rang 5_4"
+    },
+    "textes": {
+     "1": "Rang 1_4",
+     "2": "Rang 2_4",
+     "3": "Rang 3_4",
+     "4": "Rang 4_4",
+     "5": "Rang 5_4"
+    }
+   },
+   "5": {
+    "nomVoie": "VOIE5",
+    "cases": {
+     "1": "undefined_35",
+     "2": "undefined_38",
+     "3": "undefined_41",
+     "4": "undefined_44",
+     "5": "undefined_47"
+    },
+    "titres": {
+     "1": "Titre Rang 1_5",
+     "2": "Titre Rang 2_5",
+     "3": "Titre Rang 3_5",
+     "4": "Titre Rang 4_5",
+     "5": "Titre Rang 5_5"
+    },
+    "textes": {
+     "1": "Rang 1_5",
+     "2": "Rang 2_5",
+     "3": "Rang 3_5",
+     "4": "Rang 4_5",
+     "5": "Rang 5_5"
+    }
+   },
+   "P": {
+    "nomVoie": "VOIE PRESTIGE",
+    "cases": {
+     "1": "undefined_36",
+     "2": "undefined_39",
+     "3": "undefined_42",
+     "4": "undefined_45",
+     "5": "undefined_48"
+    },
+    "titres": {
+     "1": "Titre Rang 1_P",
+     "2": "Titre Rang 2_P",
+     "3": "Titre Rang 3_P",
+     "4": "Titre Rang 4_P",
+     "5": "Titre Rang 5_P"
+    },
+    "textes": {
+     "1": "Rang 1_P",
+     "2": "Rang 2_P",
+     "3": "Rang 3_P",
+     "4": "Rang 4_P",
+     "5": "Rang 5_P"
+    }
+   }
+  }
+ },
+ "toutesLesCases": [
+  "Rang 1",
+  "Rang 2",
+  "Rang 3_2",
+  "Rang 4",
+  "Rang 5",
+  "undefined_19",
+  "undefined_20",
+  "undefined_21",
+  "undefined_22",
+  "undefined_23",
+  "undefined_24",
+  "undefined_25",
+  "undefined_26",
+  "undefined_27",
+  "undefined_28",
+  "undefined_29",
+  "undefined_30",
+  "undefined_31",
+  "undefined_32",
+  "undefined_33",
+  "undefined_34",
+  "undefined_35",
+  "undefined_36",
+  "undefined_37",
+  "undefined_38",
+  "undefined_39",
+  "undefined_40",
+  "undefined_41",
+  "undefined_42",
+  "undefined_43",
+  "undefined_44",
+  "undefined_45",
+  "undefined_46",
+  "undefined_47",
+  "undefined_48"
+ ]
+}

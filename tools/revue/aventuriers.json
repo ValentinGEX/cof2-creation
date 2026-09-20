@@ -1,0 +1,174 @@
+{
+  "equipement": {
+    "arquebusier": {
+      "armureMax": "chemise-de-mailles",
+      "bouclier": false,
+      "citationArmure": "Les voies d’arquebusier limitent l’armure à la chemise de mailles et interdisent l’utilisation du bouclier.",
+      "equipement": [
+        {
+          "ref": "petoire"
+        },
+        {
+          "ref": "epee-longue"
+        },
+        {
+          "ref": "dague"
+        },
+        {
+          "ref": "cuir-renforce"
+        }
+      ]
+    },
+    "barde": {
+      "armureMax": "cuir-renforce",
+      "bouclier": false,
+      "citationArmure": "Les voies de barde limitent l’armure au cuir renforcé et interdisent l’utilisation du bouclier.",
+      "equipement": [
+        {
+          "ref": "rapiere"
+        },
+        {
+          "ref": "dague"
+        },
+        {
+          "libre": "Instrument de musique"
+        },
+        {
+          "ref": "cuir-simple"
+        }
+      ]
+    },
+    "rodeur": {
+      "armureMax": "cuir-renforce",
+      "bouclier": false,
+      "citationArmure": "Les voies de rôdeur limitent l’armure au cuir renforcé et interdisent le port du bouclier.",
+      "equipement": [
+        {
+          "ref": "epee-longue"
+        },
+        {
+          "choix": [
+            [
+              {
+                "ref": "arc-court"
+              },
+              {
+                "libre": "Carquois"
+              }
+            ],
+            [
+              {
+                "ref": "epee-courte",
+                "liste": [
+                  "epee-courte",
+                  "hachette",
+                  "lance"
+                ],
+                "libelle": "une autre arme de contact (épée courte, hachette, lance)"
+              }
+            ]
+          ],
+          "libelle": "arc court et carquois (DM 1d6, portée 30 m) ou une autre arme de contact (épée courte, hachette, lance)"
+        },
+        {
+          "ref": "dague"
+        },
+        {
+          "ref": "cuir-renforce"
+        }
+      ]
+    },
+    "voleur": {
+      "armureMax": "cuir-simple",
+      "bouclier": false,
+      "citationArmure": "Les voies de voleur limitent l’armure au cuir simple et interdisent l’utilisation du bouclier.",
+      "equipement": [
+        {
+          "ref": "rapiere"
+        },
+        {
+          "ref": "dague",
+          "qte": 5
+        },
+        {
+          "libre": "Outils de crochetage"
+        },
+        {
+          "ref": "cuir-simple"
+        },
+        {
+          "libre": "Corde de 10 m"
+        }
+      ]
+    }
+  },
+  "effets": {
+    "rodeur/voie-de-l-archer/1": {
+      "titre": "Archer émérite",
+      "effets": [
+        {
+          "cible": "DM_DISTANCE",
+          "carac": "PER",
+          "condition": "arc"
+        },
+        {
+          "cible": "INIT",
+          "valeur": 1
+        }
+      ],
+      "citation": "Le rôdeur ajoute sa PER aux DM qu’il inflige à l’arc et +1 par rang dans la voie en initiative."
+    },
+    "voleur/voie-du-deplacement/1": {
+      "titre": "Agile",
+      "effets": [
+        {
+          "cible": "DEF",
+          "valeur": 1
+        },
+        {
+          "cible": "INIT",
+          "valeur": 1
+        }
+      ],
+      "citation": "il bénéficie d’un bonus de +1 en DEF et en Initiative"
+    },
+    "voleur/voie-du-roublard/1": {
+      "titre": "Doigts agiles",
+      "effets": [
+        {
+          "cible": "DM_DISTANCE",
+          "valeur": 1,
+          "condition": "daguesEtCouteaux"
+        }
+      ],
+      "citation": "il obtient +1 aux DM des attaques à distance avec les dagues et couteaux"
+    },
+    "voleur/voie-du-spadassin/1": {
+      "titre": "Attaque en finesse",
+      "effets": [
+        {
+          "cible": "INIT",
+          "carac": "AGI"
+        }
+      ],
+      "citation": "Le voleur ajoute son AGI à son Init."
+    }
+  },
+  "remarques": [
+    "BLOQUANT (données) : dans data/profils/, le champ \"armesArmures\" vaut null pour les 4 profils d'aventuriers (arquebusier, barde, rôdeur, voleur) alors qu'il est rempli pour les 10 autres profils. Cause : tools/scrape_drs.py cherche le titre \"Armes & armures\" alors que les pages DRS des aventuriers utilisent \"Armes & armures maîtrisées\". Les valeurs \"citationArmure\" ci-dessus ont donc été reprises dans le cache officiel du projet (tools/.cache-drs/profil-<slug>.html), pas dans data/profils/. À corriger côté scraper/données (je n'ai modifié aucun fichier hors tools/revue/).",
+    "Aucun des 4 profils ne peut utiliser de bouclier : c'est explicite dans le texte \"Armes & armures maîtrisées\" de chacun (donc bouclier = false partout).",
+    "Arquebusier : l'armure maximale autorisée est la chemise de mailles (DEF +4) alors que l'équipement de départ ne fournit que du cuir renforcé (DEF +3). Écart normal dans le livre, mais à vérifier si l'appli déduit l'armure de départ de l'armure max.",
+    "Voleur : l'armure maximale autorisée est le cuir simple (DEF +2), qui correspond bien à l'\"armure de cuir (DEF +2)\" de départ.",
+    "Voleur, équipement : \"5 dagues (DM 1d4, portée 5 m)\" — j'ai mis ref \"dague\" (arme de contact) avec qte 5 ; armes.json contient aussi une entrée distincte \"dague-lancee\" (même nom \"Dague\", catégorie distance) pour le lancer. À trancher : une seule ligne \"dague\" x5, ou deux lignes (contact + lancer) ?",
+    "Rôdeur, équipement : le texte propose \"une autre arme de contact (épée courte, hachette, lance)\" mais dans armes.json \"hachette\" est classée en catégorie \"distance\" (arme de jet) et \"lance\" existe en deux versions (\"lance\" contact et \"lance-lancee\" distance). J'ai retenu les slugs epee-courte / hachette / lance, avec epee-courte par défaut.",
+    "Rôdeur, équipement : le \"carquois\" n'existe ni dans armes.json ni dans armures.json, je l'ai mis en objet libre à côté de l'arc court.",
+    "Rôdeur, voie de l'archer rang 1 (\"Archer émérite\") : la capacité comporte une VARIANTE optionnelle (armes de jet au lieu de l'arc : on ajoute FOR aux DM et on perd le bonus d'Init.). J'ai enregistré la version par défaut (arc). Si tu préfères la règle « sous-choix = aucun effet », il faut supprimer cette entrée.",
+    "CONDITIONS INVENTÉES (à valider) : deux effets sont restreints à un type d'arme, ce que les conditions autorisées (sansArmure / armureLegere / avecBouclier) ne couvrent pas. J'ai créé \"arc\" (rôdeur / voie de l'archer : +PER aux DM seulement à l'arc) et \"daguesEtCouteaux\" (voleur / voie du roublard : +1 DM à distance seulement avec dagues et couteaux). Sans ces conditions, les bonus s'appliqueraient à tort à toutes les armes à distance.",
+    "Substitution de caractéristique non modélisable : barde / voie de l'escrime rang 1 (\"Précision\") et voleur / voie du spadassin rang 1 (\"Attaque en finesse\") permettent de REMPLACER la FOR par l'AGI aux tests d'attaque au contact avec une arme légère à une main. Ce n'est ni une valeur fixe ni un ajout de caractéristique, donc rien n'est inscrit dans \"effets\". Il faudrait une forme du type {\"cible\": \"ATT_CONTACT\", \"caracRemplace\": \"FOR\", \"carac\": \"AGI\", \"condition\": \"armeLegereUneMain\"} si l'appli doit le gérer.",
+    "Rôdeur, voie du traqueur rang 1 (\"Éclaireur\") : sous-choix explicite — le joueur peut remplacer le +1 PC de la famille des aventuriers par un +1 DR. Aucun effet inscrit, à gérer comme une option de création (impact sur PC ou DR).",
+    "Arquebusier, voie du pistolero rang 1 (\"Plus vite que son ombre\") : +5 à l'Initiative mais uniquement pour tirer avec une arme à poudre chargée et tenue en main. Bonus conditionnel et situationnel, non inscrit. À confirmer.",
+    "Arquebusier, voie du mercenaire rang 1 (\"Pilier de bar\") : les DM à mains nues passent à 1d4° (non létal) et les DM non létaux subis sont divisés par 2. Ce n'est pas un bonus chiffré sur une valeur de la feuille, donc non inscrit.",
+    "Rôdeur, voie du compagnon animal rang 1 (\"Le loup\") : la capacité donne les caractéristiques d'un PNJ compagnon (DEF 12 + rang, PV niv. x 4, Init. du rôdeur…). Aucun effet sur la feuille du personnage lui-même, donc non inscrit — mais il faudra sans doute un bloc \"compagnon\" ailleurs dans l'appli.",
+    "Arquebusier et barde : 0 effet permanent chiffrable au rang 1 sur les 5 voies. Toutes leurs capacités de rang 1 sont des bonus aux tests, des sorts ou des actions."
+  ]
+}

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Découverte des champs de la feuille de personnage</title>
+<style>
+  body { font-family: -apple-system, sans-serif; margin: 1rem; }
+  pre { background: #f4ecd8; padding: .5rem; max-height: 30vh; overflow: auto; font-size: 11px; }
+  table { border-collapse: collapse; font-size: 12px; }
+  td, th { border: 1px solid #ccc; padding: 2px 6px; }
+</style>
+</head>
+<body>
+<h1>Champs de <code>assets/feuille.pdf</code></h1>
+<p>Produit <code>champs-bruts.json</code> (liste complète) et <code>champs-numerotes.pdf</code>
+(la feuille avec chaque champ encadré et numéroté) dans le dossier de travail du serveur de dev.</p>
+<p id="etat">Chargement…</p>
+<pre id="log"></pre>
+<div id="tableau"></div>
+<script src="../vendor/pdf-lib.min.js"></script>
+<script src="../js/pdf-repair.js"></script>
+<script>
+const log = (...a) => { document.getElementById('log').textContent += a.join(' ') + '\n'; };
+
+async function main() {
+  const { PDFDocument, StandardFonts, rgb } = PDFLib;
+  const bytes = await fetch('../assets/feuille.pdf').then(r => r.arrayBuffer());
+  const pdf = await PDFDocument.load(bytes);
+  log('réparation des champs :', reparerChamps(pdf), 'widgets rattachés à /AcroForm/Fields');
+  const pages = pdf.getPages();
+  log('pages :', pages.length, '| format :', pages[0].getWidth().toFixed(1), 'x', pages[0].getHeight().toFixed(1), 'pt');
+
+  const form = pdf.getForm();
+  const fields = form.getFields();
+  log('champs :', fields.length);
+
+  const pageAnnots = pages.map(p => {
+    const a = p.node.Annots();
+    return a ? a.asArray().map(ref => pdf.context.lookup(ref)) : [];
+  });
+
+  const out = [];
+  for (const f of fields) {
+    const nom = f.getName();
+    const type = f instanceof PDFLib.PDFTextField ? 'Text'
+      : f instanceof PDFLib.PDFCheckBox ? 'CheckBox'
+      : f instanceof PDFLib.PDFRadioGroup ? 'Radio'
+      : f instanceof PDFLib.PDFDropdown ? 'Dropdown'
+      : f instanceof PDFLib.PDFOptionList ? 'OptionList'
+      : f instanceof PDFLib.PDFButton ? 'Button' : 'Inconnu';
+    for (const w of f.acroField.getWidgets()) {
+      const r = w.getRectangle();
+      const page = pageAnnots.findIndex(list => list.indexOf(w.dict) !== -1);
+      const da = w.getDefaultAppearance ? (w.getDefaultAppearance() || '') : '';
+      out.push({
+        nom, type, page,
+        x: +r.x.toFixed(1), y: +r.y.toFixed(1), w: +r.width.toFixed(1), h: +r.height.toFixed(1),
+        da,
+        multiline: type === 'Text' ? f.isMultiline() : null,
+        coche: type === 'CheckBox' ? f.isChecked() : null
+      });
+    }
+  }
+  out.sort((a, b) => a.page - b.page || b.y - a.y || a.x - b.x);
+  out.forEach((o, i) => o.idx = i);
+
+  document.getElementById('etat').textContent = `${fields.length} champs, ${out.length} widgets.`;
+  let html = '<table><tr><th>#</th><th>nom</th><th>type</th><th>p</th><th>x</th><th>y</th><th>l</th><th>h</th><th>DA</th><th>multi</th><th>coché</th></tr>';
+  for (const o of out) html += `<tr><td>${o.idx}</td><td>${o.nom}</td><td>${o.type}</td><td>${o.page}</td><td>${o.x}</td><td>${o.y}</td><td>${o.w}</td><td>${o.h}</td><td>${o.da}</td><td>${o.multiline === null ? '' : o.multiline}</td><td>${o.coche === null ? '' : o.coche}</td></tr>`;
+  document.getElementById('tableau').innerHTML = html + '</table>';
+  window.CHAMPS = out;
+
+  // PDF de repérage : cadre rouge + numéro sur chaque champ
+  const marque = await PDFDocument.load(bytes);
+  reparerChamps(marque);
+  const font = await marque.embedFont(StandardFonts.Helvetica);
+  const mpages = marque.getPages();
+  for (const o of out) {
+    if (o.page < 0) continue;
+    const p = mpages[o.page];
+    p.drawRectangle({ x: o.x, y: o.y, width: o.w, height: o.h, borderColor: rgb(0.85, 0.1, 0.1), borderWidth: 0.6 });
+    p.drawText(String(o.idx), { x: o.x + 0.5, y: o.y + o.h - 5, size: 5, font, color: rgb(0.85, 0.1, 0.1) });
+  }
+  const marqueBytes = await marque.save();
+  await envoyer('champs-numerotes.pdf', marqueBytes);
+  await fetch('/_save/champs-bruts.json', { method: 'POST', body: JSON.stringify(out, null, 1) });
+  log('champs-bruts.json et champs-numerotes.pdf envoyés');
+}
+
+async function envoyer(nom, u8) {
+  let bin = '';
+  const a = new Uint8Array(u8);
+  for (let i = 0; i < a.length; i += 8192) bin += String.fromCharCode.apply(null, a.subarray(i, i + 8192));
+  await fetch('/_save/' + nom, { method: 'POST', body: btoa(bin) });
+}
+
+main().catch(e => { document.getElementById('etat').textContent = 'ERREUR : ' + e.message; log(e.stack); });
+</script>
+</body>
+</html>

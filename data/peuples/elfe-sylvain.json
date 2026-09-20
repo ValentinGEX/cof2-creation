@@ -1,0 +1,84 @@
+{
+ "slug": "elfe-sylvain",
+ "nom": "Elfe sylvain",
+ "description": "L’elfe sylvain est issu d’une culture différente de celle des elfes hauts. Légèrement plus petits, ils vivent au plus profond des forêts, s’abritant dans les arbres et vivant simplement de la chasse et de la cueillette. Moins arrogants que leurs cousins hauts elfes, ils sont cependant beaucoup plus méfiants. Ils maîtrisent particulièrement l’art du camouflage et l’utilisation de l’arc.",
+ "modificateursTexte": "+1 AGI ou PER, -1 FOR",
+ "reperes": {
+  "ageDepartTexte": "50+",
+  "esperanceVieTexte": "350 ans",
+  "tailleTexte": "1,40 m à 1,70 m",
+  "poidsTexte": "30 à 60 kg",
+  "traits": "menu, svelte. Oreilles pointues, yeux en amandes (verts, violets), cheveux sombres (bruns, noirs, roux), tatouages, pilosité absente."
+ },
+ "noms": {
+  "intro": "Les elfes des bois ont des noms assez similaires à ceux des elfes hauts, quoique ceux des sylvains soient plus simples. Chez les femmes, la dernière consonne ou la dernière voyelle est doublée. Chez les hommes, les terminaisons -din, -dor, -ion sont privilégiées.",
+  "masculin": [
+   "Aëdin",
+   "Caëndor",
+   "Cirion",
+   "Doralion",
+   "Ealdor",
+   "Findalion",
+   "Glorfindor",
+   "Haëldion",
+   "Laurendor",
+   "Morwendir",
+   "Raëldirion"
+  ],
+  "feminin": [
+   "Aëldill",
+   "Aluinill",
+   "Aliann",
+   "Dianaë",
+   "Eilinelle",
+   "Elenwëe",
+   "Lúthill",
+   "Nínielle",
+   "Nolwaënn",
+   "Mírielle",
+   "Keltienn"
+  ]
+ },
+ "voie": {
+  "slug": "voie-de-l-elfe-sylvain",
+  "nom": "Voie de l'elfe sylvain",
+  "capacites": [
+   {
+    "rang": 1,
+    "titre": "Lumière des étoiles",
+    "tags": [],
+    "sort": false,
+    "texte": "Pour un elfe sylvain, l’obscurité de la nuit sous la lumière des étoiles est considérée comme de la pénombre. De plus, l’elfe gagne un bonus de +3 à tous les tests de survie en forêt (escalade, discrétion, chasse, etc.)."
+   },
+   {
+    "rang": 2,
+    "titre": "Enfant de la forêt",
+    "tags": [],
+    "sort": false,
+    "texte": "Le joueur choisit une capacité de rang 1 de n’importe quelle voie de druide ou de rôdeur. Il peut utiliser cette capacité en armure jusqu’à l’armure de cuir renforcé sans pénalité."
+   },
+   {
+    "rang": 3,
+    "titre": "Archer émérite",
+    "tags": [],
+    "sort": false,
+    "texte": "L’elfe augmente de 1 la zone de critique lorsqu’il utilise un arc (19-20 au d20) et ajoute +1d4° aux DM en cas de critique. Il sait utiliser les arcs courts, quel que soit son profil."
+   },
+   {
+    "rang": 4,
+    "titre": "Flèche sanglante",
+    "tags": [],
+    "sort": false,
+    "texte": "L’elfe fait une attaque à distance qui provoque une hémorragie. En plus des DM normaux, la flèche produit un effet de saignement qui inflige à la victime 1d4° DM à chaque round suivant jusqu’à ce que la cible soit soignée (tout effet de soins ou une action limitée utilisée à cet effet). On ne peut cumuler plusieurs effets de saignement."
+   },
+   {
+    "rang": 5,
+    "titre": "Supériorité elfique",
+    "tags": [],
+    "sort": false,
+    "texte": "L’elfe augmente ses valeurs d’AGI et PER de +1."
+   }
+  ]
+ },
+ "source": "https://drs.chroniques-oubliees.fr/fantasy/peuples/elfe-sylvain"
+}

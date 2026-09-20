@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="utf-8"><title>Test de remplissage</title></head>
+<body><h1>Test de remplissage de la feuille (carte des champs)</h1><pre id="log"></pre>
+<script src="../vendor/pdf-lib.min.js"></script>
+<script src="../js/pdf-repair.js"></script>
+<script>
+const log = (...a) => { document.getElementById('log').textContent += a.join(' ') + '\n'; };
+
+(async () => {
+  const { PDFDocument, StandardFonts } = PDFLib;
+  const carte = await fetch('../assets/fields-map.json').then(r => r.json());
+  const bytes = await fetch('../assets/feuille.pdf').then(r => r.arrayBuffer());
+  const pdf = await PDFDocument.load(bytes);
+  log('réparation :', reparerChamps(pdf), 'champs');
+  const form = pdf.getForm();
+  const helv = await pdf.embedFont(StandardFonts.Helvetica);
+  const T = (nom, v, multi) => {
+    const f = form.getTextField(nom);
+    if (multi) { f.enableMultiline(); f.setFontSize(0); }
+    f.setText(v);
+  };
+  // toutes les cases à zéro
+  for (const c of carte.toutesLesCases) form.getCheckBox(c).uncheck();
+
+  const p = carte.page1;
+  T(p.nomPersonnage, 'Lhagva'); T(p.joueur, 'Valentin'); T(p.niveau, '1');
+  T(p.niveauAttaques, '1');
+  T(p.famille, 'Combattants'); T(p.profil, 'Barbare');
+  T(p.ideal, 'Courage'); T(p.travers, 'Violent');
+  T(p.init, '14'); T(p.def, '16');
+  T(p.pvMax, '12'); T(p.pvActuels, 'PVACT');
+  T(p.pcMax, '2'); T(p.drType, 'd10'); T(p.drMax, '4');
+  T(p.pmMax, 'PMMAX'); T(p.pmActuels, 'PMACT');
+  const vals = { AGI: '+1', CON: '+2', FOR: '+3', PER: '+1', CHA: '-1', INT: '0', VOL: '+1' };
+  for (const c in vals) { T(p.caracs[c], vals[c]); T(p.notes[c], c === 'PER' ? '+1 peuple' : '', true); }
+  T(p.attaques.contact, '+4'); T(p.attaques.distance, '+2'); T(p.attaques.magique, '+2');
+  T(p.modsAttaque.contact, '+3'); T(p.modsAttaque.distance, '+1'); T(p.modsAttaque.magique, '+1');
+  const armes = [['Épée longue', '+4', '1d8+3', 'Tranchants'],
+                 ['Javelot (×2)', '+2', '1d6', 'Portée 20 m'],
+                 ['Dague', '+4', '1d4+3', 'Légère, portée 5 m']];
+  armes.forEach((a, i) => { T(p.armes[i].nom, a[0]); T(p.armes[i].att, a[1]); T(p.armes[i].dm, a[2]); T(p.armes[i].special, a[3]); });
+  T(p.equipement, 'Armure de cuir, grand bouclier, sac d’aventurier (couverture, torche, briquet à silex, outre, gamelle), bourse de 7 pa, un porte-bonheur en os', true);
+
+  // voie du peuple (page 1)
+  T(p.voiePeuple.nomVoie, 'Voie de l’humain');
+  T(p.voiePeuple.titres['1'], 'Diversité');
+  T(p.voiePeuple.textes['1'], 'L’humain choisit une origine et gagne +3 dans deux domaines de compétence liés à celle-ci. Il gagne aussi un point de chance supplémentaire.', true);
+  form.getCheckBox(p.voiePeuple.cases['1']).check();
+
+  // voies de profil (page 2)
+  const v = carte.page2.voies;
+  T(v['1'].nomVoie, 'Voie du pourfendeur');
+  T(v['1'].titres['1'], 'Réflexes éclair'); 
+  T(v['1'].textes['1'], 'Le barbare gagne +3 en Initiative et +1 en DEF. Texte volontairement long pour vérifier que la taille de police s’ajuste toute seule dans la case du rang.', true);
+  form.getCheckBox(v['1'].cases['1']).check();
+  T(v['2'].nomVoie, 'Voie de la rage');
+  T(v['2'].titres['1'], 'Cri de guerre (G)');
+  T(v['2'].textes['1'], 'Le barbare pousse un cri terrifiant. Tous les adversaires proches doivent réussir un test de VOL difficulté 10 + CHA du barbare.', true);
+  form.getCheckBox(v['2'].cases['1']).check();
+  T(v['2'].titres['3'], 'Titre rang 3 (test du champ « Rang 3__2 »)');
+  T(v['2'].textes['3'], 'Contrôle de la coquille de nommage du rang 3 de la voie 2.', true);
+  T(carte.page2.description, 'Humaine, 22 ans, 1,78 m, 80 kg. Cheveux noirs tressés, regard sombre. Secret : je suis déjà morte une fois. Bizarrerie : salue solennellement chaque cheval qu’elle croise. Langues : Commun.', true);
+
+  form.updateFieldAppearances(helv);
+  const out = await pdf.save();
+  let bin = ''; const u8 = new Uint8Array(out);
+  for (let i = 0; i < u8.length; i += 8192) bin += String.fromCharCode.apply(null, u8.subarray(i, i + 8192));
+  await fetch('/_save/test-carte.pdf', { method: 'POST', body: btoa(bin) });
+  log('test-carte.pdf produit :', out.length, 'octets — FINI');
+})().catch(e => log('ERREUR', e.message, e.stack));
+</script></body></html>

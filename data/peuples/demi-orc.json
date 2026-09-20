@@ -1,0 +1,96 @@
+{
+ "slug": "demi-orc",
+ "nom": "Demi-orc",
+ "description": "Le demi-orc est de grande taille. Il possède une force physique hors du commun, et est généralement méprisé par les autres peuples, en particulier par les nains et les elfes.",
+ "modificateursTexte": "+1 FOR ou CON et -1 CHA ou INT",
+ "reperes": {
+  "ageDepartTexte": "15+",
+  "esperanceVieTexte": "60 ans",
+  "tailleTexte": "1,70 m à 2,10 m",
+  "poidsTexte": "70 à 150 kg",
+  "traits": "grand et athlétique. Peau verdâtre qui tend parfois vers un vert plus franc, mâchoire large, front bas, petits yeux."
+ },
+ "noms": {
+  "intro": "Les demi-orcs utilisent des prénoms humains, à moins qu’ils aient été élevés chez les orcs. Certains se choisissent aussi un prénom orc à l’âge adulte, en réaction à l’ostracisme dont ils sont victimes.\nLes noms orcs sont courts et gutturaux, privilégiez les lettres R, G et K, évitez une voyelle douce comme le E et préférez le O.\nLes noms féminins sont généralement les mêmes que les noms masculins mais avec la lettre A en plus à la fin",
+  "masculin": [
+   "Aog",
+   "Bargul",
+   "Carok",
+   "Drog",
+   "Erok",
+   "Farg",
+   "Gorog",
+   "Hurl",
+   "Jorgul",
+   "Krok",
+   "Krush",
+   "Lugn",
+   "Mog",
+   "Norok",
+   "Rork",
+   "Urdu"
+  ],
+  "feminin": [
+   "Aoga",
+   "Bargula",
+   "Caroka",
+   "Droga",
+   "Eroka",
+   "Farga",
+   "Goroga",
+   "Hurla",
+   "Jorgula",
+   "Kroka",
+   "Krusha",
+   "Lugna",
+   "Moga",
+   "Noroka",
+   "Rorka",
+   "Urdua"
+  ]
+ },
+ "voie": {
+  "slug": "voie-du-demi-orc",
+  "nom": "Voie du demi-orc",
+  "capacites": [
+   {
+    "rang": 1,
+    "titre": "Impressionnant",
+    "tags": [],
+    "sort": false,
+    "texte": "Le demi-orc gagne un bonus de +3 à tous les tests d’intimidation. De plus, dans le noir total, le demi-orc voit comme dans la pénombre jusqu’à 30 m."
+   },
+   {
+    "rang": 2,
+    "titre": "Talent pour la violence",
+    "tags": [],
+    "sort": false,
+    "texte": "Le joueur choisit une capacité de rang 1 de n’importe quelle voie de barbare ou de guerrier."
+   },
+   {
+    "rang": 3,
+    "titre": "Critique brutal",
+    "tags": [],
+    "sort": false,
+    "texte": "Le demi-orc augmente de 1 point la zone de critique sur une attaque au contact (19-20 au d20) et ajoute +1d4° aux DM en cas de critique."
+   },
+   {
+    "rang": 4,
+    "titre": "Attaque sanglante",
+    "tags": [
+     "L"
+    ],
+    "sort": false,
+    "texte": "Le demi-orc réalise une attaque de contact qui provoque une hémorragie. En plus des DM normaux, l’attaque produit un saignement qui inflige à la victime 1d4° DM à chaque round suivant jusqu’à ce que la cible soit soignée (tout effet de soins ou une action limitée utilisée à cet effet). On ne peut pas cumuler plusieurs effets de saignement."
+   },
+   {
+    "rang": 5,
+    "titre": "Colosse",
+    "tags": [],
+    "sort": false,
+    "texte": "Le demi-orc augmente ses valeurs de FOR et de CON de +1."
+   }
+  ]
+ },
+ "source": "https://drs.chroniques-oubliees.fr/fantasy/peuples/demi-orc"
+}
