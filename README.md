@@ -78,27 +78,29 @@ Les autres textes maison (prologue, guides, notes) sont au même endroit, dans `
 
 ---
 
-## Mettre en ligne sur GitHub Pages
+## En ligne
 
-Le dépôt gratuit sera **public** : les textes de règles de Black Book Éditions y seront
-visibles. Le site est en `noindex` et `robots.txt` interdit l'indexation, mais ce n'est pas un
-secret — c'est un choix assumé pour la table de Valentin.
+**L'application est publiée : <https://valentingex.github.io/cof2-creation/>**
 
-1. Se connecter à GitHub depuis un terminal : `gh auth login`
-2. Créer le dépôt et pousser :
+C'est l'adresse à donner à tes joueurs, directement. Le site est en `noindex`, `robots.txt`
+interdit l'indexation et aucun lien ne pointe vers lui : il faut connaître l'adresse. Le dépôt
+est public, parce que GitHub Pages l'exige sur un compte gratuit — les textes de règles de
+Black Book Éditions et la carte du livre y sont donc accessibles à qui a l'adresse. C'est un
+choix assumé.
+
+Dépôt : <https://github.com/ValentinGEX/cof2-creation>
+
+### Mettre le site à jour
+
+Après une modification :
 
 ```bash
-cd /Users/valentingerard/Claude_code/app_jdr && gh repo create cof2-creation --public --source=. --push
+cd /Users/valentingerard/Claude_code/app_jdr && git add -A && git commit -m "ce que tu as changé" && git push
 ```
 
-3. Activer GitHub Pages sur la branche `main`, dossier racine :
-
-```bash
-gh api -X POST repos/:owner/cof2-creation/pages -f source[branch]=main -f source[path]=/
-```
-
-4. L'adresse sera `https://<ton-compte>.github.io/cof2-creation/`. Donne-la à tes joueurs
-   directement (aucun lien public ailleurs).
+Le site se reconstruit tout seul en une minute environ. Si tu as touché au code ou au style,
+incrémente le `?v=` dans `index.html` (voir plus haut) pour que les navigateurs de tes joueurs
+reprennent bien la nouvelle version.
 
 Les deux PDF sources (le livre et la feuille d'origine) ne sont **pas** versionnés : voir
 `.gitignore`. La copie de travail `assets/feuille.pdf`, elle, est versionnée — l'application en
