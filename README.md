@@ -21,6 +21,11 @@ cd /Users/valentingerard/Claude_code/app_jdr && python3 -m http.server 8000
 
 Puis ouvre **http://localhost:8000/** dans ton navigateur. Pour arrêter le serveur : `Ctrl+C`.
 
+Si tu viens de modifier le code et que l'écran ne change pas, c'est le cache du navigateur :
+fais un rechargement forcé (**Cmd+Maj+R**). Pour l'éviter à tes joueurs, `index.html` numérote
+ses fichiers (`css/app.css?v=2`, `js/main.js?v=2`…) : après une modification, incrémente ce
+numéro partout dans `index.html` et chacun reprendra la nouvelle version tout seul.
+
 La page de tests du moteur de règles est à l'adresse
 **http://localhost:8000/tests/tests.html** (tout doit être vert).
 
