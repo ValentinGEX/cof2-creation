@@ -305,7 +305,6 @@ function texteDescription(etat, DATA, d) {
   if (etat.touche.bizarrerie) lignes.push('Bizarrerie : ' + etat.touche.bizarrerie);
   const langues = (peuple.langues || []).concat(etat.touche.languesBonus || []);
   if (langues.length) lignes.push('Langues : ' + langues.join(', ') + '.');
-  if (etat.concept) lignes.push('Concept : ' + etat.concept);
   for (const note of d.notes || []) lignes.push(note.titre + ' : ' + note.texte);
   return lignes.join(' ');
 }

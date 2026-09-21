@@ -6,51 +6,48 @@
 
 window.ETAPES = window.ETAPES || {};
 
-window.ETAPES[5] = {
-  titre: 'Tes voies',
+window.ETAPES[6] = {
+  titre: 'Choisissez les deux voies de votre personnage',
 
   rendre(bloc, ctx) {
     const DATA = ctx.DATA;
     const etat = ctx.etat;
     const profil = DATA.profils[etat.profil];
-    bloc.appendChild(ui.el('p', {}, [DATA.creation.maison.ecrans.voies,
-      ui.aideDonnee(DATA, 'VOIES')]));
-
     // ---- les cinq voies du profil
-    bloc.appendChild(ui.el('h3', {}, 'Choisis deux voies de ' + profil.nom.toLowerCase()));
+    const liste = ui.el('div');
     for (const voie of profil.voies) {
-      bloc.appendChild(carteVoie(ctx, voie, etat.voies.profil.indexOf(voie.slug) !== -1,
+      liste.appendChild(carteVoie(ctx, voie, etat.voies.profil.indexOf(voie.slug) !== -1,
         () => basculerVoie(ctx, voie.slug)));
     }
+    bloc.appendChild(ui.section(null, [
+      ui.el('p', {}, ['Les cinq voies de ' + profil.nom.toLowerCase(),
+        ui.aideDonnee(DATA, 'VOIES')]),
+      liste,
+    ]));
 
     // ---- voie de peuple (ou voie du mage)
-    bloc.appendChild(ui.el('hr', { class: 'separateur' }));
     bloc.appendChild(sectionPeuple(ctx));
 
     // ---- capacité de rang 2 des mages
-    if (rules.estMage(etat, DATA)) {
-      bloc.appendChild(ui.el('hr', { class: 'separateur' }));
-      bloc.appendChild(sectionRang2(ctx));
-    }
+    if (rules.estMage(etat, DATA)) bloc.appendChild(sectionRang2(ctx));
 
     // ---- sous-choix (Diversité, Don étrange) et options
     const extras = sousChoix(ctx);
-    if (extras) {
-      bloc.appendChild(ui.el('hr', { class: 'separateur' }));
-      bloc.appendChild(extras);
-    }
+    if (extras) bloc.appendChild(extras);
   },
 
   valider(etat, DATA) {
     const erreurs = [];
-    if (etat.voies.profil.length !== 2) erreurs.push('Choisis exactement deux voies de profil.');
+    if (etat.voies.profil.length !== 2) {
+      erreurs.push('Choisissez exactement deux voies de profil.');
+    }
     if (rules.estMage(etat, DATA) && !(etat.voies.rang2Mage && etat.voies.rang2Mage.voie)) {
-      erreurs.push('Choisis ta capacité de rang 2 de mage.');
+      erreurs.push('Choisissez votre capacité de rang 2 de mage.');
     }
     for (const cle of Object.keys(DATA.sousChoix)) {
       if (!sousChoixConcerne(etat, DATA, cle)) continue;
       if (!etat.voies.sousChoix[cle]) {
-        erreurs.push('Fais le choix demandé par « ' + DATA.sousChoix[cle].titre + ' ».');
+        erreurs.push('Faites le choix demandé par « ' + DATA.sousChoix[cle].titre + ' ».');
       }
     }
     return erreurs;
@@ -124,11 +121,10 @@ function sectionPeuple(ctx) {
   const etat = ctx.etat;
   const voiePeuple = rules.voieDePeuple(etat, DATA);
   const bloc = ui.el('div');
-  bloc.appendChild(ui.el('h3', {}, 'Ta voie de peuple'));
 
   if (!voiePeuple) {
-    bloc.appendChild(ui.el('p', {}, 'Reviens à l’écran du peuple pour choisir ta voie.'));
-    return bloc;
+    return ui.section('Votre voie de peuple',
+      ui.el('p', {}, 'Revenez à l’écran du peuple pour choisir votre voie.'));
   }
 
   if (rules.estMage(etat, DATA)) {
@@ -154,10 +150,10 @@ function sectionPeuple(ctx) {
   bloc.appendChild(carteVoie(ctx, utiliseMage ? DATA.voieDuMage : voiePeuple, true, null));
   if (utiliseMage) {
     bloc.appendChild(ui.el('p', { class: 'detail' },
-      'Tu conserves l’effet de « ' + voiePeuple.capacites[0].titre + ' » ('
+      'Vous conservez l’effet de « ' + voiePeuple.capacites[0].titre + ' » ('
       + voiePeuple.nom + ').'));
   }
-  return bloc;
+  return ui.section('Votre voie de peuple', bloc);
 }
 
 /* ------------------------------------------------------------------ rang 2 des mages */
@@ -167,10 +163,9 @@ function sectionRang2(ctx) {
   const etat = ctx.etat;
   const profil = DATA.profils[etat.profil];
   const bloc = ui.el('div');
-  bloc.appendChild(ui.el('h3', {}, 'Ta capacité de rang 2 (famille des mages)'));
   bloc.appendChild(ui.el('p', { class: 'detail' },
     'Les mages débutent avec une capacité de rang 2 en plus. Elle doit se trouver dans une '
-    + 'de tes deux voies — ou être le rang 2 de la voie du mage si tu l’as prise.'));
+    + 'de vos deux voies — ou être le rang 2 de la voie du mage si vous l’avez prise.'));
 
   const choix = ui.el('div');
   for (const slug of etat.voies.profil) {
@@ -183,10 +178,10 @@ function sectionRang2(ctx) {
       'voie-du-mage'));
   }
   if (!etat.voies.profil.length) {
-    choix.appendChild(ui.el('p', {}, 'Choisis d’abord tes deux voies.'));
+    choix.appendChild(ui.el('p', {}, 'Choisissez d’abord vos deux voies.'));
   }
   bloc.appendChild(choix);
-  return bloc;
+  return ui.section('Votre capacité de rang 2 (famille des mages)', bloc);
 }
 
 function optionRang2(ctx, nomVoie, cap, slug) {

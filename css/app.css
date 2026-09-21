@@ -15,6 +15,14 @@
   --vert: #4a6b34;
   --ombre: 0 2px 6px rgba(58, 45, 27, .18);
   --rayon: 3px;
+
+  /* une seule échelle de tailles pour toute l'application */
+  --t-titre-ecran: 1.55rem;
+  --t-section: 1.2rem;
+  --t-sous-section: 1.02rem;
+  --t-corps: 1rem;
+  --t-petit: .875rem;
+  --espace-section: 2.4rem;
 }
 
 * { box-sizing: border-box; }
@@ -41,8 +49,16 @@ h1, h2, h3, h4, .titre-serif {
 }
 
 h1 { font-size: 1.6rem; }
-h2 { font-size: 1.25rem; color: var(--or-fonce); }
-h3 { font-size: 1.05rem; }
+h2 { font-size: var(--t-titre-ecran); color: var(--or-fonce); }
+h3 { font-size: var(--t-section); color: var(--or-fonce); }
+h4 { font-size: var(--t-sous-section); }
+
+/* sections : même rythme vertical partout */
+.section { margin: 0 0 var(--espace-section); }
+.section > h3 { margin-top: 0; }
+.section + .section { border-top: 1px solid var(--or-clair); padding-top: 1.8rem; }
+#ecran h4 { margin-top: 1.4rem; }
+.apport-famille { margin-top: .4rem; }
 
 p { margin: 0 0 .7rem; }
 
@@ -65,12 +81,6 @@ a { color: var(--or-fonce); }
 .bandeau-titre h1 { margin: 0; color: var(--or-fonce); text-transform: uppercase; }
 
 .ornement { color: var(--or); font-size: 1.3rem; }
-
-.bandeau-sous-titre {
-  margin: .2rem 0 0;
-  color: var(--encre-pale);
-  font-style: italic;
-}
 
 .pied {
   text-align: center;
@@ -193,9 +203,9 @@ a { color: var(--or-fonce); }
   box-shadow: 0 0 0 2px rgba(166, 124, 46, .25);
 }
 
-.carte h3 { margin: 0 0 .2rem; font-size: 1rem; }
+.carte h4 { margin: 0 0 .2rem; }
 
-.carte .resume { font-size: .85rem; color: var(--encre-pale); margin: 0 0 .4rem; flex: 1; }
+.carte .resume { font-size: var(--t-petit); color: var(--encre-pale); margin: 0 0 .4rem; flex: 1; }
 
 .carte .caracs-cles {
   font-family: Cinzel, serif;
@@ -206,7 +216,8 @@ a { color: var(--or-fonce); }
 
 .carte-image {
   width: 100%;
-  aspect-ratio: 2 / 3;
+  /* les illustrations montrent les deux sexes côte à côte : format paysage */
+  aspect-ratio: 4 / 3;
   object-fit: cover;
   border: 1px solid var(--or-clair);
   border-radius: 2px;
@@ -243,7 +254,7 @@ a { color: var(--or-fonce); }
   letter-spacing: .04em;
 }
 
-.bloc-repliable > div { padding-top: .5rem; font-size: .93rem; }
+.bloc-repliable > div { padding-top: .5rem; }
 
 .encadre {
   border-left: 3px solid var(--or);
@@ -261,7 +272,7 @@ a { color: var(--or-fonce); }
 .separateur {
   border: none;
   border-top: 1px solid var(--or-clair);
-  margin: 1.2rem 0;
+  margin: var(--espace-section) 0;
 }
 
 .separateur-orne {
@@ -294,6 +305,7 @@ a { color: var(--or-fonce); }
   position: absolute;
   z-index: 40;
   max-width: 24rem;
+  font-size: var(--t-petit);
   background: #fffaf0;
   border: 1px solid var(--or);
   border-radius: var(--rayon);
@@ -308,7 +320,7 @@ a { color: var(--or-fonce); }
 
 /* ---------------------------------------------------------------- formulaires */
 
-label { display: block; margin: .8rem 0 .2rem; font-size: .9rem; color: var(--encre-pale); }
+label { display: block; margin: .8rem 0 .2rem; font-size: var(--t-petit); color: var(--encre-pale); }
 
 input[type="text"], input[type="number"], textarea, select {
   width: 100%;
@@ -401,11 +413,11 @@ textarea { min-height: 7rem; resize: vertical; line-height: 1.5; }
 
 /* ---------------------------------------------------------------- panneau fiche */
 
-.fiche { position: sticky; top: 1rem; font-size: .9rem; }
-.fiche h2 { font-size: 1rem; }
+.fiche { position: sticky; top: 1rem; font-size: var(--t-petit); }
+.fiche h2 { font-size: var(--t-sous-section); }
 .fiche dl { display: grid; grid-template-columns: auto 1fr; gap: .15rem .6rem; margin: .4rem 0; }
-.fiche dt { color: var(--encre-pale); font-size: .82rem; }
-.fiche dd { margin: 0; font-family: Cinzel, serif; font-size: .9rem; }
+.fiche dt { color: var(--encre-pale); display: flex; align-items: center; }
+.fiche dd { margin: 0; font-family: Cinzel, serif; }
 .fiche .detail { font-family: 'EB Garamond', serif; font-size: .75rem; color: var(--encre-pale); }
 .fiche .avertissements { margin-top: .6rem; font-size: .8rem; color: var(--rouge); }
 
@@ -414,10 +426,11 @@ textarea { min-height: 7rem; resize: vertical; line-height: 1.5; }
 .recap-colonnes { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: 1rem; }
 
 .portrait-apercu {
-  max-width: 12rem;
+  display: block;
+  max-width: 14rem;
   border: 1px solid var(--or);
   border-radius: var(--rayon);
-  margin-top: .5rem;
+  margin: .9rem auto 0;
 }
 
 .capacite {
@@ -425,7 +438,7 @@ textarea { min-height: 7rem; resize: vertical; line-height: 1.5; }
   padding: .5rem 0;
 }
 
-.capacite .titre-capacite { font-family: Cinzel, serif; font-size: .92rem; }
+.capacite .titre-capacite { font-family: Cinzel, serif; font-size: var(--t-sous-section); }
 .capacite .tag {
   display: inline-block;
   background: var(--or);
@@ -436,11 +449,126 @@ textarea { min-height: 7rem; resize: vertical; line-height: 1.5; }
   margin-left: .2rem;
 }
 .capacite .sort { color: var(--rouge); font-weight: bold; margin-left: .15rem; }
-.capacite .texte { font-size: .9rem; margin: .25rem 0 0; }
+.capacite .texte { margin: .25rem 0 0; }
 
 .prompt-zone textarea { min-height: 11rem; font-size: .88rem; }
 
 .succes { color: var(--vert); font-size: .85rem; }
+
+/* ---------------------------------------------------------------- accueil */
+
+.ecran-accueil {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.1rem;
+  min-height: 22rem;
+  text-align: center;
+}
+
+.ecran-accueil .bouton { min-width: 18rem; }
+
+/* ---------------------------------------------------------------- choix du sexe */
+
+.choix-sexe { display: flex; gap: 1.4rem; justify-content: center; margin: 2.5rem 0; }
+
+.carte-sexe {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .5rem;
+  width: 11rem;
+  padding: 1.6rem 1rem;
+  border: 1px solid var(--or-clair);
+  border-radius: var(--rayon);
+  background: var(--parchemin);
+  cursor: pointer;
+  font-family: Cinzel, Georgia, serif;
+  font-size: var(--t-sous-section);
+  color: inherit;
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+
+.carte-sexe:hover { transform: translateY(-2px); box-shadow: var(--ombre); }
+
+.carte-sexe[aria-pressed="true"] {
+  border-color: var(--or);
+  border-width: 2px;
+  background: #f7e9c9;
+  box-shadow: 0 0 0 2px rgba(166, 124, 46, .25);
+}
+
+/* Cinzel ne dessine pas ♂ ni ♀ : on laisse une police système prendre le relais */
+.glyphe-sexe {
+  font-size: 2.8rem;
+  line-height: 1;
+  color: var(--or-fonce);
+  font-family: 'Apple Symbols', 'Segoe UI Symbol', system-ui, serif;
+}
+
+/* ---------------------------------------------------------------- carte du monde */
+
+.image-monde {
+  display: block;
+  width: 100%;
+  max-height: 24rem;
+  object-fit: cover;
+  border: 1px solid var(--or);
+  border-radius: var(--rayon);
+  margin-bottom: 1.4rem;
+  background: repeating-linear-gradient(135deg, #e8dcbe, #e8dcbe 8px, #e2d4b0 8px, #e2d4b0 16px);
+}
+
+.image-monde.carte-image-absente {
+  min-height: 9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Cinzel, serif;
+  color: var(--or-fonce);
+}
+
+/* ---------------------------------------------------------------- langues */
+
+.langue.parlee {
+  display: inline-block;
+  padding: .2rem .6rem;
+  border: 1px solid var(--or-fonce);
+  border-radius: var(--rayon);
+  background: var(--or);
+  color: #fffaf0;
+  font-family: Cinzel, serif;
+  font-size: var(--t-petit);
+}
+
+/* ---------------------------------------------------------------- portrait */
+
+.zone-televersement {
+  border: 2px dashed var(--or);
+  border-radius: var(--rayon);
+  background: var(--parchemin);
+  padding: 1.6rem 1.2rem;
+  margin: 0 0 1.4rem;
+  text-align: center;
+}
+
+.zone-televersement p { margin: 0 0 .6rem; }
+
+.bouton-fichier { display: inline-block; }
+
+/* champ de fichier masqué mais accessible au clavier */
+.champ-fichier {
+  position: absolute;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.champ-fichier:focus-visible + .bouton-fichier { outline: 3px solid var(--or-clair); }
+
+.trait + .trait { margin-top: 1.4rem; }
 
 @media (max-width: 62rem) {
   .application { grid-template-columns: minmax(0, 1fr); }

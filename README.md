@@ -31,33 +31,39 @@ La page de tests du moteur de règles est à l'adresse
 | Écran | Ce qu'il y fait |
 |---|---|
 | Accueil | Nouveau personnage, ou reprendre son brouillon |
-| Prologue | Son nom de joueur, une phrase de concept |
+| Bienvenue | La carte d'Osgild, le monde, le rôle, son prénom de joueur |
+| Homme ou femme ? | Le sexe du personnage (il guide les listes de prénoms) |
 | Profil | Les 4 familles, les 14 profils |
 | Peuple | Les 8 peuples |
-| Caractéristiques | Méthode rapide, série officielle, ou répartition libre (7 points) |
+| Caractéristiques | Série officielle à répartir, ou répartition libre (7 points) |
 | Voies | Deux voies de profil, la voie de peuple, le rang 2 des mages |
 | Équipement | Sac d'aventurier, bourse aux dés, choix d'armes, objet négocié |
 | Touche finale | Nom, âge, taille, poids, idéal, travers, secret, bizarrerie, langues |
 | Histoire | Une demi-page qui justifie les quatre traits |
 | Récapitulatif | La fiche complète, le prompt d'image, le portrait, le PDF |
 
-Chaque écran a des infobulles « ? » qui citent le livre, et les longs extraits sont repliés
-derrière « Lire l'extrait du livre ».
+Le panneau « Fiche en construction », à droite, recalcule tout en direct ; chaque ligne porte
+un « ? » qui explique à quoi sert la valeur. L'application vouvoie le joueur d'un bout à
+l'autre — un script le vérifie (voir « Contrôles »).
 
 ---
 
 ## Ajouter les images des cartes
 
 Les 22 visuels (14 profils + 8 peuples) ne sont pas fournis : les prompts sont dans
-[PROMPTS-IMAGES.md](PROMPTS-IMAGES.md). Génère l'image dans ChatGPT, enregistre-la sous le nom
-indiqué (`images/profils/barbare.png`, `images/peuples/gnome.png`…), recharge la page. Tant
-qu'une image manque, la carte affiche un visuel de secours.
+[PROMPTS-IMAGES.md](PROMPTS-IMAGES.md). Chaque image montre les deux sexes côte à côte, au
+format paysage 4:3. Génère l'image dans ChatGPT, enregistre-la sous le nom indiqué
+(`images/profils/barbare.png`, `images/peuples/gnome.png`…), recharge la page. Tant qu'une
+image manque, la carte affiche un visuel de secours.
+
+La carte des Terres d'Osgild de l'écran de bienvenue est déjà en place
+(`images/carte-osgild.jpg`) : pour la remplacer, écrase le fichier en gardant le nom.
 
 ## Modifier la table des bizarreries
 
 C'est un ajout maison (pas une règle du livre). La table se trouve dans
-`tools/extract_pdf.py`, dans le bloc `MAISON`, sous la clé `bizarreries` : dix entrées, tirées
-au d10. Modifie-les, puis relance :
+`tools/extract_pdf.py`, dans le bloc `MAISON`, sous la clé `bizarreries` : vingt entrées,
+tirées au d20. Modifie-les, puis relance :
 
 ```bash
 cd /Users/valentingerard/Claude_code/app_jdr && python3 tools/extract_pdf.py && python3 tools/check_data.py
@@ -111,7 +117,7 @@ js/dice.js              dés animés
 js/pdf.js               remplissage de la feuille + page annexe
 js/pdf-repair.js        réparation des champs de la feuille (voir ci-dessous)
 js/prompt.js            prompt d'image du personnage
-js/steps/*.js           les dix écrans
+js/steps/*.js           les onze écrans
 data/                   données de jeu (JSON)
 tests/tests.html        tests du moteur, à ouvrir dans le navigateur
 tools/                  outils de développement (extraction, contrôles)
@@ -127,8 +133,10 @@ tools/                  outils de développement (extraction, contrôles)
 * **Les compléments structurés** (équipement en objets, effets chiffrés des capacités,
   modificateurs de peuple) ont été relevés capacité par capacité, chaque entrée citant sa phrase
   source : `tools/revue/*.json`, fusionnés par `tools/fusion_revue.py`.
-* **Les textes maison** (prologue, guides, notes, bizarreries) sont regroupés sous la clé
-  `maison` de `data/creation.json` et sont les seuls textes que nous ayons écrits.
+* **Les textes maison** (prologue, guides, notes, bizarreries, et les infobulles du panneau
+  latéral sous `maison.aide`) sont regroupés sous la clé `maison` de `data/creation.json` : ce
+  sont les seuls textes que nous ayons écrits, et les seuls qui ne portent pas de mention de
+  source.
 
 Tout ce qui est règle du jeu est repris **mot pour mot**. Les écarts constatés entre le DRS, le
 livre et les fiches des personnages prétirés sont consignés dans
@@ -139,7 +147,15 @@ livre et les fiches des personnages prétirés sont consignés dans
 ```bash
 cd /Users/valentingerard/Claude_code/app_jdr
 python3 tools/check_data.py     # intégrité des données (bloquant)
+python3 tools/check_ton.py      # vouvoiement : aucun « tu » adressé au joueur
 python3 tools/crosscheck.py     # recoupement DRS ↔ livre, capacité par capacité
+```
+
+Après avoir modifié les textes maison, relancer l'extraction puis les deux premiers
+contrôles :
+
+```bash
+cd /Users/valentingerard/Claude_code/app_jdr && python3 tools/extract_pdf.py && python3 tools/check_data.py && python3 tools/check_ton.py
 ```
 
 Et la page `tests/tests.html` pour le moteur (24 tests, dont les 12 personnages prétirés du

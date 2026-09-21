@@ -392,37 +392,38 @@ function warnings(state, DATA, derive) {
   const caracs = derive.caracs;
 
   if (profil.caracMagie && caracs[profil.caracMagie] < 1) {
-    messages.push('Ta caractéristique de magie (' + profil.caracMagie + ') est inférieure à +1 : '
-      + 'tes sorts seront peu efficaces.');
+    messages.push('Votre caractéristique de magie (' + profil.caracMagie + ') est inférieure '
+      + 'à +1 : vos sorts de magie seront peu efficaces.');
   }
   for (const cle of profil.caracsCles || []) {
     const codes = Array.isArray(cle) ? cle : [cle];
     const meilleure = Math.max.apply(null, codes.map((c) => caracs[c]));
     if (meilleure <= 0) {
-      messages.push('Ta valeur de ' + codes.join(' ou ') + ' est de ' + signe(meilleure)
+      messages.push('Votre valeur de ' + codes.join(' ou ') + ' est de ' + signe(meilleure)
         + ' : c’est faible pour un ' + profil.nom.toLowerCase() + '.');
     }
   }
   if (caracs.CON <= -2) {
-    messages.push('Avec une CON de ' + signe(caracs.CON) + ', tu n’as aucun dé de récupération.');
+    messages.push('Avec une CON de ' + signe(caracs.CON)
+      + ', vous n’avez aucun dé de récupération.');
   }
   if (caracs.INT < 0) {
-    messages.push('Avec une INT négative, ton personnage ne sait ni lire ni écrire.');
+    messages.push('Avec une INT négative, votre personnage ne sait ni lire ni écrire.');
   }
   if (derive.defDetail.agiPlafonnee) {
-    messages.push('Ton armure (' + derive.defDetail.armure.nom + ') plafonne ton bonus d’AGI à '
-      + signe(derive.defDetail.agi) + ' pour la Défense.');
+    messages.push('Votre armure (' + derive.defDetail.armure.nom + ') plafonne votre bonus '
+      + 'd’AGI à ' + signe(derive.defDetail.agi) + ' pour la Défense.');
   }
   if (profil.caracMagie && !derive.sorts.length) {
-    messages.push('Tu n’as choisi aucun sort : ton personnage n’a pas de points de mana.');
+    messages.push('Vous n’avez choisi aucun sort : votre personnage n’a pas de points de mana.');
   }
   if (state.peuple === 'halfelin') {
     const armes = (state.equipement && state.equipement.armes) || [];
     const lourde = armes.map((s) => DATA.armes[s]).filter(Boolean)
       .find((a) => a.categorie === 'contact' && !a.deuxMains && dmMaximal(a.dm) > 6);
     if (lourde) {
-      messages.push('Rappel de la capacité Petite taille : un halfelin ne peut pas utiliser à une '
-        + 'main une arme dont les DM dépassent 1d6 (' + lourde.nom + ').');
+      messages.push('Rappel de la capacité Petite taille : un halfelin ne peut pas utiliser '
+        + 'à une main une arme dont les DM dépassent 1d6 (' + lourde.nom + ').');
     }
   }
   return messages;

@@ -35,14 +35,18 @@ const dice = {
     return liste[dice.d(liste.length) - 1];
   },
 
-  /** Bouton de tirage animé. onResultat reçoit { des, total }. */
+  /** Bouton de tirage animé. onResultat reçoit { des, total }.
+      options.valeurInitiale : valeur déjà tirée, réaffichée au retour sur l'écran ;
+      options.uneSeuleFois   : le dé ne peut être lancé qu'une fois (la bourse). */
   bouton(libelle, nombre, faces, onResultat, options) {
     const opts = options || {};
-    const affichage = ui.el('span', { class: 'de' }, opts.valeurInitiale || '?');
+    const dejaTire = opts.valeurInitiale !== null && opts.valeurInitiale !== undefined;
+    const affichage = ui.el('span', { class: 'de' }, dejaTire ? opts.valeurInitiale : '?');
     const bouton = ui.el('button', {
       type: 'button', class: 'bouton bouton-petit', onclick: () => lancer(),
     }, libelle);
     const ligne = ui.el('div', { class: 'tirage' }, [bouton, affichage]);
+    if (opts.uneSeuleFois && dejaTire) bouton.disabled = true;
 
     function lancer() {
       bouton.disabled = true;
@@ -56,7 +60,7 @@ const dice = {
           affichage.classList.remove('roule');
           affichage.textContent = nombre > 1 ? resultat.total : resultat.des[0];
           affichage.title = nombre > 1 ? 'Dés : ' + resultat.des.join(' + ') : '';
-          bouton.disabled = false;
+          bouton.disabled = !!opts.uneSeuleFois;
           onResultat(resultat);
         }
       }, 70);

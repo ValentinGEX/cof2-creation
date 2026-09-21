@@ -306,6 +306,12 @@ Portrait : redimensionné dans le navigateur (canvas, 1200 px max, JPEG qualité
 - Lanceur de sorts (profil avec `caracMagie`) sans aucun sort choisi → pas de points de mana.
 - Halfelin avec une arme à une main de DM > 1d6 → rappel de la règle de Petite taille.
 
+> **Mise à jour du 21 septembre 2026.** Après sa première utilisation, Valentin a demandé le
+> **vouvoiement** partout (et non le tutoiement indiqué ci-dessous), un écran de choix du sexe
+> du personnage, la suppression de la méthode rapide et des blocs repliables, vingt bizarreries
+> au lieu de dix, et des infobulles qui disent à quoi servent les valeurs plutôt que comment
+> elles se calculent. Voir `tools/verification.md` §7 et le plan de refonte.
+
 ## 9. Textes maison (à écrire par toi, à faire relire à Valentin ; clé `maison` dans `creation.json`)
 
 Ton : épique, une touche d'humour, jamais plus de deux courts paragraphes. Tutoiement du joueur.

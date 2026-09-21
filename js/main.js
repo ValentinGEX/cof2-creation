@@ -8,9 +8,12 @@
 
 window.ETAPES = window.ETAPES || {};
 
+/* Numérotation des écrans : 0 accueil · 1 bienvenue · 2 sexe · 3 profil · 4 peuple ·
+   5 caractéristiques · 6 voies · 7 équipement · 8 touche finale · 9 histoire · 10 récap. */
 const app = {
   DATA: null,
-  derniereEtape: 9,
+  derniereEtape: 10,
+  etapeAffichee: null,
 
   async demarrer() {
     const bloc = document.getElementById('ecran');
@@ -20,8 +23,8 @@ const app = {
       ui.vider(bloc);
       bloc.appendChild(ui.el('h2', {}, 'Les données n’ont pas pu être chargées'));
       bloc.appendChild(ui.el('p', {}, e.message));
-      bloc.appendChild(ui.el('p', {}, 'Lance l’application depuis un serveur local : '
-        + 'python3 -m http.server 8000, puis ouvre http://localhost:8000/'));
+      bloc.appendChild(ui.el('p', {}, 'Lancez l’application depuis un serveur local : '
+        + 'python3 -m http.server 8000, puis ouvrez http://localhost:8000/'));
       return;
     }
     state.surChangement(() => app.majFiche());
@@ -41,6 +44,10 @@ const app = {
   afficher(numero) {
     const etape = window.ETAPES[numero];
     if (!etape) return;
+    // un simple rafraîchissement reconstruit l'écran : on rend sa place au lecteur au lieu
+    // de le renvoyer en haut de page à chaque clic
+    const changementEcran = app.etapeAffichee !== numero;
+    const position = window.scrollY;
     state.courant.etape = numero;
     if (numero > 0) state.sauver();
 
@@ -59,7 +66,9 @@ const app = {
     document.getElementById('application').classList.toggle('sans-fiche', !!etape.sansFiche);
     document.getElementById('fiche').hidden = !!etape.sansFiche;
     app.majFiche();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (changementEcran) window.scrollTo({ top: 0, behavior: 'smooth' });
+    else window.scrollTo({ top: position });
+    app.etapeAffichee = numero;
     app.majErreurs();
   },
 
@@ -88,7 +97,7 @@ const app = {
     ui.vider(contenu);
     if (!etat.profil) {
       contenu.appendChild(ui.el('p', { class: 'detail' },
-        'Choisis un profil : les valeurs se calculeront toutes seules.'));
+        'Choisissez un profil : les valeurs se calculeront toutes seules.'));
       return;
     }
     const d = rules.computeDerived(etat, app.DATA);
@@ -100,26 +109,25 @@ const app = {
 
     const caracs = ui.el('dl');
     for (const c of rules.CARACS) {
-      caracs.appendChild(ui.el('dt', {}, c));
+      caracs.appendChild(ui.el('dt', {}, [c, ui.aideMaison(app.DATA, c)]));
       caracs.appendChild(ui.el('dd', {}, ui.signe(d.caracs[c])));
     }
     contenu.appendChild(caracs);
 
     const valeurs = ui.el('dl');
-    const ligne = (libelle, valeur, detail) => {
-      valeurs.appendChild(ui.el('dt', {}, libelle));
-      valeurs.appendChild(ui.el('dd', {}, [String(valeur),
-        detail ? ui.el('span', { class: 'detail' }, ' ' + detail) : null]));
+    const ligne = (libelle, valeur, cleAide) => {
+      valeurs.appendChild(ui.el('dt', {}, [libelle, ui.aideMaison(app.DATA, cleAide)]));
+      valeurs.appendChild(ui.el('dd', {}, String(valeur)));
     };
-    ligne('PV', d.pv);
-    ligne('DEF', d.def);
-    ligne('Init.', d.init);
-    ligne('PC', d.pc);
-    ligne('DR', d.dr.n + ' ' + (d.dr.type || ''));
-    if (d.pm !== null) ligne('PM', d.pm);
-    ligne('Contact', ui.signe(d.att.contact));
-    ligne('Distance', ui.signe(d.att.distance));
-    ligne('Magique', ui.signe(d.att.magique));
+    ligne('PV', d.pv, 'PV');
+    ligne('DEF', d.def, 'DEF');
+    ligne('Init.', d.init, 'INIT');
+    ligne('PC', d.pc, 'PC');
+    ligne('DR', d.dr.n + ' ' + (d.dr.type || ''), 'DR');
+    if (d.pm !== null) ligne('PM', d.pm, 'PM');
+    ligne('Contact', ui.signe(d.att.contact), 'ATT_CONTACT');
+    ligne('Distance', ui.signe(d.att.distance), 'ATT_DISTANCE');
+    ligne('Magique', ui.signe(d.att.magique), 'ATT_MAGIQUE');
     contenu.appendChild(valeurs);
 
     if (d.avertissements.length) {

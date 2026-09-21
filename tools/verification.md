@@ -22,8 +22,8 @@ est consigné ici (décision de Valentin, §5.18 du brief).
 (le demi-elfe n'en a pas), la voie du mage, les rangs consécutifs, les titres uniques, les
 textes d'au moins 40 caractères, l'absence de caractère non encodable dans la feuille PDF
 (WinAnsi), les tags ⊂ {L, A, M, G}, les trois caractéristiques clés par profil, toutes les
-références d'équipement, les tables de 20 idéaux / 20 travers / 2 × 20 secrets / 10
-bizarreries / 10 langues, et les 21 sorts de rang 1 attendus.
+références d'équipement, les tables de 20 idéaux / 20 travers / 2 × 20 secrets / 20
+bizarreries / 10 langues, les seize infobulles maison, et les 21 sorts de rang 1 attendus.
 
 ## 2. Écarts entre le DRS et le livre
 
@@ -124,3 +124,33 @@ textes du DRS, chaque effet étant justifié par la phrase citée dans `tools/re
   zéro avant remplissage.
 * La carte complète des champs est dans `assets/fields-map.json`, produite par
   `tools/dump_fields.html` puis `tools/build_fields_map.py`.
+
+## 7. Refonte ergonomique du 21 septembre 2026
+
+Passe d'interface demandée par Valentin après sa première utilisation. Le moteur de règles et
+les données du livre n'ont pas bougé ; les 24 tests restent au vert.
+
+* **Vouvoiement** partout, textes maison compris. Le brief d'origine (§9) prescrivait le
+  tutoiement : décision changée par Valentin le 21 septembre 2026. Un contrôle automatique
+  (`tools/check_ton.py`) refuse désormais tout « tu » adressé au joueur.
+* **Correction d'extraction** : `creation.livre.langues` contenait, collée en fin de texte, la
+  table « Taille et poids du personnage » de la colonne voisine (341 caractères). La borne de
+  fin a été corrigée dans `tools/extract_pdf.py` ; le texte passe de 1638 à 1296 caractères.
+* **Table des bizarreries** portée de dix à vingt entrées (tirage au d20). Les dix nouvelles
+  sont à relire par Valentin, comme les dix premières.
+* **Secret intime** : le livre fait lancer un d20 sur chacune des deux tables puis choisir.
+  L'application tire maintenant une seule proposition parmi les quarante secrets — c'est une
+  simplification d'interface assumée, la règle du livre reste possible à la main.
+* **Infobulles du panneau latéral** : seize nouveaux textes maison (`maison.aide`), qui
+  expliquent à quoi sert chaque valeur. Ils ne portent volontairement aucune mention « Livre,
+  p. XX » : ils ne viennent pas du livre. Les infobulles verbatim (actions type des
+  caractéristiques, tags (L)/(A)/(M)/(G), sort, d4°) sont inchangées.
+* **Carte des Terres d'Osgild** : Valentin a fourni l'image et a explicitement levé la consigne
+  du brief « ne pas embarquer d'illustrations du livre ». Elle est versionnée en
+  `images/carte-osgild.jpg`, réduite à 1600 px de large (9,3 Mo → 0,8 Mo) pour que l'écran de
+  bienvenue reste rapide à charger. Elle partira donc dans le dépôt public : c'est un choix
+  assumé par le commanditaire, au même titre que les textes de règles.
+* **Brouillons** : l'insertion de l'écran « sexe » décale la numérotation des écrans. Les
+  brouillons enregistrés avant la refonte (version 1) sont migrés automatiquement au
+  chargement (`migrer()` dans `js/state.js`) : l'étape est décalée et l'ancien mode « méthode
+  rapide », supprimé, bascule sur la série officielle avec des valeurs à replacer.

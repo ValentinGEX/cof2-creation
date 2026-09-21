@@ -21,6 +21,10 @@ CARACS = {"AGI", "CON", "FOR", "PER", "CHA", "INT", "VOL"}
 TAGS = {"L", "A", "M", "G"}
 CIBLES = {"PV", "DEF", "INIT", "PC", "PM", "DR", "ATT_CONTACT", "ATT_DISTANCE", "ATT_MAGIQUE",
           "DM_CONTACT", "DM_DISTANCE"}
+# Une infobulle maison par ligne du panneau « Fiche en construction ».
+CLES_AIDE_MAISON = ["AGI", "CON", "FOR", "PER", "CHA", "INT", "VOL",
+                    "PV", "DEF", "INIT", "PC", "DR", "PM",
+                    "ATT_CONTACT", "ATT_DISTANCE", "ATT_MAGIQUE"]
 
 # Sorts de rang 1 attendus (§13.5 du brief) : au moins ceux-là doivent être marqués sort.
 SORTS_ATTENDUS = ["Chant des héros", "Murmures dans le vent", "Divination", "Injonction",
@@ -173,7 +177,7 @@ def main():
     # ---------------------------------------------------------------- tables
     tables = lire("tables.json")
     for cle, n in (("ideaux", 20), ("travers", 20), ("secrets1", 20), ("secrets2", 20),
-                   ("bizarreries", 10)):
+                   ("bizarreries", 20)):
         if len(tables.get(cle) or []) != n:
             erreur("tables.%s : %d entrées au lieu de %d" % (cle, len(tables.get(cle) or []), n))
     if len(tables.get("langues") or []) != 10:
@@ -263,9 +267,14 @@ def main():
     if len(creation["echelle"]) != 9:
         erreur("échelle des valeurs : %d lignes" % len(creation["echelle"]))
     for cle in ("prologue", "guideHistoire", "noteObjetNegocie", "avertissementModeLibre",
-                "notePrompt", "bizarreries"):
+                "notePrompt", "noteLangues", "bizarreries", "aide"):
         if not creation["maison"].get(cle):
             erreur("texte maison manquant : %s" % cle)
+    # infobulles du panneau « Fiche en construction » : une par ligne affichée
+    for code in CLES_AIDE_MAISON:
+        fiche = (creation["maison"].get("aide") or {}).get(code)
+        if not fiche or not fiche.get("titre") or not fiche.get("texte"):
+            erreur("infobulle maison manquante ou incomplète : %s" % code)
 
     aide = lire("aide.json")
     for code in CARACS:

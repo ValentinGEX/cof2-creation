@@ -374,7 +374,9 @@ def textes_creation():
                                  "Ces éléments d’histoire personnelle", avec_debut=True)
     t["age"] = extraire((35, 35), "Âge du personnage", "Taille et poids")
     t["taillePoids"] = extraire((35, 35), "Taille et poids", "Table des secrets intimes (2)")
-    t["langues"] = extraire((36, 36), "Langues maîtrisées", "LISTES DES LANGUES")
+    # la colonne voisine (table « Taille et poids ») se mêle au texte des langues en
+    # mode flux : on arrête l'extrait au titre de cette table
+    t["langues"] = extraire((36, 36), "Langues maîtrisées", "Taille et poids du personnage")
     t["methodeRapide"] = extraire((28, 28), "Si vous êtes débutant et que vous hésitez",
                                   "Exemple : Lhagva est une barbare", avec_debut=True)
     t["talentSecondaire"] = (extraire((36, 37), "Si votre MJ vous y autorise", "d’un cumul)", avec_debut=True)
@@ -665,51 +667,103 @@ def echelle():
 # --------------------------------------------------------------------------- textes maison
 
 # Textes écrits pour l'application (aucun ne vient du livre). Ton épique avec une touche
-# d'humour, tutoiement du joueur, jamais plus de deux courts paragraphes.
+# d'humour, vouvoiement du joueur, jamais plus de deux courts paragraphes.
 # À faire relire par Valentin (§9 du brief).
 MAISON = {
     "prologue": [
-        "Les Terres d’Osgild tiennent debout par habitude. Les royaumes humains sont les morceaux "
-        "d’un vieil empire que plus personne ne sait recoller, les elfes comptent les saisons au fond "
-        "de leurs forêts, les nains creusent des montagnes qui leur répondent, et aux frontières, des "
-        "choses patientes attendent qu’on regarde ailleurs.",
-        "Une grande quête s’annonce. Elle réclame des héros — pas encore des statues, juste des héros. "
-        "Et tout commence ici, par une naissance : la tienne. Avant d’enfiler l’armure, dis-nous qui tu "
-        "es, toi, de ce côté-ci du personnage.",
+        "Vous faites partie du monde d’Osgild, une terre qui tient debout par habitude. Les "
+        "royaumes humains sont les morceaux d’un vieil empire que plus personne ne sait recoller, "
+        "les elfes comptent les saisons au fond de leurs forêts, les nains creusent des montagnes "
+        "qui leur répondent, et aux frontières, des choses patientes attendent qu’on regarde "
+        "ailleurs.",
+        "Une grande quête s’annonce. Elle réclame des héros — pas encore des statues, juste des "
+        "héros. Et tout commence ici, par une naissance : la vôtre.",
     ],
-    "accueilTitre": "Créateur de personnage",
-    "accueilSousTitre": "Chroniques Oubliées Fantasy 2 — niveau 1",
-    "accueilTexte": "Quelques choix, trois jets de dés, et tu repars avec ta feuille de personnage "
-                    "remplie, prête à être envoyée à ton MJ.",
     "guideHistoire": [
-        "Raconte d’où vient ton personnage, ce qu’il a traversé, et ce qui l’a poussé à prendre la "
-        "route. Surtout, que ton histoire justifie à sa façon ton idéal, ton travers, ton secret et ta "
-        "bizarrerie : c’est là que le personnage devient quelqu’un.",
-        "Une demi-page suffit. Laisse volontairement des zones d’ombre : ton MJ adore les combler, "
-        "et c’est bien la seule chose qu’il fasse gratuitement.",
+        "Racontez d’où vient votre personnage, ce qu’il a traversé, et ce qui l’a poussé à prendre "
+        "la route. Surtout, que cette histoire justifie à sa façon votre idéal, votre travers, "
+        "votre secret et votre bizarrerie : c’est là que le personnage devient quelqu’un.",
+        "Une demi-page suffit. Laissez volontairement des zones d’ombre : votre MJ adore les "
+        "combler, et c’est bien la seule chose qu’il fasse gratuitement.",
     ],
-    "noteObjetNegocie": "Ça peut être lié à ton histoire (un porte-bonheur, une lettre, un "
-                        "médaillon…) ou quelque chose de très pratique (une petite corde de 3 m, une "
-                        "cuillère pour manger…). Le MJ tranche.",
-    "avertissementModeLibre": "Tu es libre, mais une mauvaise répartition peut te handicaper. "
-                              "Exemple : un guerrier avec FOR à 0 touchera rarement ses adversaires "
-                              "et fera peu de dégâts.",
-    "notePrompt": "Ce prompt reprend tout ce que tu as choisi. Si le résultat ne te plaît pas, "
-                  "modifie-le librement avant de le coller dans ChatGPT.",
+    "noteObjetNegocie": "Cela peut être lié à votre histoire (un porte-bonheur, une lettre, un "
+                        "médaillon…) ou quelque chose de très pratique (une petite corde de 3 m, "
+                        "une cuillère pour manger…). Le MJ tranche.",
+    "avertissementModeLibre": "Vous êtes libre, mais une mauvaise répartition peut vous "
+                              "handicaper. Exemple : un guerrier avec FOR à 0 touchera rarement "
+                              "ses adversaires et fera peu de dégâts.",
+    "notePrompt": "Ce texte reprend tout ce que vous avez choisi. Si le résultat ne vous plaît "
+                  "pas, modifiez-le librement avant de le coller dans ChatGPT.",
     "noteBizarrerie": "Un petit grain de sel : de quoi faire rire la table au troisième round, "
                       "pas de quoi saboter l’aventure.",
-    "noteTraits": "Les quatre sont obligatoires : relance les dés autant que tu veux, ou écris-les "
-                  "toi-même.",
+    "noteTraits": "Les quatre sont obligatoires : relancez les dés autant que vous voulez, ou "
+                  "écrivez-les vous-même.",
+    "noteLangues": "Votre personnage parle d’office la langue de son peuple et la langue commune "
+                   "de la région. Chaque point d’Intelligence au-dessus de zéro lui en offre une "
+                   "de plus ; avec une Intelligence négative, il ne sait pas lire.",
     "ecrans": {
-        "profil": "Qui es-tu quand ça tourne mal ?",
-        "peuple": "Et de quel coin du monde viens-tu ?",
+        "sexe": "Ce choix guide les listes de noms de votre peuple et l’illustration de votre "
+                "personnage.",
+        "profil": "Qui êtes-vous quand ça tourne mal ?",
+        "peuple": "Et de quel coin du monde venez-vous ?",
         "caracs": "Sept chiffres qui décideront de beaucoup de choses.",
-        "voies": "Deux voies à toi, une voie qui te vient de ton peuple.",
-        "equipement": "Ce que tu emportes, et ce que tu as réussi à négocier.",
-        "touche": "Les détails qui feront de toi quelqu’un plutôt que quelque chose.",
-        "histoire": "Ton passé, en une demi-page.",
-        "recap": "Ta fiche, ton portrait, et la porte de la taverne.",
+        "equipement": "Ce que vous emportez, et ce que vous avez réussi à négocier.",
+        "touche": "Les détails qui feront de vous quelqu’un plutôt que quelque chose.",
+        "histoire": "Votre passé, en une demi-page.",
+        "recap": "Votre fiche, votre portrait, et la porte de la taverne.",
     },
+    # Infobulles du panneau « Fiche en construction » : elles disent à quoi sert la valeur,
+    # pas comment elle se calcule. Ce sont des textes maison, jamais attribués au livre.
+    "aide": {
+        "AGI": {"titre": "Agilité (AGI)",
+                "texte": "Tout ce qui demande vitesse et adresse : esquiver, grimper, se faufiler, "
+                         "tirer à l’arc. Elle vous protège aussi, car elle entre dans votre Défense."},
+        "CON": {"titre": "Constitution (CON)",
+                "texte": "Votre résistance physique. Elle décide de ce que vous encaissez avant de "
+                         "tomber, et de votre endurance face au poison, au froid ou à la fatigue."},
+        "FOR": {"titre": "Force (FOR)",
+                "texte": "Cogner, soulever, enfoncer une porte. C’est elle qui fait mal quand vous "
+                         "frappez au corps à corps."},
+        "PER": {"titre": "Perception (PER)",
+                "texte": "Voir, entendre, flairer le piège ou le mensonge. C’est ce qui vous permet "
+                         "de remarquer les choses avant qu’elles ne vous tombent dessus."},
+        "CHA": {"titre": "Charisme (CHA)",
+                "texte": "Convaincre, séduire, mentir, commander. Il décide aussi de votre réserve "
+                         "de points de chance."},
+        "INT": {"titre": "Intelligence (INT)",
+                "texte": "Savoir, déduire, se souvenir. Elle dit combien de langues vous parlez et "
+                         "si votre personnage sait lire."},
+        "VOL": {"titre": "Volonté (VOL)",
+                "texte": "Tenir bon : résister à la peur, à la douleur et à la magie. Chez beaucoup "
+                         "de lanceurs de sorts, c’est elle qui fait la puissance."},
+        "PV": {"titre": "Points de vigueur (PV)",
+               "texte": "Ce que vous pouvez encaisser avant de tomber. À zéro, votre personnage est "
+                        "hors de combat."},
+        "DEF": {"titre": "Défense (DEF)",
+                "texte": "La difficulté que vos adversaires doivent battre pour vous toucher. Plus "
+                         "elle est haute, moins vous prenez de coups."},
+        "INIT": {"titre": "Initiative",
+                 "texte": "Qui agit en premier dans un combat : la plus haute joue en tête."},
+        "PC": {"titre": "Points de chance (PC)",
+               "texte": "Des jetons à dépenser quand un jet rate de peu ou qu’il faut tenter "
+                        "l’impossible. Ils ne reviennent qu’en passant un niveau."},
+        "DR": {"titre": "Dés de récupération (DR)",
+               "texte": "Le dé que vous lancez pour reprendre des points de vigueur en cours "
+                        "d’aventure. Le nombre indique combien de fois vous pouvez le faire."},
+        "PM": {"titre": "Points de mana (PM)",
+               "texte": "Le carburant de vos sorts. Chaque sort en consomme ; ils reviennent après "
+                        "une bonne nuit de repos."},
+        "ATT_CONTACT": {"titre": "Attaque au contact",
+                        "texte": "Ce que vous ajoutez à votre dé quand vous frappez au corps à "
+                                 "corps."},
+        "ATT_DISTANCE": {"titre": "Attaque à distance",
+                         "texte": "Ce que vous ajoutez à votre dé quand vous tirez ou lancez "
+                                  "quelque chose."},
+        "ATT_MAGIQUE": {"titre": "Attaque magique",
+                        "texte": "Ce que vous ajoutez à votre dé quand vous visez quelqu’un avec "
+                                 "un sort."},
+    },
+    # Table maison tirée au d20 (les vingt entrées sont relues par Valentin).
     "bizarreries": [
         "N’a pas de sous-vêtements. Jamais. Par principe.",
         "Refuse de passer par les portes : il n’entre et ne sort que par les fenêtres.",
@@ -721,6 +775,16 @@ MAISON = {
         "Collectionne les cailloux « qui ont une bonne tête » et leur donne des prénoms.",
         "Salue solennellement chaque cheval qu’il croise, par respect.",
         "Compte tout à voix haute (marches, pièces, ennemis) et se trompe toujours.",
+        "Refuse de manger quoi que ce soit de vert.",
+        "Salue chaque porte avant de la franchir et s’excuse en la refermant.",
+        "Dort avec ses bottes, persuadé qu’on les lui volera.",
+        "Siffle faux quand il a peur, puis jure que ce n’était pas lui.",
+        "Baptise ses armes et leur parle avant chaque combat.",
+        "Ne boit jamais deux fois dans la même chope.",
+        "Marchande absolument tout, y compris le prix d’un verre d’eau.",
+        "Se signe trois fois devant toute statue, quelle que soit la divinité.",
+        "Tient la liste de ceux qui lui doivent une pièce et la relit chaque soir.",
+        "Prétend reconnaître chaque oiseau et invente leurs noms avec aplomb.",
     ],
 }
 

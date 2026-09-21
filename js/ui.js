@@ -86,6 +86,13 @@ const ui = {
     return null;
   },
 
+  /** Infobulle écrite par nous : elle explique à quoi sert la valeur. Sans mention de
+      source, justement parce que ce texte ne vient pas du livre. */
+  aideMaison(DATA, cle) {
+    const fiche = ((DATA.creation.maison || {}).aide || {})[cle];
+    return fiche ? ui.aide(fiche.titre, fiche.texte, null) : null;
+  },
+
   montrerInfobulle(ancre, titre, texte, source) {
     const bulle = document.getElementById('infobulle');
     ui.vider(bulle);
@@ -120,6 +127,14 @@ const ui = {
     return bloc;
   },
 
+  /** Section titrée : remplace les enchaînements « <hr> + <h3> » écrits à la main. */
+  section(titre, contenu) {
+    const bloc = ui.el('section', { class: 'section' });
+    if (titre) bloc.appendChild(ui.el('h3', {}, titre));
+    ui.ajouter(bloc, typeof contenu === 'string' ? ui.paragraphes(contenu) : contenu);
+    return bloc;
+  },
+
   encadre(contenu, classe) {
     const bloc = ui.el('div', { class: 'encadre ' + (classe || '') });
     ui.ajouter(bloc, typeof contenu === 'string' ? ui.paragraphes(contenu) : contenu);
@@ -134,18 +149,20 @@ const ui = {
       type: 'button', class: 'carte', 'aria-pressed': options.selectionnee ? 'true' : 'false',
       onclick: options.onClick,
     });
-    bouton.appendChild(ui.el('h3', {}, options.titre));
+    bouton.appendChild(ui.el('h4', {}, options.titre));
     if (options.resume) bouton.appendChild(ui.el('p', { class: 'resume' }, options.resume));
     if (options.detail) bouton.appendChild(ui.el('p', { class: 'caracs-cles' }, options.detail));
     if (options.image) bouton.appendChild(ui.image(options.image, options.titre));
     return bouton;
   },
 
-  /** Image de carte ; si le fichier manque, on affiche un visuel de secours. */
-  image(chemin, alt) {
-    const secours = ui.el('div', { class: 'carte-image carte-image-absente' },
+  /** Image ; si le fichier manque, on affiche un visuel de secours à la même place.
+      `classe` remplace la classe par défaut des cartes (format portrait 2:3). */
+  image(chemin, alt, classe) {
+    const classes = classe || 'carte-image';
+    const secours = ui.el('div', { class: classes + ' carte-image-absente' },
       ['✦ ' + alt + ' ✦']);
-    const img = ui.el('img', { class: 'carte-image', src: chemin, alt, loading: 'lazy' });
+    const img = ui.el('img', { class: classes, src: chemin, alt, loading: 'lazy' });
     img.addEventListener('error', () => { if (img.parentNode) img.parentNode.replaceChild(secours, img); });
     return img;
   },

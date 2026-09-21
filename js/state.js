@@ -7,7 +7,7 @@
 
 const CLE_BROUILLON = 'cof2.brouillon.v1';
 const CLE_PORTRAIT = 'cof2.portrait.v1';
-const VERSION_ETAT = 1;
+const VERSION_ETAT = 2;
 
 function etatNeuf() {
   return {
@@ -15,11 +15,10 @@ function etatNeuf() {
     etape: 1,
     joueur: '',
     nom: '',
-    concept: '',
     profil: null,
     peuple: null,
     caracs: {
-      methode: 'rapide',
+      methode: 'serie',
       serie: 'expert',
       base: { AGI: 0, CON: 0, FOR: 0, PER: 0, CHA: 0, INT: 0, VOL: 0 },
       choixPeuple: {},        // caractéristique -> modificateur appliqué
@@ -46,7 +45,6 @@ function etatNeuf() {
       ideal: null,
       travers: null,
       secret: null,
-      secretsTires: null,
       bizarrerie: null,
       age: null,
       tailleCm: null,
@@ -58,6 +56,25 @@ function etatNeuf() {
     histoire: '',
     promptPerso: null,
   };
+}
+
+/** Brouillon d'une version antérieure : on le rattrape plutôt que de le jeter.
+    v1 → v2 : l'écran « sexe » s'est intercalé en position 2, les suivants ont pris +1 ;
+    le mode de caractéristiques « rapide » n'existe plus. */
+function migrer(lu) {
+  if (!lu || typeof lu !== 'object') return null;
+  if (lu.version === VERSION_ETAT) return lu;
+  if (lu.version !== 1) return null;
+  const copie = JSON.parse(JSON.stringify(lu));
+  copie.etape = (lu.etape >= 2) ? lu.etape + 1 : lu.etape;
+  if (copie.caracs && copie.caracs.methode === 'rapide') {
+    copie.caracs.methode = 'serie';
+    copie.caracs.serie = 'expert';
+    // les valeurs de la méthode rapide ne forment pas une série complète : on repart à zéro
+    copie.caracs.base = { AGI: 0, CON: 0, FOR: 0, PER: 0, CHA: 0, INT: 0, VOL: 0 };
+  }
+  copie.version = VERSION_ETAT;
+  return copie;
 }
 
 const state = {
@@ -106,15 +123,14 @@ const state = {
     try {
       const brut = localStorage.getItem(CLE_BROUILLON);
       if (!brut) return false;
-      const lu = JSON.parse(brut);
-      return !!lu && lu.version === VERSION_ETAT;
+      return !!migrer(JSON.parse(brut));
     } catch (e) { return false; }
   },
 
   /** Résumé du brouillon pour l'écran d'accueil. */
   resumeBrouillon() {
     try {
-      const lu = JSON.parse(localStorage.getItem(CLE_BROUILLON));
+      const lu = migrer(JSON.parse(localStorage.getItem(CLE_BROUILLON)));
       if (!lu) return null;
       return { nom: lu.nom, profil: lu.profil, peuple: lu.peuple, etape: lu.etape };
     } catch (e) { return null; }
@@ -122,8 +138,8 @@ const state = {
 
   charger() {
     try {
-      const lu = JSON.parse(localStorage.getItem(CLE_BROUILLON));
-      if (!lu || lu.version !== VERSION_ETAT) return false;
+      const lu = migrer(JSON.parse(localStorage.getItem(CLE_BROUILLON)));
+      if (!lu) return false;
       // fusion avec un état neuf : un brouillon plus ancien peut manquer de champs
       this.courant = fusionner(etatNeuf(), lu);
       this.notifier();
@@ -174,5 +190,6 @@ if (typeof window !== 'undefined') {
   window.etatNeuf = etatNeuf;
 }
 if (typeof module !== 'undefined' && module.exports) {
-  module.exports = { state, etatNeuf, fusionner, CLE_BROUILLON, CLE_PORTRAIT, VERSION_ETAT };
+  module.exports = { state, etatNeuf, fusionner, migrer, CLE_BROUILLON, CLE_PORTRAIT,
+    VERSION_ETAT };
 }

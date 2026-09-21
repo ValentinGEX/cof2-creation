@@ -1,12 +1,12 @@
-/* Écran 8 — Histoire. Guide maison, rappel des quatre traits tirés, champ limité à une
-   demi-page (compteur). Le texte ira sur la page annexe du PDF. */
-
-const LIMITE_HISTOIRE = 1800;
+/* Écran 9 — Histoire. Le guide, les questions du livre dans la foulée, le rappel des quatre
+   traits, puis un champ limité à une demi-page. Le texte ira sur la page annexe du PDF. */
 
 window.ETAPES = window.ETAPES || {};
 
-window.ETAPES[8] = {
-  titre: 'Ton histoire',
+const LIMITE_HISTOIRE = 1800;
+
+window.ETAPES[9] = {
+  titre: 'Votre histoire',
 
   rendre(bloc, ctx) {
     const DATA = ctx.DATA;
@@ -15,8 +15,7 @@ window.ETAPES[8] = {
     for (const paragraphe of DATA.creation.maison.guideHistoire) {
       bloc.appendChild(ui.el('p', {}, paragraphe));
     }
-
-    bloc.appendChild(ui.repliable('Les questions du livre', DATA.creation.livre.questionsHistoire));
+    ui.ajouter(bloc, ui.paragraphes(DATA.creation.livre.questionsHistoire));
 
     const rappel = ui.el('ul', { class: 'liste-nue' }, [
       ui.el('li', {}, ['Idéal : ', ui.el('strong', {}, etat.touche.ideal || '—')]),
@@ -29,7 +28,7 @@ window.ETAPES[8] = {
     const compteur = ui.el('p', { class: 'compteur' });
     const zone = ui.el('textarea', {
       style: 'min-height:14rem',
-      placeholder: 'D’où viens-tu ? Qu’as-tu fait avant ? Pourquoi es-tu parti ?',
+      placeholder: 'D’où venez-vous ? Qu’avez-vous fait avant ? Pourquoi être parti ?',
       oninput: (e) => {
         state.modifier((s) => { s.histoire = e.target.value; });
         majCompteur(compteur, e.target.value);
@@ -42,7 +41,7 @@ window.ETAPES[8] = {
 
   valider(etat) {
     if ((etat.histoire || '').length > LIMITE_HISTOIRE) {
-      return ['Ton histoire dépasse la demi-page : raccourcis-la un peu.'];
+      return ['Votre histoire dépasse la demi-page : raccourcissez-la un peu.'];
     }
     return [];
   },

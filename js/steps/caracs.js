@@ -1,42 +1,34 @@
-/* Écran 4 — Caractéristiques.
+/* Écran 5 — Caractéristiques.
 
-   Deux modes, comme décidé avec Valentin :
-     A. la règle officielle (méthode rapide proposée en premier, ou série au choix) ;
-     B. la répartition libre, avec un budget de 7 points et un coût croissant.
-   Puis le modificateur de peuple, dont certains choix reviennent au joueur. */
+   Deux modes : la série officielle du livre, dont on répartit les sept valeurs, et la
+   répartition libre (budget de 7 points, coût croissant). Puis le modificateur de peuple :
+   quand le livre laisse le choix, le joueur choisit ; quand il l'impose, on l'applique. */
 
 window.ETAPES = window.ETAPES || {};
 
-window.ETAPES[4] = {
+window.ETAPES[5] = {
   titre: 'Sept chiffres pour un héros',
 
   rendre(bloc, ctx) {
     const DATA = ctx.DATA;
     const etat = ctx.etat;
     const profil = DATA.profils[etat.profil];
+    appliquerImposes(ctx);
     bloc.appendChild(ui.el('p', {}, DATA.creation.maison.ecrans.caracs));
 
     // ---- choix du mode
     bloc.appendChild(ui.boutonsChoix([
-      { valeur: 'rapide', libelle: 'Méthode rapide (conseillée)' },
       { valeur: 'serie', libelle: 'Série officielle à répartir' },
       { valeur: 'points', libelle: 'Répartition libre' },
     ], etat.caracs.methode, (methode) => {
       state.modifier((s) => {
         s.caracs.methode = methode;
-        if (methode === 'rapide') {
-          s.caracs.serie = 'expert';
-          s.caracs.base = rules.methodeRapide(profil);
-        } else if (methode === 'serie') {
-          s.caracs.base = { AGI: 0, CON: 0, FOR: 0, PER: 0, CHA: 0, INT: 0, VOL: 0 };
-        }
+        s.caracs.base = { AGI: 0, CON: 0, FOR: 0, PER: 0, CHA: 0, INT: 0, VOL: 0 };
       });
       ctx.rafraichir();
     }));
 
-    if (etat.caracs.methode === 'rapide') {
-      bloc.appendChild(ui.encadre(DATA.creation.livre.methodeRapide));
-    } else if (etat.caracs.methode === 'serie') {
+    if (etat.caracs.methode === 'serie') {
       const choixSerie = ui.el('div', { class: 'tirage' });
       for (const cle of Object.keys(rules.SERIES)) {
         const serie = rules.SERIES[cle];
@@ -68,18 +60,14 @@ window.ETAPES[4] = {
       const reste = rules.BUDGET_POINTS - cout;
       bloc.appendChild(ui.el('p', { class: 'budget ' + (reste < 0 ? 'depasse' : '') },
         'Points utilisés : ' + cout + ' / ' + rules.BUDGET_POINTS
-        + (reste === 0 ? ' — parfait.' : reste > 0 ? ' — il t’en reste ' + reste + '.'
-          : ' — tu dépasses de ' + (-reste) + '.')));
-    } else {
-      bloc.appendChild(valeursAPlacer(ctx));
+        + (reste === 0 ? ' — parfait.' : reste > 0 ? ' — il vous en reste ' + reste + '.'
+          : ' — vous dépassez de ' + (-reste) + '.')));
     }
 
-    bloc.appendChild(ui.repliable('Échelle des valeurs (extrait du livre)', echelle(DATA)));
+    bloc.appendChild(ui.section('Échelle des valeurs', echelle(DATA)));
 
     // ---- modificateur de peuple
-    bloc.appendChild(ui.el('hr', { class: 'separateur' }));
-    bloc.appendChild(ui.el('h3', {}, 'Modificateur de ton peuple'));
-    bloc.appendChild(modificateurs(ctx));
+    bloc.appendChild(ui.section('Le modificateur de votre peuple', modificateurs(ctx)));
 
     // ---- magie et alertes
     if (profil.caracMagie) {
@@ -97,19 +85,19 @@ window.ETAPES[4] = {
     const erreurs = [];
     if (etat.caracs.methode === 'points') {
       const cout = rules.coutTotal(etat.caracs.base);
-      if (cout > rules.BUDGET_POINTS) erreurs.push('Tu dépasses le budget de 7 points.');
-      if (cout < rules.BUDGET_POINTS) erreurs.push('Il te reste des points à répartir.');
+      if (cout > rules.BUDGET_POINTS) erreurs.push('Vous dépassez le budget de 7 points.');
+      if (cout < rules.BUDGET_POINTS) erreurs.push('Il vous reste des points à répartir.');
     } else {
       const valeurs = rules.SERIES[etat.caracs.serie].valeurs.slice().sort();
       const placees = rules.CARACS.map((c) => etat.caracs.base[c] || 0).sort();
       if (JSON.stringify(valeurs) !== JSON.stringify(placees)) {
-        erreurs.push('Place toutes les valeurs de la série.');
+        erreurs.push('Placez toutes les valeurs de la série.');
       }
     }
     const peuple = DATA.peuples[etat.peuple];
     const nbMods = (peuple.modificateurs || []).length;
     const faits = (etat.caracs.choixPeupleIndex || []).filter(Boolean).length;
-    if (faits < nbMods) erreurs.push('Applique le modificateur de ton peuple.');
+    if (faits < nbMods) erreurs.push('Appliquez le modificateur de votre peuple.');
     return erreurs;
   },
 };
@@ -189,19 +177,6 @@ function valeursRestantes(etat) {
   return restantes;
 }
 
-function valeursAPlacer(ctx) {
-  const restantes = valeursRestantes(ctx.etat);
-  const pastilles = [];
-  for (const valeur of Object.keys(restantes).sort((a, b) => b - a)) {
-    for (let i = 0; i < restantes[valeur]; i++) {
-      pastilles.push(ui.el('span', { class: 'pastille' }, ui.signe(Number(valeur))));
-    }
-  }
-  return ui.el('p', { class: 'tirage' }, pastilles.length
-    ? [ui.el('span', { class: 'detail' }, 'Valeurs à placer :')].concat(pastilles)
-    : [ui.el('span', { class: 'succes' }, 'Toutes les valeurs sont placées.')]);
-}
-
 /** Mode libre : boutons − et + avec le coût en points. */
 function reglagePoints(ctx, carac) {
   const etat = ctx.etat;
@@ -238,27 +213,64 @@ function echelle(DATA) {
 
 /* ------------------------------------------------------------------ peuple */
 
+/** Un modificateur sans alternative (le « -1 en AGI » du nain) s'applique tout seul :
+    il n'y a rien à demander au joueur, mais la validation attend qu'il soit enregistré. */
+function appliquerImposes(ctx) {
+  const peuple = ctx.DATA.peuples[ctx.etat.peuple];
+  if (!peuple) return;
+  const mods = peuple.modificateurs || [];
+  const index = ctx.etat.caracs.choixPeupleIndex || [];
+  const aFaire = mods.some((mod, i) => !mod.regle && (mod.choix || []).length === 1 && !index[i]);
+  if (!aFaire) return;
+  state.modifier((s) => {
+    const choisies = s.caracs.choixPeupleIndex || (s.caracs.choixPeupleIndex = []);
+    mods.forEach((mod, i) => {
+      if (!mod.regle && (mod.choix || []).length === 1 && !choisies[i]) choisies[i] = mod.choix[0];
+    });
+    s.caracs.choixPeuple = recomposer(mods, choisies);
+  });
+}
+
+function recomposer(mods, choisies) {
+  const table = {};
+  mods.forEach((mod, i) => {
+    const carac = choisies[i];
+    if (!carac) return;
+    table[carac] = (table[carac] || 0) + mod.valeur;
+  });
+  return table;
+}
+
 function modificateurs(ctx) {
   const DATA = ctx.DATA;
   const etat = ctx.etat;
   const peuple = DATA.peuples[etat.peuple];
   const bloc = ui.el('div');
-  bloc.appendChild(ui.el('p', {}, peuple.nom + ' : ' + peuple.modificateursTexte));
+  const mods = peuple.modificateurs || [];
 
-  (peuple.modificateurs || []).forEach((mod, index) => {
+  mods.forEach((mod, index) => {
     const candidats = mod.regle === 'deuxPlusFaibles'
       ? deuxPlusFaibles(etat) : (mod.choix || []);
-    const libelle = mod.regle === 'deuxPlusFaibles'
-      ? '+1 sur l’une de tes deux plus faibles caractéristiques'
-      : ui.signe(mod.valeur) + ' en ' + candidats.join(' ou ');
-    bloc.appendChild(ui.el('p', { class: 'detail' }, libelle));
+
+    // modificateur imposé : on l'annonce, sans rien demander
+    if (!mod.regle && candidats.length === 1) {
+      bloc.appendChild(ui.el('p', {}, ['Votre peuple vous impose ',
+        ui.el('strong', {}, ui.signe(mod.valeur) + ' en ' + candidats[0]), '.']));
+      return;
+    }
+
+    bloc.appendChild(ui.el('p', {}, mod.valeur > 0
+      ? 'Votre peuple vous permet d’ajouter un bonus à l’une de vos caractéristiques, '
+        + 'choisissez laquelle.'
+      : 'Votre peuple vous impose un malus, choisissez sur quelle caractéristique '
+        + 'le prendre.'));
     const choix = ui.el('div', { class: 'tirage' });
     for (const carac of candidats) {
       choix.appendChild(ui.el('button', {
         type: 'button',
         class: 'bouton bouton-petit '
           + ((etat.caracs.choixPeupleIndex || [])[index] === carac ? '' : 'bouton-secondaire'),
-        onclick: () => appliquerModificateur(ctx, index, carac, mod.valeur),
+        onclick: () => appliquerModificateur(ctx, index, carac),
       }, carac + ' ' + ui.signe(mod.valeur)));
     }
     bloc.appendChild(choix);
@@ -274,19 +286,11 @@ function deuxPlusFaibles(etat) {
   return valeurs.filter((v) => v.valeur <= seuil).map((v) => v.carac);
 }
 
-function appliquerModificateur(ctx, index, carac, valeur) {
+function appliquerModificateur(ctx, index, carac) {
   state.modifier((s) => {
-    const index_ = s.caracs.choixPeupleIndex || (s.caracs.choixPeupleIndex = []);
-    index_[index] = carac;
-    // on recompose la table carac -> modificateur à partir des choix
-    const peuple = ctx.DATA.peuples[s.peuple];
-    const table = {};
-    (peuple.modificateurs || []).forEach((mod, i) => {
-      const choisie = index_[i];
-      if (!choisie) return;
-      table[choisie] = (table[choisie] || 0) + mod.valeur;
-    });
-    s.caracs.choixPeuple = table;
+    const choisies = s.caracs.choixPeupleIndex || (s.caracs.choixPeupleIndex = []);
+    choisies[index] = carac;
+    s.caracs.choixPeuple = recomposer(ctx.DATA.peuples[s.peuple].modificateurs || [], choisies);
   });
   ctx.rafraichir();
 }
