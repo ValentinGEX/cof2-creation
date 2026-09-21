@@ -175,8 +175,8 @@ a { color: var(--or-fonce); }
 .grille-cartes {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1.2rem;
-  margin: 1.4rem 0;
+  gap: 1.4rem;
+  margin: 1.6rem 0;
 }
 
 /* deux colonnes seulement quand la fenêtre devient vraiment étroite */
@@ -199,7 +199,8 @@ a { color: var(--or-fonce); }
   transition: transform .12s ease, box-shadow .12s ease;
 }
 
-.carte:hover { transform: translateY(-2px); box-shadow: var(--ombre); }
+.carte:hover { transform: translateY(-3px); box-shadow: 0 6px 18px rgba(58, 45, 27, .28); }
+.carte:hover .carte-image { filter: saturate(1.06) brightness(1.03); }
 
 .carte[aria-pressed="true"] {
   border-color: var(--or);
@@ -223,12 +224,13 @@ a { color: var(--or-fonce); }
 
 .carte-image {
   width: 100%;
-  /* les illustrations montrent les deux sexes côte à côte : format paysage */
+  /* les illustrations montrent les deux sexes côte à côte : format paysage, plein cadre */
   aspect-ratio: 4 / 3;
   object-fit: cover;
   border: none;
   border-bottom: 1px solid var(--or-clair);
-  margin: 0 0 .8rem;
+  margin: 0 0 .9rem;
+  transition: filter .15s ease;
   background: repeating-linear-gradient(135deg, #e8dcbe, #e8dcbe 8px, #e2d4b0 8px, #e2d4b0 16px);
 }
 
@@ -515,6 +517,15 @@ textarea { min-height: 7rem; resize: vertical; line-height: 1.5; }
 }
 
 /* ---------------------------------------------------------------- carte du monde */
+
+.illustration-fiche {
+  display: block;
+  width: 100%;
+  border: 1px solid var(--or);
+  border-radius: var(--rayon);
+  margin: 0 0 1rem;
+  background: repeating-linear-gradient(135deg, #e8dcbe, #e8dcbe 8px, #e2d4b0 8px, #e2d4b0 16px);
+}
 
 .image-monde {
   display: block;

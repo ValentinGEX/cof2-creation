@@ -43,7 +43,7 @@ window.ETAPES[3] = {
         titre: profil.nom,
         resume: profil.resume,
         detail: profil.caracsClesTexte,
-        image: 'images/profils/' + slug + '.png',
+        image: 'images/profils/' + slug + '.jpg',
         selectionnee: etat.profil === slug,
         onClick: () => choisirProfil(ctx, slug),
       }));
@@ -78,7 +78,10 @@ function choisirProfil(ctx, slug) {
 /** Fiche détaillée du profil choisi. */
 function ficheProfil(ctx, profil) {
   const bloc = ui.el('div');
-  bloc.appendChild(ui.section(profil.nom, ui.paragraphes(profil.description)));
+  bloc.appendChild(ui.section(profil.nom, [
+    ui.image('images/profils/' + profil.slug + '.jpg', profil.nom, 'illustration-fiche'),
+    ui.paragraphes(profil.description),
+  ]));
   bloc.appendChild(ui.section('Armes et armures', ui.paragraphes(profil.armesArmures)));
   bloc.appendChild(ui.section('Équipement de départ', ui.paragraphes(profil.equipementTexte)));
   return bloc;

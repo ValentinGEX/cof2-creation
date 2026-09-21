@@ -22,7 +22,7 @@ window.ETAPES[4] = {
         titre: peuple.nom,
         resume: peuple.resume,
         detail: peuple.modificateursTexte + (typique ? ' · va bien avec votre profil' : ''),
-        image: 'images/peuples/' + slug + '.png',
+        image: 'images/peuples/' + slug + '.jpg',
         selectionnee: etat.peuple === slug,
         onClick: () => choisirPeuple(ctx, slug),
       }));
@@ -62,7 +62,10 @@ function fichePeuple(ctx, peuple) {
   const DATA = ctx.DATA;
   const bloc = ui.el('div');
 
-  bloc.appendChild(ui.section(peuple.nom, ui.paragraphes(peuple.description)));
+  bloc.appendChild(ui.section(peuple.nom, [
+    ui.image('images/peuples/' + peuple.slug + '.jpg', peuple.nom, 'illustration-fiche'),
+    ui.paragraphes(peuple.description),
+  ]));
 
   bloc.appendChild(ui.section('Modificateur de caractéristiques',
     ui.el('p', {}, peuple.modificateursTexte)));

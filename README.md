@@ -53,12 +53,12 @@ l'autre — un script le vérifie (voir « Contrôles »).
 
 ---
 
-## Ajouter les images des cartes
+## Les images des cartes
 
-Les 22 visuels (14 profils + 8 peuples) ne sont pas fournis : les prompts sont dans
-[PROMPTS-IMAGES.md](PROMPTS-IMAGES.md). Chaque image montre les deux sexes côte à côte, au
-format paysage 4:3. Génère l'image dans ChatGPT, enregistre-la sous le nom indiqué
-(`images/profils/barbare.png`, `images/peuples/gnome.png`…), recharge la page. Tant qu'une
+Les 22 visuels (14 profils + 8 peuples) **sont déjà en place**, générés avec GPT Image :
+chacun montre les deux sexes côte à côte, en 1200 × 900. Pour en refaire un, les prompts sont
+dans [PROMPTS-IMAGES.md](PROMPTS-IMAGES.md) ; garde le nom de fichier
+(`images/profils/barbare.jpg`, `images/peuples/gnome.jpg`…) et recharge la page. Tant qu'une
 image manque, la carte affiche un visuel de secours.
 
 La carte des Terres d'Osgild de l'écran de bienvenue est déjà en place

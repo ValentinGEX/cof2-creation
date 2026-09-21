@@ -163,7 +163,9 @@ const ui = {
     const classes = classe || 'carte-image';
     const secours = ui.el('div', { class: classes + ' carte-image-absente' },
       ['✦ ' + alt + ' ✦']);
-    const img = ui.el('img', { class: classes, src: chemin, alt, loading: 'lazy' });
+    // pas de chargement différé : au plus huit illustrations par écran, et le différé
+    // laissait des cartes vides selon le navigateur
+    const img = ui.el('img', { class: classes, src: chemin, alt, decoding: 'async' });
     img.addEventListener('error', () => { if (img.parentNode) img.parentNode.replaceChild(secours, img); });
     return img;
   },
