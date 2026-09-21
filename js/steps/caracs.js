@@ -187,6 +187,11 @@ function reglagePoints(ctx, carac) {
     state.modifier((s) => { s.caracs.base[carac] = nouvelle; });
     ctx.rafraichir();
   };
+  // on ne laisse pas dépasser le budget : le « + » se ferme quand le point suivant coûte
+  // plus que ce qu'il reste
+  const cout = rules.coutTotal(etat.caracs.base);
+  const surcout = rules.pointBuyCost(valeur + 1) - rules.pointBuyCost(valeur);
+  const budgetAtteint = cout + surcout > rules.BUDGET_POINTS;
   return ui.el('span', { class: 'tirage' }, [
     ui.el('button', {
       type: 'button', class: 'bouton bouton-petit bouton-secondaire',
@@ -195,7 +200,8 @@ function reglagePoints(ctx, carac) {
     ui.el('span', { class: 'valeur-carac' }, ui.signe(valeur)),
     ui.el('button', {
       type: 'button', class: 'bouton bouton-petit bouton-secondaire',
-      disabled: valeur >= rules.MAX_POINTS, onclick: () => changer(1),
+      title: budgetAtteint ? 'Il ne vous reste pas assez de points' : '',
+      disabled: valeur >= rules.MAX_POINTS || budgetAtteint, onclick: () => changer(1),
     }, '+'),
     ui.el('span', { class: 'detail' }, '(' + rules.pointBuyCost(valeur) + ' pt)'),
   ]);

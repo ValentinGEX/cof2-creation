@@ -117,11 +117,33 @@ function sectionPortrait(ctx) {
   const DATA = ctx.DATA;
   const etat = ctx.etat;
   const contenu = ui.el('div', { class: 'prompt-zone' });
+  const message = ui.el('p', { class: 'succes' });
 
-  // 1. la zone de dépôt, bien visible, avant le pavé du prompt
+  // 1. le texte à copier dans ChatGPT : c'est la première chose à faire
+  const prompt = etat.promptPerso || buildImagePrompt(etat, DATA);
+  const texte = ui.el('textarea', {
+    oninput: (e) => state.modifier((s) => { s.promptPerso = e.target.value; }),
+  }, prompt);
+  contenu.appendChild(ui.encadre(DATA.creation.maison.notePrompt, 'maison'));
+  contenu.appendChild(texte);
+  contenu.appendChild(ui.el('div', { class: 'tirage' }, [
+    ui.el('button', {
+      type: 'button', class: 'bouton bouton-petit',
+      onclick: async () => {
+        try {
+          await navigator.clipboard.writeText(texte.value);
+          message.textContent = 'Texte copié : collez-le dans ChatGPT.';
+        } catch (e) {
+          texte.select();
+          message.textContent = 'Copiez-le à la main (Ctrl+C) : le presse-papiers est bloqué.';
+        }
+      },
+    }, 'Copier le texte'),
+  ]));
+
+  // 2. puis la zone où déposer l'image obtenue
   const zone = ui.el('div', { class: 'zone-televersement' });
   const apercu = ui.el('div');
-  const message = ui.el('p', { class: 'succes' });
 
   const afficherApercu = () => {
     ui.vider(apercu);
@@ -162,28 +184,6 @@ function sectionPortrait(ctx) {
   zone.appendChild(apercu);
   zone.appendChild(message);
   contenu.appendChild(zone);
-
-  // 2. le prompt à copier
-  const prompt = etat.promptPerso || buildImagePrompt(etat, DATA);
-  const texte = ui.el('textarea', {
-    oninput: (e) => state.modifier((s) => { s.promptPerso = e.target.value; }),
-  }, prompt);
-  contenu.appendChild(ui.encadre(DATA.creation.maison.notePrompt, 'maison'));
-  contenu.appendChild(texte);
-  contenu.appendChild(ui.el('div', { class: 'tirage' }, [
-    ui.el('button', {
-      type: 'button', class: 'bouton bouton-petit',
-      onclick: async () => {
-        try {
-          await navigator.clipboard.writeText(texte.value);
-          message.textContent = 'Texte copié : collez-le dans ChatGPT.';
-        } catch (e) {
-          texte.select();
-          message.textContent = 'Copiez-le à la main (Ctrl+C) : le presse-papiers est bloqué.';
-        }
-      },
-    }, 'Copier le texte'),
-  ]));
 
   afficherApercu();
   return ui.section('Le portrait de votre héros', contenu);

@@ -174,10 +174,14 @@ a { color: var(--or-fonce); }
 
 .grille-cartes {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
-  gap: .9rem;
-  margin: 1rem 0;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.2rem;
+  margin: 1.4rem 0;
 }
+
+/* deux colonnes seulement quand la fenêtre devient vraiment étroite */
+@media (max-width: 56rem) { .grille-cartes { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 36rem) { .grille-cartes { grid-template-columns: 1fr; } }
 
 .carte {
   position: relative;
@@ -186,7 +190,8 @@ a { color: var(--or-fonce); }
   border: 1px solid var(--or-clair);
   border-radius: var(--rayon);
   background: var(--parchemin);
-  padding: .7rem .8rem .8rem;
+  padding: 0 0 .9rem;
+  overflow: hidden;
   cursor: pointer;
   text-align: left;
   font: inherit;
@@ -203,15 +208,17 @@ a { color: var(--or-fonce); }
   box-shadow: 0 0 0 2px rgba(166, 124, 46, .25);
 }
 
-.carte h4 { margin: 0 0 .2rem; }
+.carte h4 { margin: 0 0 .3rem; padding: 0 .9rem; font-size: var(--t-section); }
+.carte > h4:first-child { padding-top: .9rem; }
 
-.carte .resume { font-size: var(--t-petit); color: var(--encre-pale); margin: 0 0 .4rem; flex: 1; }
+.carte .resume { color: var(--encre-pale); margin: 0 0 .5rem; padding: 0 .9rem; flex: 1; }
 
 .carte .caracs-cles {
   font-family: Cinzel, serif;
-  font-size: .72rem;
-  letter-spacing: .08em;
+  font-size: .78rem;
+  letter-spacing: .06em;
   color: var(--or-fonce);
+  padding: 0 .9rem;
 }
 
 .carte-image {
@@ -219,9 +226,9 @@ a { color: var(--or-fonce); }
   /* les illustrations montrent les deux sexes côte à côte : format paysage */
   aspect-ratio: 4 / 3;
   object-fit: cover;
-  border: 1px solid var(--or-clair);
-  border-radius: 2px;
-  margin-top: .5rem;
+  border: none;
+  border-bottom: 1px solid var(--or-clair);
+  margin: 0 0 .8rem;
   background: repeating-linear-gradient(135deg, #e8dcbe, #e8dcbe 8px, #e2d4b0 8px, #e2d4b0 16px);
 }
 
@@ -231,7 +238,7 @@ a { color: var(--or-fonce); }
   justify-content: center;
   text-align: center;
   font-family: Cinzel, serif;
-  font-size: .75rem;
+  font-size: var(--t-petit);
   color: var(--or-fonce);
   padding: .5rem;
 }
@@ -512,11 +519,11 @@ textarea { min-height: 7rem; resize: vertical; line-height: 1.5; }
 .image-monde {
   display: block;
   width: 100%;
-  max-height: 24rem;
-  object-fit: cover;
+  height: auto;            /* la carte se voit en entier, jamais rognée */
+  object-fit: contain;
   border: 1px solid var(--or);
   border-radius: var(--rayon);
-  margin-bottom: 1.4rem;
+  margin-bottom: 1.6rem;
   background: repeating-linear-gradient(135deg, #e8dcbe, #e8dcbe 8px, #e2d4b0 8px, #e2d4b0 16px);
 }
 

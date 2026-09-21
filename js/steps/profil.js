@@ -16,8 +16,6 @@ window.ETAPES[3] = {
       etat.familleAffichee = etat.profil ? DATA.profils[etat.profil].famille : 'aventuriers';
     }
 
-    bloc.appendChild(ui.el('p', {}, DATA.creation.maison.ecrans.profil));
-
     // onglets de familles
     const onglets = ui.el('div', { class: 'tirage' });
     for (const cle of ORDRE_FAMILLES) {
@@ -30,8 +28,9 @@ window.ETAPES[3] = {
     }
     bloc.appendChild(onglets);
 
+    // pas de description de famille : le joueur choisit sur les cartes, et l'apport chiffré
+    // suffit à situer ce que la famille lui donne
     const famille = DATA.familles[etat.familleAffichee];
-    ui.ajouter(bloc, ui.paragraphes(famille.description));
     bloc.appendChild(ui.el('p', { class: 'apport-famille' },
       ['Vous commencez avec : ', ui.el('strong', {}, famille.resume), '.']));
 

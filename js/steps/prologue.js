@@ -1,5 +1,5 @@
-/* Écran 1 — Bienvenue. La carte des Terres d'Osgild, le monde en deux paragraphes, le texte
-   « Rôle » du livre, puis le prénom du joueur. Rien n'est replié : tout se lit d'affilée. */
+/* Écran 1 — Bienvenue. La carte des Terres d'Osgild, la présentation du monde et le texte
+   « Rôle », tous deux repris du livre, puis le prénom du joueur. Rien n'est replié. */
 
 window.ETAPES = window.ETAPES || {};
 
@@ -8,16 +8,13 @@ window.ETAPES[1] = {
   sansFiche: true,
 
   rendre(bloc, ctx) {
-    const maison = ctx.DATA.creation.maison;
+    const livre = ctx.DATA.creation.livre;
 
     bloc.appendChild(ui.image('images/carte-osgild.jpg', 'Carte des Terres d’Osgild',
       'image-monde'));
 
-    for (const paragraphe of maison.prologue) {
-      bloc.appendChild(ui.el('p', {}, paragraphe));
-    }
-
-    bloc.appendChild(ui.section('Votre rôle', ui.paragraphes(ctx.DATA.creation.livre.role)));
+    bloc.appendChild(ui.section('Les Terres d’Osgild', ui.paragraphes(livre.osgild)));
+    bloc.appendChild(ui.section('Votre rôle', ui.paragraphes(livre.role)));
 
     const champNom = ui.el('input', {
       type: 'text', id: 'champ-joueur', value: ctx.etat.joueur || '',

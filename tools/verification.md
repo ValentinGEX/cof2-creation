@@ -154,3 +154,26 @@ les données du livre n'ont pas bougé ; les 24 tests restent au vert.
   brouillons enregistrés avant la refonte (version 1) sont migrés automatiquement au
   chargement (`migrer()` dans `js/state.js`) : l'étape est décalée et l'ancien mode « méthode
   rapide », supprimé, bascule sur la série officielle avec des valeurs à replacer.
+
+## 8. Deuxième passe d'ergonomie (21 septembre 2026, soir)
+
+* **Présentation du monde** : le texte maison de l'écran de bienvenue est remplacé par celui
+  du livre (p. imprimées 15-16) — présentation de la région, le Mitan, l'ancien empire, le
+  traité de Monastir, l'an 325 PM. Nouvelle clé `creation.livre.osgild`.
+* **Texte « Rôle »** : deux corrections. Un espace manquait après « Vous ressemble-t-il »
+  (le marqueur de début d'extraction était concaténé sans espace), et le paragraphe final sur
+  la création de groupe a été retiré : ici, chaque joueur crée son personnage chez lui.
+* **Onglet parasite** : « INTRODUCTION » s'invitait dans les textes des pages 14-16 ; ajouté
+  à la liste des onglets latéraux filtrés.
+* **Cartes de profils et de peuples** : trois par ligne, illustration en tête et en grand.
+  Les prompts demandent désormais des images de 1200 × 900 px (paysage 4:3), avec les deux
+  sexes côte à côte.
+* **Carte d'Osgild** : affichée en entier (`object-fit: contain`), plus rognée.
+* **Répartition libre** : le bouton « + » se ferme dès que le point suivant ferait dépasser
+  les 7 points ; on ne peut plus être en dépassement.
+* **Armes de la feuille** : la feuille officielle n'a que trois lignes. L'équipement de départ
+  du livre ne donne jamais plus de trois armes (vérifié sur les quatorze profils, toutes
+  options confondues), donc elles y sont reportées automatiquement ; la section « Votre
+  personnage a trop d'armes ! » ne s'affiche qu'au-delà, en filet de sécurité.
+* **Descriptions** : celle de la famille disparaît de l'écran Profil (seul l'apport chiffré
+  reste) ; celles du profil et du peuple sont conservées, elles aident à choisir.

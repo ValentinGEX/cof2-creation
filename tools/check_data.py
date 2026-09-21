@@ -258,15 +258,15 @@ def main():
 
     # ---------------------------------------------------------------- textes de l'app
     creation = lire("creation.json")
-    for cle in ("role", "pv", "dr", "pc", "pm", "init", "equipement", "def", "attaques", "dm",
-                "questionsDescription", "methodeRapide"):
+    for cle in ("role", "osgild", "pv", "dr", "pc", "pm", "init", "equipement", "def",
+                "attaques", "dm", "questionsDescription", "methodeRapide"):
         if not creation["livre"].get(cle):
             erreur("creation.livre.%s absent" % cle)
     if len(creation["livre"]["etapes"]) != 15:
         erreur("les 15 étapes de la création : %d trouvées" % len(creation["livre"]["etapes"]))
     if len(creation["echelle"]) != 9:
         erreur("échelle des valeurs : %d lignes" % len(creation["echelle"]))
-    for cle in ("prologue", "guideHistoire", "noteObjetNegocie", "avertissementModeLibre",
+    for cle in ("guideHistoire", "noteObjetNegocie", "avertissementModeLibre",
                 "notePrompt", "noteLangues", "bizarreries", "aide"):
         if not creation["maison"].get(cle):
             erreur("texte maison manquant : %s" % cle)

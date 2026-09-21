@@ -18,8 +18,9 @@ Chaque image montre **les deux sexes côte à côte** : une femme à gauche, un 
 même profil, même équipement. Les cartes affichent ainsi les deux versions, quel que soit le
 choix du joueur.
 
-Format conseillé : paysage 4:3 (par exemple 1200 × 900 px), PNG, moins de 500 Ko par image
-(le dépôt reste léger et les cartes se chargent vite).
+**Format à demander : paysage 4:3, 1200 × 900 pixels.** C'est le format des cartes de
+l'application ; toute autre proportion sera rognée à l'affichage. Enregistre en PNG, sous
+500 Ko par image (le dépôt reste léger et les cartes se chargent vite).
 
 **Mode d'emploi** : copie le bloc de style, colle-le dans ChatGPT, puis ajoute à la suite le
 prompt du profil ou du peuple voulu.
@@ -32,7 +33,7 @@ prompt du profil ou du peuple voulu.
 > peinture numérique détaillée, **deux personnages côte à côte — une femme à gauche, un homme à
 > droite**, entiers de la tête aux pieds, debout, même équipement et même allure pour les deux,
 > format paysage 4:3, palette chaude (ocre, brun, or), fond sobre et légèrement texturé façon
-> parchemin, pas de texte, pas de cadre.
+> parchemin, **image de 1200 × 900 pixels (format paysage 4:3)**, pas de texte, pas de cadre.
 
 Le portrait que le joueur fera générer à la fin du wizard reprend le même bloc, mais avec un
 seul personnage : les cartes et les portraits resteront de la même famille visuelle.
@@ -169,9 +170,10 @@ l'âge.)
 
 ## La carte des Terres d'Osgild
 
-Elle est déjà en place (`images/carte-osgild.jpg`) : c'est la carte fournie par Valentin,
-réduite à 1600 px de large pour que l'écran d'accueil se charge vite. Pour la remplacer,
-écrase le fichier en gardant le nom.
+Elle est déjà en place (`images/carte-osgild.jpg`, 1600 × 1173 px) : c'est la carte fournie
+par Valentin, réduite pour que l'écran d'accueil se charge vite. Elle s'affiche en entier, sur
+toute la largeur. Pour la remplacer, écrase le fichier en gardant le nom ; vise 1600 px de
+large et moins d'un mégaoctet.
 
 ## Ajouter d'autres visuels
 

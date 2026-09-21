@@ -149,10 +149,11 @@ const ui = {
       type: 'button', class: 'carte', 'aria-pressed': options.selectionnee ? 'true' : 'false',
       onclick: options.onClick,
     });
+    // l'illustration passe en tête : c'est elle qui donne envie de choisir
+    if (options.image) bouton.appendChild(ui.image(options.image, options.titre));
     bouton.appendChild(ui.el('h4', {}, options.titre));
     if (options.resume) bouton.appendChild(ui.el('p', { class: 'resume' }, options.resume));
     if (options.detail) bouton.appendChild(ui.el('p', { class: 'caracs-cles' }, options.detail));
-    if (options.image) bouton.appendChild(ui.image(options.image, options.titre));
     return bouton;
   },
 

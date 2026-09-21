@@ -1,7 +1,8 @@
 /* Écran 7 — Équipement. Sac d'aventurier, bourse tirée aux dés (une seule fois), choix
-   « X ou Y » du profil, armes reportées sur la feuille avec leur tableau juste en dessous,
-   et l'objet négocié avec le MJ.
+   « X ou Y » du profil avec les dommages en clair, tableau des armes, et l'objet personnel.
 
+   La feuille officielle n'a que trois lignes d'armes : en dessous de quatre armes, elles y
+   sont reportées automatiquement ; au-delà, on demande au joueur de trancher.
    Les valeurs qui en découlent (Défense, attaques) s'affichent dans le panneau de droite :
    inutile d'en refaire le calcul ici. */
 
@@ -36,7 +37,6 @@ window.ETAPES[7] = {
 
     // ---- équipement de départ du profil
     const depart = ui.el('div');
-    depart.appendChild(ui.el('p', { class: 'detail' }, profil.equipementTexte));
     (profil.equipement || []).forEach((entree, index) => {
       if (entree.choix) {
         depart.appendChild(ui.el('h4', {}, 'Vous préférez quoi ?'));
@@ -53,7 +53,6 @@ window.ETAPES[7] = {
           }, libelleOption(DATA, option)));
         });
         depart.appendChild(ligne);
-        if (entree.libelle) depart.appendChild(ui.el('p', { class: 'detail' }, entree.libelle));
         // un choix peut contenir lui-même une liste d'armes possibles
         const option = entree.choix[etat.equipement.choix[index] || 0];
         option.forEach((objet, j) => {
@@ -73,32 +72,45 @@ window.ETAPES[7] = {
     }
     depart.appendChild(ui.el('h4', {}, 'Vous emportez'));
     depart.appendChild(liste);
+    const comparatif = tableauComparatif(ctx, profil);
+    if (comparatif) {
+      depart.appendChild(ui.el('h4', {}, 'De quoi comparer'));
+      depart.appendChild(comparatif);
+    }
     bloc.appendChild(ui.section('Équipement de ' + profil.nom.toLowerCase(), depart));
 
-    // ---- armes de la feuille, suivies de leur tableau
+    // ---- armes portées sur la feuille : la feuille officielle n'a que trois lignes, on ne
+    // demande donc de trancher que si le personnage a plus de trois armes
     const armes = resolu.filter((o) => o.type === 'arme');
-    const choixArmes = ui.el('div', { class: 'tirage' });
-    for (const objet of armes) {
-      const active = etat.equipement.armes.indexOf(objet.ref) !== -1;
-      choixArmes.appendChild(ui.el('button', {
-        type: 'button', class: 'bouton bouton-petit ' + (active ? '' : 'bouton-secondaire'),
-        onclick: () => {
-          state.modifier((s) => {
-            const i = s.equipement.armes.indexOf(objet.ref);
-            if (i !== -1) s.equipement.armes.splice(i, 1);
-            else if (s.equipement.armes.length < 3) s.equipement.armes.push(objet.ref);
-          });
-          ctx.rafraichir();
-        },
-      }, (active ? '✓ ' : '') + objet.nom));
+    if (armes.length > 3) {
+      const choixArmes = ui.el('div', { class: 'tirage' });
+      for (const objet of armes) {
+        const active = etat.equipement.armes.indexOf(objet.ref) !== -1;
+        const arme = DATA.armes[objet.ref];
+        choixArmes.appendChild(ui.el('button', {
+          type: 'button', class: 'bouton bouton-petit ' + (active ? '' : 'bouton-secondaire'),
+          onclick: () => {
+            state.modifier((s) => {
+              const i = s.equipement.armes.indexOf(objet.ref);
+              if (i !== -1) s.equipement.armes.splice(i, 1);
+              else if (s.equipement.armes.length < 3) s.equipement.armes.push(objet.ref);
+            });
+            ctx.rafraichir();
+          },
+        }, (active ? '✓ ' : '') + objet.nom + (arme ? ' (DM ' + arme.dm + ')' : '')));
+      }
+      bloc.appendChild(ui.section('Votre personnage a trop d’armes !', [
+        ui.el('p', {}, 'Choisissez celles que vous préférez : vous ne pouvez en garder que '
+          + 'trois sur votre feuille.'),
+        choixArmes,
+        tableauArmes(ctx),
+      ]));
+    } else {
+      bloc.appendChild(ui.section('Vos armes', tableauArmes(ctx)));
     }
-    bloc.appendChild(ui.section('Armes reportées sur la feuille (trois au maximum)', [
-      choixArmes,
-      tableauArmes(ctx),
-    ]));
 
-    // ---- objet négocié
-    bloc.appendChild(ui.section('Un objet négocié avec le MJ', [
+    // ---- objet personnel
+    bloc.appendChild(ui.section('Un objet personnel', [
       ui.encadre(DATA.creation.maison.noteObjetNegocie, 'maison'),
       ui.el('input', {
         type: 'text', value: etat.equipement.libre || '',
@@ -112,21 +124,58 @@ window.ETAPES[7] = {
     const erreurs = [];
     if (etat.equipement.bourse === null) erreurs.push('Lancez les dés de votre bourse (2d6 pa).');
     const armes = rules.equipementResolu(etat, DATA).filter((o) => o.type === 'arme');
-    if (armes.length && !etat.equipement.armes.length) {
-      erreurs.push('Choisissez au moins une arme à reporter sur la feuille.');
+    if (armes.length > 3 && !etat.equipement.armes.length) {
+      erreurs.push('Choisissez les trois armes à garder sur votre feuille.');
     }
     return erreurs;
   },
 };
 
+/** Un choix d'équipement se lit d'un coup d'œil : le nom, puis ce qu'il vaut en jeu. */
 function libelleOption(DATA, option) {
   return option.map((objet) => {
     if (objet.libre) return objet.libre;
     const arme = DATA.armes[objet.ref];
     const armure = DATA.armures[objet.ref];
     const nom = arme ? arme.nom : (armure ? armure.nom : objet.ref);
-    return nom + (objet.qte > 1 ? ' ×' + objet.qte : '');
+    const valeur = arme ? ' (DM ' + arme.dm + (arme.dmDeuxMains ? '/' + arme.dmDeuxMains : '') + ')'
+      : (armure ? ' (DEF +' + armure.def + ')' : '');
+    return nom + valeur + (objet.qte > 1 ? ' ×' + objet.qte : '');
   }).join(' + ');
+}
+
+/** Toutes les armes que le profil peut recevoir, pour comparer avant de choisir. */
+function tableauComparatif(ctx, profil) {
+  const DATA = ctx.DATA;
+  const refs = [];
+  const ajouter = (objets) => {
+    for (const objet of objets) {
+      if (objet.choix) { objet.choix.forEach(ajouter); continue; }
+      for (const ref of [objet.ref].concat(objet.liste || [])) {
+        if (ref && DATA.armes[ref] && refs.indexOf(ref) === -1) refs.push(ref);
+      }
+    }
+  };
+  ajouter(profil.equipement || []);
+  if (refs.length < 2) return null;
+
+  const table = ui.el('table', { class: 'table-caracs' });
+  table.appendChild(ui.el('thead', {}, ui.el('tr', {}, [
+    ui.el('th', {}, 'Arme'), ui.el('th', {}, 'DM'), ui.el('th', {}, 'Portée'),
+    ui.el('th', {}, 'Particularités'),
+  ])));
+  const corps = ui.el('tbody');
+  for (const ref of refs) {
+    const arme = DATA.armes[ref];
+    corps.appendChild(ui.el('tr', {}, [
+      ui.el('td', {}, arme.nom),
+      ui.el('td', {}, arme.dm + (arme.dmDeuxMains ? ' / ' + arme.dmDeuxMains : '')),
+      ui.el('td', {}, arme.portee || '—'),
+      ui.el('td', {}, ui.el('span', { class: 'detail' }, arme.notes || '—')),
+    ]));
+  }
+  table.appendChild(corps);
+  return table;
 }
 
 function choixDansListe(ctx, objet, cle) {
@@ -134,7 +183,6 @@ function choixDansListe(ctx, objet, cle) {
   const etat = ctx.etat;
   const bloc = ui.el('div');
   bloc.appendChild(ui.el('h4', {}, 'Vous préférez quoi ?'));
-  if (objet.libelle) bloc.appendChild(ui.el('p', { class: 'detail' }, objet.libelle));
   const actuel = etat.equipement.sousChoix[cle] || objet.ref;
   bloc.appendChild(ui.el('select', {
     onchange: (e) => {

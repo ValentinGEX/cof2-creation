@@ -18,8 +18,6 @@ window.ETAPES[2] = {
   sansFiche: true,
 
   rendre(bloc, ctx) {
-    bloc.appendChild(ui.el('p', {}, ctx.DATA.creation.maison.ecrans.sexe));
-
     const choix = ui.el('div', { class: 'choix-sexe' });
     for (const sexe of SEXES) {
       const actif = ctx.etat.touche.genre === sexe.valeur;

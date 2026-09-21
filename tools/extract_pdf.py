@@ -36,7 +36,7 @@ def pdftotext(page_debut, page_fin, layout=False, zone=None):
     open(chemin, "w", encoding="utf-8").write(s)
     return s
 
-ONGLETS = ("INTRO", "Création du personnage", "Famille des combattants", "Famille des aventuriers",
+ONGLETS = ("INTRO", "INTRODUCTION", "Création du personnage", "Famille des combattants", "Famille des aventuriers",
            "Famille des mages", "Famille des mystiques", "Peuples", "Équipement", "PARTI E I",
            "Règles de base", "Combat")
 
@@ -340,11 +340,13 @@ def textes_creation():
     # dans l'ordre de lecture du livre.
     t["role"] = "\n".join([
         extraire((20, 20), "1 · RÔLE"),
-        "Vous ressemble-t-il" + extraire((22, 22), "Vous ressemble-t-il", "Si vous manquez d’idées"),
+        extraire((22, 22), "Vous ressemble-t-il", "Si vous manquez d’idées", avec_debut=True),
         "Si vous manquez d’idées" + extraire((22, 22), "Si vous manquez d’idées", "commencer avec un concept")
         + " commencer avec un concept vague (un guerrier"
-        + extraire((22, 22), "vague (un guerrier", "Tout au long de cet ouvrage"),
+        + extraire((22, 22), "vague (un guerrier", "Enfin, il est toujours bon"),
     ]).strip()
+    t["osgild"] = extraire((14, 15), "Les Terres d’Osgild ne sont qu’une petite",
+                           "Pour ceux qui sont déjà familiers", avec_debut=True)
     t["etapes"] = [re.sub(r"\s*\(page \d+\)\.?$", "", l).split(". ", 1)[1]
                    for l in flux(22, 22).split("\n")
                    if re.match(r"^\d{1,2}\. .+\(page \d+\)\.?$", l.strip())]
@@ -670,15 +672,8 @@ def echelle():
 # d'humour, vouvoiement du joueur, jamais plus de deux courts paragraphes.
 # À faire relire par Valentin (§9 du brief).
 MAISON = {
-    "prologue": [
-        "Vous faites partie du monde d’Osgild, une terre qui tient debout par habitude. Les "
-        "royaumes humains sont les morceaux d’un vieil empire que plus personne ne sait recoller, "
-        "les elfes comptent les saisons au fond de leurs forêts, les nains creusent des montagnes "
-        "qui leur répondent, et aux frontières, des choses patientes attendent qu’on regarde "
-        "ailleurs.",
-        "Une grande quête s’annonce. Elle réclame des héros — pas encore des statues, juste des "
-        "héros. Et tout commence ici, par une naissance : la vôtre.",
-    ],
+    # L'écran de bienvenue présente le monde avec le texte du livre (creation.livre.osgild) :
+    # pas de paraphrase maison là où l'ouvrage fait le travail.
     "guideHistoire": [
         "Racontez d’où vient votre personnage, ce qu’il a traversé, et ce qui l’a poussé à prendre "
         "la route. Surtout, que cette histoire justifie à sa façon votre idéal, votre travers, "
@@ -702,9 +697,6 @@ MAISON = {
                    "de la région. Chaque point d’Intelligence au-dessus de zéro lui en offre une "
                    "de plus ; avec une Intelligence négative, il ne sait pas lire.",
     "ecrans": {
-        "sexe": "Ce choix guide les listes de noms de votre peuple et l’illustration de votre "
-                "personnage.",
-        "profil": "Qui êtes-vous quand ça tourne mal ?",
         "peuple": "Et de quel coin du monde venez-vous ?",
         "caracs": "Sept chiffres qui décideront de beaucoup de choses.",
         "equipement": "Ce que vous emportez, et ce que vous avez réussi à négocier.",
