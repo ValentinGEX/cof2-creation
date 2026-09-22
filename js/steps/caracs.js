@@ -1,7 +1,8 @@
 /* Écran 5 — Caractéristiques.
 
-   Deux modes : la série officielle du livre, dont on répartit les sept valeurs, et la
-   répartition libre (budget de 7 points, coût croissant). Puis le modificateur de peuple :
+   Un seul mode : la répartition libre (budget de 7 points, coût croissant). Les trois
+   séries officielles du livre restent dans le moteur — c'est sur elles qu'est calibré le
+   barème — mais elles ne sont plus proposées au joueur. Puis le modificateur de peuple :
    quand le livre laisse le choix, le joueur choisit ; quand il l'impose, on l'applique. */
 
 window.ETAPES = window.ETAPES || {};
@@ -16,53 +17,19 @@ window.ETAPES[5] = {
     appliquerImposes(ctx);
     bloc.appendChild(ui.el('p', {}, DATA.creation.maison.ecrans.caracs));
 
-    // ---- choix du mode
-    bloc.appendChild(ui.boutonsChoix([
-      { valeur: 'serie', libelle: 'Série officielle à répartir' },
-      { valeur: 'points', libelle: 'Répartition libre' },
-    ], etat.caracs.methode, (methode) => {
-      state.modifier((s) => {
-        s.caracs.methode = methode;
-        s.caracs.base = { AGI: 0, CON: 0, FOR: 0, PER: 0, CHA: 0, INT: 0, VOL: 0 };
-      });
-      ctx.rafraichir();
-    }));
-
-    if (etat.caracs.methode === 'serie') {
-      const choixSerie = ui.el('div', { class: 'tirage' });
-      for (const cle of Object.keys(rules.SERIES)) {
-        const serie = rules.SERIES[cle];
-        choixSerie.appendChild(ui.el('button', {
-          type: 'button',
-          class: 'bouton bouton-petit ' + (etat.caracs.serie === cle ? '' : 'bouton-secondaire'),
-          onclick: () => {
-            state.modifier((s) => {
-              s.caracs.serie = cle;
-              s.caracs.base = { AGI: 0, CON: 0, FOR: 0, PER: 0, CHA: 0, INT: 0, VOL: 0 };
-            });
-            ctx.rafraichir();
-          },
-        }, serie.nom + ' : ' + serie.valeurs.map(ui.signe).join(', ')));
-      }
-      bloc.appendChild(choixSerie);
-      ui.ajouter(bloc, ui.paragraphes(DATA.creation.livre.repartition));
-    } else {
-      bloc.appendChild(ui.encadre(DATA.creation.maison.avertissementModeLibre, 'avertissement'));
-      bloc.appendChild(ui.el('p', { class: 'detail' },
-        'Coût : -1 → -1 point · 0 → 0 · +1 → 1 · +2 → 2 · +3 → 4 · +4 → 6. '
-        + 'Les trois séries officielles coûtent exactement 7 points.'));
-    }
+    bloc.appendChild(ui.encadre(DATA.creation.maison.avertissementModeLibre, 'avertissement'));
+    bloc.appendChild(ui.el('p', { class: 'detail' },
+      'Coût : -1 → -1 point · 0 → 0 · +1 → 1 · +2 → 2 · +3 → 4 · +4 → 6. '
+      + 'Les trois séries officielles du livre coûtent exactement 7 points.'));
 
     bloc.appendChild(tableauCaracs(ctx, profil));
 
-    if (etat.caracs.methode === 'points') {
-      const cout = rules.coutTotal(etat.caracs.base);
-      const reste = rules.BUDGET_POINTS - cout;
-      bloc.appendChild(ui.el('p', { class: 'budget ' + (reste < 0 ? 'depasse' : '') },
-        'Points utilisés : ' + cout + ' / ' + rules.BUDGET_POINTS
-        + (reste === 0 ? ' — parfait.' : reste > 0 ? ' — il vous en reste ' + reste + '.'
-          : ' — vous dépassez de ' + (-reste) + '.')));
-    }
+    const cout = rules.coutTotal(etat.caracs.base);
+    const reste = rules.BUDGET_POINTS - cout;
+    bloc.appendChild(ui.el('p', { class: 'budget ' + (reste < 0 ? 'depasse' : '') },
+      'Points utilisés : ' + cout + ' / ' + rules.BUDGET_POINTS
+      + (reste === 0 ? ' — parfait.' : reste > 0 ? ' — il vous en reste ' + reste + '.'
+        : ' — vous dépassez de ' + (-reste) + '.')));
 
     bloc.appendChild(ui.section('Échelle des valeurs', echelle(DATA)));
 
@@ -83,17 +50,9 @@ window.ETAPES[5] = {
 
   valider(etat, DATA) {
     const erreurs = [];
-    if (etat.caracs.methode === 'points') {
-      const cout = rules.coutTotal(etat.caracs.base);
-      if (cout > rules.BUDGET_POINTS) erreurs.push('Vous dépassez le budget de 7 points.');
-      if (cout < rules.BUDGET_POINTS) erreurs.push('Il vous reste des points à répartir.');
-    } else {
-      const valeurs = rules.SERIES[etat.caracs.serie].valeurs.slice().sort();
-      const placees = rules.CARACS.map((c) => etat.caracs.base[c] || 0).sort();
-      if (JSON.stringify(valeurs) !== JSON.stringify(placees)) {
-        erreurs.push('Placez toutes les valeurs de la série.');
-      }
-    }
+    const cout = rules.coutTotal(etat.caracs.base);
+    if (cout > rules.BUDGET_POINTS) erreurs.push('Vous dépassez le budget de 7 points.');
+    if (cout < rules.BUDGET_POINTS) erreurs.push('Il vous reste des points à répartir.');
     const peuple = DATA.peuples[etat.peuple];
     const nbMods = (peuple.modificateurs || []).length;
     const faits = (etat.caracs.choixPeupleIndex || []).filter(Boolean).length;
@@ -126,8 +85,7 @@ function tableauCaracs(ctx, profil) {
       ui.el('td', {}, [
         ui.el('strong', {}, carac), estCle ? ' ★' : '', ui.aideDonnee(DATA, carac),
       ]),
-      ui.el('td', {}, etat.caracs.methode === 'points'
-        ? reglagePoints(ctx, carac) : choixValeur(ctx, carac)),
+      ui.el('td', {}, reglagePoints(ctx, carac)),
       ui.el('td', {}, mod ? ui.signe(mod) : '—'),
       ui.el('td', {}, ui.el('span', { class: 'valeur-carac' }, ui.signe(base + mod))),
     ];
@@ -140,44 +98,7 @@ function tableauCaracs(ctx, profil) {
   return ui.el('div', {}, [table, legende]);
 }
 
-/** Mode série : une liste déroulante par caractéristique, alimentée par les valeurs libres. */
-function choixValeur(ctx, carac) {
-  const etat = ctx.etat;
-  const valeurs = rules.SERIES[etat.caracs.serie].valeurs;
-  const restantes = valeursRestantes(etat);
-  const actuelle = etat.caracs.base[carac] || 0;
-  const options = [];
-  const vues = {};
-  for (const v of valeurs) {
-    const libre = (restantes[v] || 0) > 0 || v === actuelle;
-    if (!libre || vues[v]) continue;
-    vues[v] = true;
-    options.push(ui.el('option', { value: String(v), selected: v === actuelle }, ui.signe(v)));
-  }
-  if (!options.some((o) => o.selected)) {
-    options.unshift(ui.el('option', { value: '', selected: true }, '—'));
-  }
-  return ui.el('select', {
-    onchange: (e) => {
-      const valeur = e.target.value === '' ? 0 : parseInt(e.target.value, 10);
-      state.modifier((s) => { s.caracs.base[carac] = valeur; });
-      ctx.rafraichir();
-    },
-  }, options);
-}
-
-/** Valeurs de la série qui ne sont pas encore placées. */
-function valeursRestantes(etat) {
-  const restantes = {};
-  for (const v of rules.SERIES[etat.caracs.serie].valeurs) restantes[v] = (restantes[v] || 0) + 1;
-  for (const carac of rules.CARACS) {
-    const v = etat.caracs.base[carac];
-    if (v !== undefined && restantes[v]) restantes[v] -= 1;
-  }
-  return restantes;
-}
-
-/** Mode libre : boutons − et + avec le coût en points. */
+/** Boutons − et + avec le coût en points. */
 function reglagePoints(ctx, carac) {
   const etat = ctx.etat;
   const valeur = etat.caracs.base[carac] || 0;

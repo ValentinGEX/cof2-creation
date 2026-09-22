@@ -7,7 +7,7 @@
 
 const CLE_BROUILLON = 'cof2.brouillon.v1';
 const CLE_PORTRAIT = 'cof2.portrait.v1';
-const VERSION_ETAT = 2;
+const VERSION_ETAT = 3;
 
 function etatNeuf() {
   return {
@@ -18,8 +18,6 @@ function etatNeuf() {
     profil: null,
     peuple: null,
     caracs: {
-      methode: 'serie',
-      serie: 'expert',
       base: { AGI: 0, CON: 0, FOR: 0, PER: 0, CHA: 0, INT: 0, VOL: 0 },
       choixPeuple: {},        // caractéristique -> modificateur appliqué
       choixPeupleIndex: [],   // caractéristique choisie pour chaque modificateur du peuple
@@ -58,22 +56,40 @@ function etatNeuf() {
   };
 }
 
-/** Brouillon d'une version antérieure : on le rattrape plutôt que de le jeter.
-    v1 → v2 : l'écran « sexe » s'est intercalé en position 2, les suivants ont pris +1 ;
-    le mode de caractéristiques « rapide » n'existe plus. */
+/** Brouillon d'une version antérieure : on le rattrape plutôt que de le jeter, en passant
+    par toutes les versions intermédiaires.
+      v1 → v2 : l'écran « sexe » s'est intercalé en position 2, les suivants ont pris +1 ;
+                le mode de caractéristiques « rapide » n'existe plus.
+      v2 → v3 : il ne reste que la répartition libre. Rien n'est perdu : les deux modes
+                écrivaient dans caracs.base, et les trois séries officielles coûtent
+                exactement 7 points, donc une série déjà placée reste valide telle quelle. */
+const MIGRATIONS = {
+  1(copie) {
+    copie.etape = (copie.etape >= 2) ? copie.etape + 1 : copie.etape;
+    if (copie.caracs && copie.caracs.methode === 'rapide') {
+      // les valeurs de la méthode rapide ne forment pas une série complète : on repart à zéro
+      copie.caracs.base = { AGI: 0, CON: 0, FOR: 0, PER: 0, CHA: 0, INT: 0, VOL: 0 };
+    }
+  },
+  2(copie) {
+    if (copie.caracs) {
+      delete copie.caracs.methode;
+      delete copie.caracs.serie;
+    }
+  },
+};
+
 function migrer(lu) {
   if (!lu || typeof lu !== 'object') return null;
   if (lu.version === VERSION_ETAT) return lu;
-  if (lu.version !== 1) return null;
+  if (typeof lu.version !== 'number' || lu.version < 1 || lu.version > VERSION_ETAT) return null;
   const copie = JSON.parse(JSON.stringify(lu));
-  copie.etape = (lu.etape >= 2) ? lu.etape + 1 : lu.etape;
-  if (copie.caracs && copie.caracs.methode === 'rapide') {
-    copie.caracs.methode = 'serie';
-    copie.caracs.serie = 'expert';
-    // les valeurs de la méthode rapide ne forment pas une série complète : on repart à zéro
-    copie.caracs.base = { AGI: 0, CON: 0, FOR: 0, PER: 0, CHA: 0, INT: 0, VOL: 0 };
+  for (let v = lu.version; v < VERSION_ETAT; v++) {
+    const etape = MIGRATIONS[v];
+    if (!etape) return null;
+    etape(copie);
+    copie.version = v + 1;
   }
-  copie.version = VERSION_ETAT;
   return copie;
 }
 

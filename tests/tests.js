@@ -398,6 +398,40 @@ function lancerTests(DATA) {
     egal(d.def, 11, 'le +1 DEF de Petite taille s’applique');
   });
 
+  /* ---- brouillons d'anciennes versions ---- */
+
+  test('un brouillon v1 est rattrapé jusqu’à la version courante', () => {
+    const v1 = {
+      version: 1, etape: 4, nom: 'Vieux brouillon', profil: 'barbare', peuple: 'nain',
+      caracs: { methode: 'rapide', serie: 'expert', base: { FOR: 3, CON: 2, AGI: 1 } },
+    };
+    const lu = migrer(v1);
+    vrai(lu !== null, 'le brouillon est rattrapé');
+    egal(lu.version, VERSION_ETAT, 'version');
+    egal(lu.etape, 5, 'l’écran « sexe » a décalé les suivants de +1');
+    egal(lu.caracs.base.FOR, 0, 'les valeurs de la méthode rapide sont remises à zéro');
+    vrai(lu.caracs.methode === undefined, 'le mode de répartition a disparu');
+    egal(v1.etape, 4, 'le brouillon d’origine n’est pas modifié');
+  });
+
+  test('un brouillon v2 en série officielle garde ses valeurs', () => {
+    const serie = rules.SERIES.expert.valeurs;
+    const base = {};
+    rules.CARACS.forEach((c, i) => { base[c] = serie[i]; });
+    const lu = migrer({ version: 2, etape: 6, caracs: { methode: 'serie', serie: 'expert', base } });
+    egal(lu.version, VERSION_ETAT, 'version');
+    egal(lu.etape, 6, 'aucun décalage d’écran entre v2 et v3');
+    egal(rules.coutTotal(lu.caracs.base), rules.BUDGET_POINTS,
+      'la série placée reste valide en répartition libre');
+    vrai(lu.caracs.serie === undefined, 'la série choisie a disparu');
+  });
+
+  test('un brouillon d’une version inconnue est refusé plutôt que mal lu', () => {
+    vrai(migrer({ version: 99 }) === null, 'version trop récente');
+    vrai(migrer({ version: 0 }) === null, 'version absurde');
+    vrai(migrer(null) === null, 'brouillon vide');
+  });
+
   test('les données couvrent les 14 profils, 8 peuples et la voie du mage', () => {
     egal(Object.keys(DATA.profils).length, 14, 'profils');
     egal(Object.keys(DATA.peuples).length, 8, 'peuples');

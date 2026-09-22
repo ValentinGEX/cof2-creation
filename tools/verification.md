@@ -242,3 +242,29 @@ PDF (toutes les valeurs y étaient lisibles) et son portrait extrait du fichier 
 calculées correspondent exactement à sa feuille d'origine : PV 7, DEF 11, Init. 11, PC 3,
 PM 4, DR 3d6, attaques 0 / +2 / +2, caractéristiques +1 +1 -1 +1 +1 +3 +1. Elle avait utilisé
 la répartition libre (7 points pile).
+
+## 10. Répartition libre seule, voies expliquées, boutons (22 septembre 2026)
+
+Trois retouches demandées par Valentin après son propre passage sur l'application.
+
+* **Caractéristiques** : le mode « série officielle à répartir » disparaît, il ne reste que
+  la répartition libre, jugée plus claire. Les trois séries du livre restent dans
+  `rules.SERIES` — c'est sur elles qu'est calibré le barème des 7 points, et un test le
+  vérifie — mais elles ne sont plus proposées. Les champs `caracs.methode` et `caracs.serie`
+  disparaissent de l'état.
+* **Brouillons** : `VERSION_ETAT` passe à 3 et `migrer()` enchaîne désormais les migrations
+  une par une (v1 → v2 → v3) au lieu de ne traiter qu'un saut. Le passage v2 → v3 ne perd
+  rien : les deux modes écrivaient dans `caracs.base`, et une série officielle déjà placée
+  coûte exactement 7 points, donc elle reste valide en répartition libre. Trois tests
+  couvrent ces migrations (27 tests au total).
+* **Voies** : l'infobulle « ? » à côté de « Les cinq voies de … » est remplacée par un
+  paragraphe maison qui explique ce qu'est une voie, combien on en choisit au niveau 1, ce
+  qui se passe en montant de niveau, et invite à jouer collectif. Nouvelle clé
+  `maison.ecrans.voies`. L'infobulle verbatim du livre (`aide.termes.VOIES`) reste dans les
+  données, simplement plus affichée là.
+* **Récapitulatif** : « Copier le texte » devient « Copier le prompt », et « Choisir mon
+  image… » devient « Insérer l'image de mon personnage ». Les deux passent en
+  `bouton-secondaire` (contour simple), pour que « Télécharger la feuille PDF » reste le seul
+  bouton plein de l'écran — la seule action qui produise quelque chose.
+* **Page de tests** : ses scripts sont versionnés comme ceux de l'application. Sans cela, le
+  navigateur servait l'ancienne version des tests depuis son cache.

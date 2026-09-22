@@ -699,6 +699,12 @@ MAISON = {
     "ecrans": {
         "peuple": "Et de quel coin du monde venez-vous ?",
         "caracs": "Sept chiffres qui décideront de beaucoup de choses.",
+        "voies": "Une voie est un chemin de progression : elle débloque des capacités "
+                 "spéciales, une par rang. Au niveau 1, vous en choisissez deux, et vous "
+                 "gagnez la capacité de rang 1 de chacune. À chaque montée de niveau, libre "
+                 "à vous d’ouvrir une nouvelle voie ou de progresser dans celles que vous "
+                 "avez déjà. Soyez stratégiques, et pensez coopération ! Tout miser sur "
+                 "l’attaque ne sort pas toujours le groupe d’un mauvais pas.",
         "equipement": "Ce que vous emportez, et ce que vous avez réussi à négocier.",
         "touche": "Les détails qui feront de vous quelqu’un plutôt que quelque chose.",
         "histoire": "Votre passé, en une demi-page.",

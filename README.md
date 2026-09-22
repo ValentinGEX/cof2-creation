@@ -40,12 +40,15 @@ La page de tests du moteur de règles est à l'adresse
 | Homme ou femme ? | Le sexe du personnage (il guide les listes de prénoms) |
 | Profil | Les 4 familles, les 14 profils |
 | Peuple | Les 8 peuples |
-| Caractéristiques | Série officielle à répartir, ou répartition libre (7 points) |
-| Voies | Deux voies de profil, la voie de peuple, le rang 2 des mages |
+| Caractéristiques | Répartition libre : 7 points à placer, coût croissant |
+| Voies | À quoi servent les voies, deux voies de profil, la voie de peuple, le rang 2 des mages |
 | Équipement | Sac d'aventurier, bourse aux dés, choix d'armes, objet négocié |
 | Touche finale | Nom, âge, taille, poids, idéal, travers, secret, bizarrerie, langues |
 | Histoire | Une demi-page qui justifie les quatre traits |
 | Récapitulatif | La fiche complète, le prompt d'image, le portrait, le PDF |
+
+Seul « Télécharger la feuille PDF » est un bouton plein : les boutons en contour simple
+(« Copier le prompt », « Insérer l'image de mon personnage ») préparent l'action sans la faire.
 
 Une barre de progression en haut situe l'étape en cours et montre celles qui restent. Le
 panneau « Fiche en construction », à droite, recalcule tout en direct ; chaque ligne porte un

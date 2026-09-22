@@ -20,8 +20,8 @@ window.ETAPES[6] = {
         () => basculerVoie(ctx, voie.slug)));
     }
     bloc.appendChild(ui.section(null, [
-      ui.el('p', {}, ['Les cinq voies de ' + profil.nom.toLowerCase(),
-        ui.aideDonnee(DATA, 'VOIES')]),
+      ui.el('p', {}, DATA.creation.maison.ecrans.voies),
+      ui.el('p', { class: 'detail' }, 'Les cinq voies de ' + profil.nom.toLowerCase()),
       liste,
     ]));
 

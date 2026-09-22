@@ -128,17 +128,17 @@ function sectionPortrait(ctx) {
   contenu.appendChild(texte);
   contenu.appendChild(ui.el('div', { class: 'tirage' }, [
     ui.el('button', {
-      type: 'button', class: 'bouton bouton-petit',
+      type: 'button', class: 'bouton bouton-petit bouton-secondaire',
       onclick: async () => {
         try {
           await navigator.clipboard.writeText(texte.value);
-          message.textContent = 'Texte copié : collez-le dans ChatGPT.';
+          message.textContent = 'Prompt copié : collez-le dans ChatGPT.';
         } catch (e) {
           texte.select();
           message.textContent = 'Copiez-le à la main (Ctrl+C) : le presse-papiers est bloqué.';
         }
       },
-    }, 'Copier le texte'),
+    }, 'Copier le prompt'),
   ]));
 
   // 2. puis la zone où déposer l'image obtenue
@@ -179,8 +179,9 @@ function sectionPortrait(ctx) {
   zone.appendChild(ui.el('p', {}, 'Une fois votre image générée, déposez-la ici : elle ira '
     + 'sur la page annexe de votre feuille.'));
   zone.appendChild(champ);
-  zone.appendChild(ui.el('label', { class: 'bouton bouton-fichier', for: 'champ-portrait' },
-    'Choisir mon image…'));
+  zone.appendChild(ui.el('label',
+    { class: 'bouton bouton-secondaire bouton-fichier', for: 'champ-portrait' },
+    'Insérer l’image de mon personnage'));
   zone.appendChild(apercu);
   zone.appendChild(message);
   contenu.appendChild(zone);
