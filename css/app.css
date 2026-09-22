@@ -588,7 +588,146 @@ textarea { min-height: 7rem; resize: vertical; line-height: 1.5; }
 
 .trait + .trait { margin-top: 1.4rem; }
 
+/* ---------------------------------------------------------------- barre de progression */
+
+/* Purement indicative : elle situe l'étape en cours et, surtout, montre celles qui
+   restent — une valeur encore à zéro s'explique souvent par une étape à venir. */
+.progression {
+  max-width: 78rem;
+  margin: 0 auto 1.4rem;
+  padding: 0 1.2rem;
+}
+
+.progression-resume {
+  display: none;                 /* n'apparaît que sur écran étroit */
+  margin: 0 0 .5rem;
+  text-align: center;
+  font-family: Cinzel, Georgia, serif;
+  font-size: .8rem;
+  letter-spacing: .04em;
+  color: var(--or-fonce);
+}
+
+.progression-etapes {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.etape-progression {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .35rem;
+}
+
+/* le fil qui relie les pastilles */
+.etape-progression::before {
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: -50%;
+  width: 100%;
+  height: 2px;
+  background: var(--or-clair);
+}
+
+.etape-progression:first-child::before { display: none; }
+.etape-progression.faite::before, .etape-progression.courante::before { background: var(--or); }
+
+.puce-progression {
+  position: relative;
+  z-index: 1;
+  width: 21px;
+  height: 21px;
+  border: 1px solid var(--or);
+  border-radius: 50%;
+  background: var(--creme-clair);
+  color: var(--or-fonce);
+  font-family: Cinzel, Georgia, serif;
+  font-size: .7rem;
+  line-height: 19px;
+  text-align: center;
+}
+
+.nom-progression {
+  font-size: .72rem;
+  line-height: 1.2;
+  text-align: center;
+  color: var(--encre-pale);
+}
+
+.etape-progression.faite .puce-progression { background: var(--or-clair); }
+
+.etape-progression.courante .puce-progression {
+  background: var(--or);
+  border-color: var(--or-fonce);
+  color: var(--creme-clair);
+  box-shadow: 0 0 0 3px rgba(166, 124, 46, .22);
+}
+
+.etape-progression.courante .nom-progression { color: var(--or-fonce); font-weight: 600; }
+.etape-progression.a-venir .puce-progression { border-color: var(--or-clair); color: var(--encre-pale); }
+.etape-progression.a-venir .nom-progression { opacity: .7; }
+
+/* ---------------------------------------------------------------- vignette musique */
+
+.musique {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 20;
+}
+
+.musique-bouton {
+  display: flex;
+  align-items: center;
+  gap: .45rem;
+  padding: .45rem .85rem;
+  font-family: Cinzel, Georgia, serif;
+  font-size: .78rem;
+  letter-spacing: .05em;
+  color: var(--or-fonce);
+  background: var(--creme-clair);
+  border: 1px solid var(--or);
+  border-radius: 999px;
+  box-shadow: var(--ombre);
+  cursor: pointer;
+}
+
+.musique-bouton:hover { background: var(--parchemin); }
+.musique-bouton:focus-visible { outline: 3px solid var(--or-clair); }
+
+.musique-symbole { position: relative; font-size: 1.05rem; line-height: 1; }
+
+/* barre oblique sur la note quand le son est coupé */
+.musique-bouton.muet { color: var(--encre-pale); border-color: var(--or-clair); }
+
+.musique-bouton.muet .musique-symbole::after {
+  content: '';
+  position: absolute;
+  left: -3px;
+  top: 50%;
+  width: 17px;
+  height: 1.5px;
+  background: currentColor;
+  transform: rotate(-45deg);
+}
+
 @media (max-width: 62rem) {
   .application { grid-template-columns: minmax(0, 1fr); }
   .fiche { position: static; }
+}
+
+/* écran étroit : les dix noms ne tiennent pas, la ligne de résumé prend le relais */
+@media (max-width: 46rem) {
+  .progression-resume { display: block; }
+  .nom-progression { display: none; }
+  .puce-progression { width: 13px; height: 13px; font-size: 0; }
+  .etape-progression::before { top: 6px; }
+  .pied { padding-bottom: 4.5rem; }
 }

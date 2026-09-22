@@ -177,3 +177,68 @@ les données du livre n'ont pas bougé ; les 24 tests restent au vert.
   personnage a trop d'armes ! » ne s'affiche qu'au-delà, en filet de sécurité.
 * **Descriptions** : celle de la famille disparaît de l'écran Profil (seul l'apport chiffré
   reste) ; celles du profil et du peuple sont conservées, elles aident à choisir.
+
+## 9. Barre de progression, musique et capacités lisibles (22 septembre 2026)
+
+Après une vraie partie de test : Taïna a créé Ninquessa (elfe haute magicienne) de bout en
+bout sur le site publié. Trois demandes de Valentin, et un défaut trouvé en chemin.
+
+### Les capacités débordaient de leur case
+
+Deux défauts distincts sur la feuille de Ninquessa, pas un seul :
+
+1. **Débordement horizontal.** Sur « Armure de mana », les mots de fin de ligne passaient
+   par-dessus le filet doré et mordaient sur la colonne voisine. Cause : pdf-lib coupait les
+   lignes lui-même, sur un cadre légèrement plus large que le filet imprimé — les six blocs
+   de voies de la page 2 ne sont séparés que de 2,4 pt. Corrigé en coupant les lignes nous-
+   mêmes avant de les lui donner, avec 4,5 pt de marge de chaque côté (`MARGE_CHAMP`).
+2. **Texte amputé.** La case se terminait par « Ce sort […] » : la règle était coupée au
+   milieu. Ce n'était pas un cas isolé — mesuré sur les 140 capacités de rang 1 et 2 du
+   livre, **74 ne tiennent pas** dans la case et 33 la dépassent franchement. La case fait
+   environ 330 caractères à 4 pt, une taille déjà illisible en jeu.
+
+Agrandir la case est impossible : la mise en page de la feuille officielle est fixe.
+**Décision de Valentin : le texte complet part en annexe**, plutôt qu'un résumé maison qui
+aurait réécrit des règles de Black Book avec mes mots.
+
+* Le plancher de police des cases de capacités passe de 4 à **6 pt** (`TAILLE_CAPACITE_MIN`).
+* On y écrit des **phrases entières** tant qu'elles rentrent, jamais un mot coupé, suivies de
+  « (suite en annexe) » dès qu'il manque quelque chose. La flèche « → » a dû être abandonnée :
+  la police standard du PDF ne sait pas l'écrire (WinAnsi).
+* Nouvelle page annexe **« Les capacités de … »**, placée juste après la page 2 : texte
+  intégral du livre à 9,5 pt, avec en bas le rappel des seules mentions employées par le
+  personnage (L, A, M, G, sort), pris dans `data/aide.json`.
+
+### Les pages annexes ne coupent plus en silence
+
+L'ancienne page annexe s'arrêtait net (`if (y < 50) return;`) : une histoire un peu longue
+disparaissait sans un mot. Un petit rédacteur (`redacteur()`) tient désormais la position et
+ouvre une page de plus quand le bas est atteint. Vérifié avec une histoire de 26 paragraphes :
+8 pages, dernier paragraphe intact.
+
+### Barre de progression
+
+Dix étapes nommées sous le bandeau. **Purement indicative** (choix de Valentin) : elle ne se
+clique pas. Cachée sur l'accueil ; sous 46 rem, les noms cèdent la place à une ligne
+« Étape 5 sur 10 — Caractéristiques » au-dessus de dix pastilles.
+
+Elle répond à une question posée pendant la partie de test : « mes caractéristiques sont à
+zéro, je comprends pas ». Voir plus loin que l'étape en cours suffit à comprendre.
+
+### Musique
+
+Le mp3 fourni faisait **291 Mo** (2 h 01 en 320 kb/s) : GitHub refuse au-delà de 100 Mo. Ré-
+encodé en 80 kb/s → `assets/musique.mp3`, 69 Mo, servi en streaming. L'original reste en local
+et est exclu par `.gitignore`.
+
+Vignette en bas à droite, **éteinte au démarrage** : aucun navigateur n'autorise le son avant
+un geste du joueur. Le choix est retenu (`localStorage`), et s'il avait la musique allumée, on
+la reprend à son premier clic dans la page, quel qu'il soit.
+
+### La feuille de Ninquessa
+
+Refaite à l'identique avec les corrections. L'état du personnage a été reconstitué depuis son
+PDF (toutes les valeurs y étaient lisibles) et son portrait extrait du fichier ; les valeurs
+calculées correspondent exactement à sa feuille d'origine : PV 7, DEF 11, Init. 11, PC 3,
+PM 4, DR 3d6, attaques 0 / +2 / +2, caractéristiques +1 +1 -1 +1 +1 +3 +1. Elle avait utilisé
+la répartition libre (7 points pile).

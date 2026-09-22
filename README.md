@@ -47,9 +47,15 @@ La page de tests du moteur de règles est à l'adresse
 | Histoire | Une demi-page qui justifie les quatre traits |
 | Récapitulatif | La fiche complète, le prompt d'image, le portrait, le PDF |
 
-Le panneau « Fiche en construction », à droite, recalcule tout en direct ; chaque ligne porte
-un « ? » qui explique à quoi sert la valeur. L'application vouvoie le joueur d'un bout à
+Une barre de progression en haut situe l'étape en cours et montre celles qui restent. Le
+panneau « Fiche en construction », à droite, recalcule tout en direct ; chaque ligne porte un
+« ? » qui explique à quoi sert la valeur. L'application vouvoie le joueur d'un bout à
 l'autre — un script le vérifie (voir « Contrôles »).
+
+Le PDF produit fait quatre pages : la feuille officielle (deux pages), **« Les capacités
+de … »** avec le texte complet du livre, et **« Histoire de … »** avec le portrait. Les cases
+de capacités de la feuille sont trop petites pour tout accueillir : elles portent un renvoi
+« (suite en annexe) ». Une longue histoire ouvre une page de plus plutôt que d'être coupée.
 
 ---
 
@@ -63,6 +69,24 @@ image manque, la carte affiche un visuel de secours.
 
 La carte des Terres d'Osgild de l'écran de bienvenue est déjà en place
 (`images/carte-osgild.jpg`) : pour la remplacer, écrase le fichier en gardant le nom.
+
+## Changer la musique
+
+Le morceau servi aux joueurs est `assets/musique.mp3` (2 h 01, 80 kb/s, 69 Mo). Il se lit en
+streaming : le navigateur ne télécharge que ce qu'il joue. La vignette en bas à droite
+l'allume et l'éteint, et le choix est retenu d'une visite à l'autre.
+
+Elle démarre toujours éteinte : aucun navigateur n'autorise le son tant que le joueur n'a
+rien cliqué. S'il l'avait allumée la fois d'avant, elle repart à son premier clic dans la page.
+
+Pour la remplacer, ré-encode ton fichier et écrase `assets/musique.mp3` en gardant le nom :
+
+```bash
+cd /Users/valentingerard/Claude_code/app_jdr && ffmpeg -i "ton-fichier.mp3" -vn -c:a libmp3lame -b:a 80k -map_metadata -1 assets/musique.mp3
+```
+
+**Ne pousse pas un fichier de plus de 100 Mo** : GitHub le refuse. À 80 kb/s, ça laisse un peu
+plus de deux heures et demie de musique.
 
 ## Modifier la table des bizarreries
 
@@ -121,10 +145,13 @@ js/state.js             état du personnage et brouillon localStorage
 js/data.js              chargement et assemblage des données
 js/ui.js                cartes, infobulles, blocs repliables
 js/dice.js              dés animés
-js/pdf.js               remplissage de la feuille + page annexe
+js/musique.js           la vignette de musique d'ambiance
+js/pdf.js               remplissage de la feuille + les deux pages annexes
 js/pdf-repair.js        réparation des champs de la feuille (voir ci-dessous)
 js/prompt.js            prompt d'image du personnage
 js/steps/*.js           les onze écrans
+js/main.js              routeur d'écrans, barre de progression, panneau latéral
+assets/                 la feuille officielle, la carte des champs, la musique
 data/                   données de jeu (JSON)
 tests/tests.html        tests du moteur, à ouvrir dans le navigateur
 tools/                  outils de développement (extraction, contrôles)

@@ -1,5 +1,10 @@
 /* Remplissage de la feuille de personnage officielle (assets/feuille.pdf) avec pdf-lib,
-   puis ajout d'une page annexe « Histoire de … » avec le portrait.
+   puis ajout de deux pages annexes : « Les capacités de … » et « Histoire de … ».
+
+   Les cases de capacités de la feuille sont petites : sur les 140 capacités de rang 1 et 2
+   du livre, la moitié n'y tient pas à une taille lisible. On y écrit donc des phrases
+   entières tant qu'elles rentrent à 6 pt, suivies d'un renvoi, et le texte intégral part
+   sur la page annexe des capacités — aucune règle n'est réécrite ni perdue.
 
    Deux particularités de cette feuille (voir tools/verification.md) :
    — elle a été ré-enregistrée par Aperçu, il faut appeler reparerChamps() sinon rien ne
@@ -106,21 +111,20 @@ const pdf = {
         ? 'Occultisme + ' + voiePeuple.capacites[0].titre
         : titreAffiche(rang1);
       ecrire(p1.voiePeuple.titres['1'], titreRang1, 9);
-      let texteRang1 = premierParagraphe(rang1.texte);
+      let texteRang1 = rang1.texte;
       if (utiliseVoieDuMage && voiePeuple) {
         texteRang1 += '\n' + voiePeuple.capacites[0].titre + ' ('
-          + voiePeuple.nom + ') : ' + premierParagraphe(voiePeuple.capacites[0].texte);
+          + voiePeuple.nom + ') : ' + voiePeuple.capacites[0].texte;
       }
       const sousChoixPeuple = texteSousChoix(etat, DATA);
       if (sousChoixPeuple) texteRang1 += '\n' + sousChoixPeuple;
-      ecrireMultiligne(formulaire, helvetica, p1.voiePeuple.textes['1'], texteRang1, 7);
+      ecrireCapacite(formulaire, helvetica, p1.voiePeuple.textes['1'], texteRang1);
       cocher(p1.voiePeuple.cases['1'], true);
       // rang 2 de la voie du mage, s'il a été choisi
       if (utiliseVoieDuMage && etat.voies.rang2Mage && etat.voies.rang2Mage.voie === 'voie-du-mage') {
         const rang2 = DATA.voieDuMage.capacites[1];
         ecrire(p1.voiePeuple.titres['2'], titreAffiche(rang2), 9);
-        ecrireMultiligne(formulaire, helvetica, p1.voiePeuple.textes['2'],
-          premierParagraphe(rang2.texte), 7);
+        ecrireCapacite(formulaire, helvetica, p1.voiePeuple.textes['2'], rang2.texte);
         cocher(p1.voiePeuple.cases['2'], true);
       }
     }
@@ -138,13 +142,13 @@ const pdf = {
       ecrire(bloc.nomVoie, voie.nom, 9);
       const rang1 = voie.capacites[0];
       ecrire(bloc.titres['1'], titreAffiche(rang1), 9);
-      ecrireMultiligne(formulaire, helvetica, bloc.textes['1'], premierParagraphe(rang1.texte), 7);
+      ecrireCapacite(formulaire, helvetica, bloc.textes['1'], rang1.texte);
       cocher(bloc.cases['1'], true);
       // capacité de rang 2 des mages, si elle est dans cette voie
       if (etat.voies.rang2Mage && etat.voies.rang2Mage.voie === slug) {
         const rang2 = voie.capacites[1];
         ecrire(bloc.titres['2'], titreAffiche(rang2), 9);
-        ecrireMultiligne(formulaire, helvetica, bloc.textes['2'], premierParagraphe(rang2.texte), 7);
+        ecrireCapacite(formulaire, helvetica, bloc.textes['2'], rang2.texte);
         cocher(bloc.cases['2'], true);
       }
     }
@@ -155,12 +159,12 @@ const pdf = {
       const bloc = p2.voies[colonnes[colonne++]];
       ecrire(bloc.nomVoie, empruntee.voie.nom, 9);
       ecrire(bloc.titres['1'], titreAffiche(empruntee.capacite), 9);
-      ecrireMultiligne(formulaire, helvetica, bloc.textes['1'],
-        premierParagraphe(empruntee.capacite.texte), 7);
+      ecrireCapacite(formulaire, helvetica, bloc.textes['1'], empruntee.capacite.texte);
       cocher(bloc.cases['1'], true);
     }
 
-    /* ---------------------------------------------------------------- page annexe */
+    /* ---------------------------------------------------------------- pages annexes */
+    pageCapacites(doc, etat, DATA, d, helvetica, helveticaGras);
     await pageAnnexe(doc, etat, DATA, d, helvetica, helveticaGras, opts.portrait);
 
     formulaire.updateFieldAppearances(helvetica);
@@ -182,54 +186,155 @@ const pdf = {
   },
 };
 
-/* ------------------------------------------------------------------ page annexe */
+/* ------------------------------------------------------------------ pages annexes */
 
-async function pageAnnexe(doc, etat, DATA, d, police, policeGrasse, portrait) {
-  const page = doc.addPage(FORMAT_PAGE);
+/** Petit rédacteur de pages annexes : il tient la position courante et ouvre une page de
+    plus dès que le bas est atteint, pour que rien ne soit coupé en silence. */
+function redacteur(doc, police, policeGrasse) {
   const { rgb } = PDFLib;
   const marge = 38;
   const largeur = FORMAT_PAGE[0] - marge * 2;
-  let y = FORMAT_PAGE[1] - 52;
-  const or = rgb(0.65, 0.49, 0.18);
-  const encre = rgb(0.23, 0.18, 0.11);
+  const bas = 38;   // même marge qu'à gauche et à droite
+  let page = null;
+  let y = 0;
 
-  page.drawText(nettoyerWinAnsi('Histoire de ' + (etat.nom || 'ce héros')), {
-    x: marge, y, size: 17, font: policeGrasse, color: encre,
-  });
-  y -= 10;
-  page.drawLine({
-    start: { x: marge, y }, end: { x: marge + largeur, y }, thickness: 1, color: or,
-  });
-  y -= 20;
+  const r = {
+    marge,
+    largeur,
+    or: rgb(0.65, 0.49, 0.18),
+    encre: rgb(0.23, 0.18, 0.11),
+
+    get page() { return page; },
+    get y() { return y; },
+    set y(valeur) { y = valeur; },
+
+    nouvellePage() {
+      page = doc.addPage(FORMAT_PAGE);
+      y = FORMAT_PAGE[1] - 52;
+      return page;
+    },
+
+    /** Ouvre une page de plus s'il ne reste pas la hauteur demandée. */
+    place(hauteur) {
+      if (!page || y - hauteur < bas) r.nouvellePage();
+    },
+
+    titre(texte) {
+      r.place(34);
+      page.drawText(nettoyerWinAnsi(texte), {
+        x: marge, y, size: 17, font: policeGrasse, color: r.encre,
+      });
+      y -= 10;
+      page.drawLine({
+        start: { x: marge, y }, end: { x: marge + largeur, y }, thickness: 1, color: r.or,
+      });
+      y -= 20;
+    },
+
+    /** Petit intitulé doré, du genre « Idéal » ou « Voie du bouclier — rang 1 ». */
+    intertitre(texte) {
+      page.drawText(nettoyerWinAnsi(texte), {
+        x: marge, y, size: 9, font: policeGrasse, color: r.or,
+      });
+      y -= 13;
+    },
+
+    texte(contenu, options) {
+      const o = options || {};
+      const taille = o.taille || 10;
+      const interligne = taille * 1.35;
+      const fonte = o.gras ? policeGrasse : police;
+      for (const paragraphe of String(contenu).split('\n')) {
+        if (!paragraphe.trim()) { y -= taille * 0.6; continue; }
+        for (const ligne of couper(nettoyerWinAnsi(paragraphe), fonte, taille, o.largeur || largeur)) {
+          r.place(interligne);
+          page.drawText(ligne, {
+            x: marge, y, size: taille, font: fonte, color: o.couleur || r.encre,
+          });
+          y -= interligne;
+        }
+      }
+    },
+
+    espace(hauteur) { y -= hauteur; },
+  };
+  return r;
+}
+
+/** Page « Les capacités de … » : le texte intégral du livre, à une taille lisible.
+    C'est elle que visent les renvois « suite en annexe » des cases de la feuille. */
+function pageCapacites(doc, etat, DATA, d, police, policeGrasse) {
+  if (!d.capacites.length) return;
+  const r = redacteur(doc, police, policeGrasse);
+  r.nouvellePage();
+  r.titre('Les capacités de ' + (etat.nom || 'ce héros'));
+  r.texte('Le texte complet, tel qu’il est écrit dans le livre : les cases de la feuille '
+    + 'sont trop petites pour l’accueillir en entier.', { taille: 9, couleur: r.or });
+  r.espace(14);
+
+  for (const acquise of d.capacites) {
+    r.place(56);      // de quoi poser l'intitulé, le titre et le début du texte ensemble
+    r.intertitre(acquise.voie.nom + ' — rang ' + acquise.capacite.rang);
+    r.texte(titreAffiche(acquise.capacite), { taille: 12, gras: true });
+    r.espace(3);
+    r.texte(acquise.capacite.texte, { taille: 9.5 });
+    r.espace(14);
+  }
+
+  // rappel des mentions employées par ces capacités, et d'elles seules
+  const termes = (DATA.aide && DATA.aide.termes) || {};
+  const mentions = [];
+  const vues = {};
+  for (const acquise of d.capacites) {
+    for (const tag of acquise.capacite.tags || []) {
+      if (termes[tag] && !vues[tag]) { vues[tag] = true; mentions.push(termes[tag].titre); }
+    }
+    if (acquise.capacite.sort && termes.sort && !vues.sort) {
+      vues.sort = true;
+      mentions.push(termes.sort.titre);
+    }
+  }
+  if (mentions.length) {
+    r.espace(4);
+    r.texte(mentions.join('  ·  '), { taille: 8, couleur: r.or });
+  }
+}
+
+/** Page « Histoire de … » : les traits, le portrait et le récit. */
+async function pageAnnexe(doc, etat, DATA, d, police, policeGrasse, portrait) {
+  const r = redacteur(doc, police, policeGrasse);
+  const page = r.nouvellePage();
+  r.titre('Histoire de ' + (etat.nom || 'ce héros'));
 
   const profil = DATA.profils[etat.profil];
   const peuple = DATA.peuples[etat.peuple];
-  page.drawText(nettoyerWinAnsi([peuple.nom, profil.nom.toLowerCase(), 'niveau 1'].join(', ')), {
-    x: marge, y, size: 10, font: police, color: encre,
-  });
-  y -= 22;
+  r.texte([peuple.nom, profil.nom.toLowerCase(), 'niveau 1'].join(', '), { taille: 10 });
+  r.espace(9);
 
-  // portrait à droite, s'il y en a un
-  let largeurTexte = largeur;
+  // portrait à droite, s'il y en a un : le texte se resserre tant qu'il court à sa hauteur
+  let largeurTexte = r.largeur;
+  let basDuPortrait = 0;
   if (portrait) {
     try {
       const image = await doc.embedJpg(portrait);
-      const largeurImage = Math.round(largeur / 3);
+      const largeurImage = Math.round(r.largeur / 3);
       const hauteurImage = Math.round(largeurImage * image.height / image.width);
-      page.drawImage(image, {
-        x: marge + largeur - largeurImage, y: y - hauteurImage + 8,
-        width: largeurImage, height: hauteurImage,
-      });
+      const x = r.marge + r.largeur - largeurImage;
+      const yImage = r.y - hauteurImage + 8;
+      page.drawImage(image, { x, y: yImage, width: largeurImage, height: hauteurImage });
       page.drawRectangle({
-        x: marge + largeur - largeurImage, y: y - hauteurImage + 8,
-        width: largeurImage, height: hauteurImage,
-        borderColor: or, borderWidth: 0.8,
+        x, y: yImage, width: largeurImage, height: hauteurImage,
+        borderColor: r.or, borderWidth: 0.8,
       });
-      largeurTexte = largeur - largeurImage - 16;
+      largeurTexte = r.largeur - largeurImage - 16;
+      basDuPortrait = yImage;
     } catch (e) {
       console.warn('Portrait non intégré :', e.message);
     }
   }
+
+  /** Largeur utile : resserrée tant qu'on écrit à côté du portrait. */
+  const largeurCourante = () => (r.page === page && r.y > basDuPortrait ? largeurTexte : r.largeur);
 
   const traits = [
     ['Idéal', etat.touche.ideal],
@@ -239,39 +344,25 @@ async function pageAnnexe(doc, etat, DATA, d, police, policeGrasse, portrait) {
   ];
   for (const [libelle, valeur] of traits) {
     if (!valeur) continue;
-    page.drawText(nettoyerWinAnsi(libelle), { x: marge, y, size: 9, font: policeGrasse, color: or });
-    y -= 12;
-    for (const ligne of couper(nettoyerWinAnsi(valeur), police, 10, largeurTexte)) {
-      page.drawText(ligne, { x: marge, y, size: 10, font: police, color: encre });
-      y -= 13;
-    }
-    y -= 4;
+    r.place(30);
+    r.intertitre(libelle);
+    r.texte(valeur, { taille: 10, largeur: largeurCourante() });
+    r.espace(4);
   }
 
-  y -= 6;
   if (etat.histoire) {
-    page.drawText('Son histoire', { x: marge, y, size: 9, font: policeGrasse, color: or });
-    y -= 14;
+    r.espace(6);
+    r.place(30);
+    r.intertitre('Son histoire');
     for (const paragraphe of etat.histoire.split('\n')) {
-      if (!paragraphe.trim()) { y -= 8; continue; }
-      const largeurCourante = y > (portrait ? FORMAT_PAGE[1] - 300 : 0) ? largeurTexte : largeur;
-      for (const ligne of couper(nettoyerWinAnsi(paragraphe), police, 10.5, largeurCourante)) {
-        if (y < 50) return;
-        page.drawText(ligne, { x: marge, y, size: 10.5, font: police, color: encre });
-        y -= 14;
-      }
-      y -= 4;
+      if (!paragraphe.trim()) { r.espace(8); continue; }
+      r.texte(paragraphe, { taille: 10.5, largeur: largeurCourante() });
+      r.espace(4);
     }
   }
 }
 
 /* ------------------------------------------------------------------ textes composés */
-
-/** Les cases de la feuille sont petites : on y met le premier paragraphe de la capacité,
-    celui qui porte la règle ; les exemples et les variantes restent dans l'application. */
-function premierParagraphe(texte) {
-  return String(texte || '').split('\n')[0];
-}
 
 function titreAffiche(capacite) {
   const tags = (capacite.tags || []).map((t) => '(' + t + ')').join('');
@@ -374,10 +465,9 @@ function couper(texte, police, taille, largeur) {
   return lignes;
 }
 
-/** Fixe la taille de police du champ. Certains champs de cette feuille (« Niv ») n'ont pas
+/** Applique une taille de police. Certains champs de cette feuille (« Niv ») n'ont pas
     d'apparence par défaut : pdf-lib refuse alors setFontSize, on lui en donne une. */
-function ajusterTaille(champ, texte, police, max) {
-  const taille = tailleQuiRentre(champ, texte, police, max);
+function fixerTaille(champ, taille) {
   try {
     champ.setFontSize(taille);
   } catch (e) {
@@ -390,49 +480,125 @@ function ajusterTaille(champ, texte, police, max) {
   }
 }
 
+function ajusterTaille(champ, texte, police, max, min) {
+  fixerTaille(champ, tailleQuiRentre(champ, texte, police, max, min));
+}
+
 const TAILLE_MINIMALE = 4;
+const TAILLE_CAPACITE_MAX = 7;
+const TAILLE_CAPACITE_MIN = 6;   // en dessous, la case n'est plus lisible en jeu
+const RENVOI_ANNEXE = ' (suite en annexe)';   // la police de la feuille ignore les flèches
 
 /** Plus grande taille de police (≤ max) qui fait tenir le texte dans le champ. */
-function tailleQuiRentre(champ, texte, police, max) {
+function tailleQuiRentre(champ, texte, police, max, min) {
+  const plancher = min || TAILLE_MINIMALE;
   const boite = boiteDuChamp(champ);
   if (!boite) return max;
-  for (let taille = max; taille >= TAILLE_MINIMALE; taille -= 0.5) {
-    const lignes = couper(texte, police, taille, boite.largeur);
-    if (lignes.length * taille * 1.16 <= boite.hauteur) return taille;
+  for (let taille = max; taille >= plancher; taille -= 0.5) {
+    if (couper(texte, police, taille, boite.largeur).length * taille * 1.16 <= boite.hauteur) {
+      return taille;
+    }
   }
-  return TAILLE_MINIMALE;
+  return plancher;
 }
+
+/* Marge de sécurité de part et d'autre du texte. Les cadres de la page 2 se touchent
+   presque (2,4 pt entre deux colonnes) : sans cette marge, un mot de fin de ligne mord
+   sur la colonne voisine, comme on l'a vu sur la feuille de Ninquessa. */
+const MARGE_CHAMP = 9;
 
 function boiteDuChamp(champ) {
   const widgets = champ.acroField.getWidgets();
   if (!widgets.length) return null;
   const rect = widgets[0].getRectangle();
-  return { largeur: Math.max(10, rect.width - 4), hauteur: Math.max(6, rect.height - 2) };
+  return {
+    largeur: Math.max(10, rect.width - MARGE_CHAMP),
+    hauteur: Math.max(6, rect.height - 3),
+  };
 }
 
-/** Coupe un texte trop long pour le champ, même à la taille minimale (les capacités
-    entières restent lisibles dans l'application et dans le livre). */
-function tronquerPourChamp(champ, texte, police) {
+/** Découpe un texte en phrases, pour ne jamais couper une règle au milieu. */
+function phrases(texte) {
+  const sortie = [];
+  let courante = '';
+  for (const mot of String(texte).split(/\s+/).filter(Boolean)) {
+    courante = courante ? courante + ' ' + mot : mot;
+    if (/[.!?]$/.test(mot) && !/(^|\s)(cf|etc|ex|p|pp|M|Mme|env)\.$/.test(mot)) {
+      sortie.push(courante);
+      courante = '';
+    }
+  }
+  if (courante) sortie.push(courante);
+  return sortie;
+}
+
+/** Ce qu'on peut écrire dans la case sans descendre sous 6 pt : des phrases entières,
+    et un renvoi vers la page annexe dès qu'il manque quelque chose. */
+function texteQuiRentre(champ, texteComplet, police) {
   const boite = boiteDuChamp(champ);
-  if (!boite) return texte;
-  const lignesMax = Math.floor(boite.hauteur / (TAILLE_MINIMALE * 1.16));
-  const lignes = couper(texte, police, TAILLE_MINIMALE, boite.largeur);
-  if (lignes.length <= lignesMax) return texte;
-  const gardees = lignes.slice(0, Math.max(1, lignesMax));
-  const dernier = gardees.pop().replace(/\s+\S*$/, '');
-  gardees.push(dernier + ' […]');
-  return gardees.join(' ');
+  if (!boite) return texteComplet;
+  const tient = (t) => couper(t, police, TAILLE_CAPACITE_MIN, boite.largeur).length
+    * TAILLE_CAPACITE_MIN * 1.16 <= boite.hauteur;
+  if (tient(texteComplet)) return texteComplet;
+
+  let garde = '';
+  for (const phrase of phrases(texteComplet)) {
+    const essai = garde ? garde + ' ' + phrase : phrase;
+    if (!tient(essai + RENVOI_ANNEXE)) break;
+    garde = essai;
+  }
+  if (garde) return garde + RENVOI_ANNEXE;
+
+  // même la première phrase est trop longue : on retire des mots jusqu'à ce que ça tienne
+  const mots = String(texteComplet).split(/\s+/).filter(Boolean);
+  let n = mots.length;
+  while (n > 1 && !tient(mots.slice(0, n).join(' ') + ' […]' + RENVOI_ANNEXE)) n--;
+  return mots.slice(0, n).join(' ') + ' […]' + RENVOI_ANNEXE;
 }
 
-/** Champ multiligne : on active le retour à la ligne puis on ajuste la taille. */
-function ecrireMultiligne(formulaire, police, nom, texte, tailleMax) {
-  if (!nom) return;
-  let champ;
-  try { champ = formulaire.getTextField(nom); } catch (e) { console.warn('champ absent :', nom); return; }
-  const propre = tronquerPourChamp(champ, nettoyerWinAnsi(texte || ''), police);
+/** Case de capacité de la feuille. On coupe les lignes nous-mêmes avant de les donner à
+    pdf-lib : sa propre découpe se fait sur un cadre un peu plus large que le filet
+    imprimé, et les derniers mots débordaient sur la colonne d'à côté. */
+function ecrireCapacite(formulaire, police, nom, texteComplet) {
+  const champ = champDeTexte(formulaire, nom);
+  if (!champ) return;
+  const propre = nettoyerWinAnsi(texteComplet || '');
+  if (!propre) { champ.setText(''); return; }
+  const visible = texteQuiRentre(champ, propre, police);
+  const taille = tailleQuiRentre(champ, visible, police, TAILLE_CAPACITE_MAX, TAILLE_CAPACITE_MIN);
+  const boite = boiteDuChamp(champ);
   champ.enableMultiline();
-  champ.setText(propre);
-  if (propre) ajusterTaille(champ, propre, police, tailleMax || 7);
+  champ.setText(boite ? couper(visible, police, taille, boite.largeur).join('\n') : visible);
+  fixerTaille(champ, taille);
+}
+
+/** Champ multiligne ordinaire (description, équipement) : texte coupé aux mots si besoin. */
+function ecrireMultiligne(formulaire, police, nom, texte, tailleMax) {
+  const champ = champDeTexte(formulaire, nom);
+  if (!champ) return;
+  const propre = nettoyerWinAnsi(texte || '');
+  champ.enableMultiline();
+  if (!propre) { champ.setText(''); return; }
+  const taille = tailleQuiRentre(champ, propre, police, tailleMax || 7);
+  const boite = boiteDuChamp(champ);
+  let lignes = boite ? couper(propre, police, taille, boite.largeur) : [propre];
+  const lignesMax = boite ? Math.max(1, Math.floor(boite.hauteur / (taille * 1.16))) : lignes.length;
+  if (lignes.length > lignesMax) {
+    lignes = lignes.slice(0, lignesMax);
+    lignes[lignes.length - 1] = lignes[lignes.length - 1].replace(/\s+\S*$/, '') + ' […]';
+  }
+  champ.setText(lignes.join('\n'));
+  fixerTaille(champ, taille);
+}
+
+function champDeTexte(formulaire, nom) {
+  if (!nom) return null;
+  try {
+    return formulaire.getTextField(nom);
+  } catch (e) {
+    console.warn('champ absent :', nom);
+    return null;
+  }
 }
 
 if (typeof window !== 'undefined') window.pdf = pdf;

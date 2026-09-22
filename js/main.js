@@ -10,6 +10,12 @@ window.ETAPES = window.ETAPES || {};
 
 /* Numérotation des écrans : 0 accueil · 1 bienvenue · 2 sexe · 3 profil · 4 peuple ·
    5 caractéristiques · 6 voies · 7 équipement · 8 touche finale · 9 histoire · 10 récap. */
+
+/* Libellés courts de la barre de progression, dans l'ordre des écrans 1 à 10. Elle est
+   seulement indicative : voir toute la route, et notamment les étapes à venir, évite de
+   s'inquiéter d'une valeur encore à zéro parce qu'elle se décide plus loin. */
+const ETIQUETTES = ['Bienvenue', 'Sexe', 'Profil', 'Peuple', 'Caractéristiques', 'Voies',
+  'Barda', 'Touche finale', 'Histoire', 'Fiche'];
 const app = {
   DATA: null,
   derniereEtape: 10,
@@ -63,6 +69,7 @@ const app = {
     suivant.textContent = numero === app.derniereEtape ? 'Terminé' : 'Suivant →';
     suivant.hidden = numero === app.derniereEtape;
 
+    app.majProgression(numero);
     document.getElementById('application').classList.toggle('sans-fiche', !!etape.sansFiche);
     document.getElementById('fiche').hidden = !!etape.sansFiche;
     app.majFiche();
@@ -85,6 +92,30 @@ const app = {
     zone.textContent = erreurs.length ? erreurs[0] : '';
     suivant.disabled = erreurs.length > 0;
     return erreurs;
+  },
+
+  /* ---------------------------------------------------------------- progression */
+
+  majProgression(numero) {
+    const barre = document.getElementById('progression');
+    barre.hidden = numero < 1;
+    if (barre.hidden) return;
+
+    document.getElementById('progression-resume').textContent =
+      'Étape ' + numero + ' sur ' + ETIQUETTES.length + ' — ' + ETIQUETTES[numero - 1];
+
+    const liste = ui.vider(document.getElementById('progression-etapes'));
+    ETIQUETTES.forEach((libelle, index) => {
+      const rang = index + 1;
+      const etat = rang < numero ? 'faite' : (rang === numero ? 'courante' : 'a-venir');
+      liste.appendChild(ui.el('li', {
+        class: 'etape-progression ' + etat,
+        'aria-current': rang === numero ? 'step' : null,
+      }, [
+        ui.el('span', { class: 'puce-progression' }, rang < numero ? '✓' : String(rang)),
+        ui.el('span', { class: 'nom-progression' }, libelle),
+      ]));
+    });
   },
 
   /* ---------------------------------------------------------------- panneau fiche */
@@ -148,5 +179,8 @@ document.getElementById('suivant').addEventListener('click', () => {
   app.afficher(Math.min(app.derniereEtape, state.courant.etape + 1));
 });
 
-document.addEventListener('DOMContentLoaded', () => app.demarrer());
+document.addEventListener('DOMContentLoaded', () => {
+  musique.init();
+  app.demarrer();
+});
 window.app = app;

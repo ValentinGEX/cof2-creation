@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/app.css?v=5">
+<link rel="stylesheet" href="css/app.css?v=6">
 </head>
 <body>
 
@@ -19,6 +19,11 @@
     <span class="ornement">❧</span>
   </div>
 </header>
+
+<nav id="progression" class="progression" aria-label="Progression de la création" hidden>
+  <p id="progression-resume" class="progression-resume"></p>
+  <ol id="progression-etapes" class="progression-etapes"></ol>
+</nav>
 
 <main id="application" class="application">
   <section id="ecran" class="ecran cadre" aria-live="polite">
@@ -44,26 +49,35 @@
 
 <div id="infobulle" class="infobulle" role="tooltip" hidden></div>
 
-<script src="vendor/pdf-lib.min.js?v=5"></script>
-<script src="js/pdf-repair.js?v=5"></script>
-<script src="js/rules.js?v=5"></script>
-<script src="js/state.js?v=5"></script>
-<script src="js/data.js?v=5"></script>
-<script src="js/ui.js?v=5"></script>
-<script src="js/dice.js?v=5"></script>
-<script src="js/prompt.js?v=5"></script>
-<script src="js/pdf.js?v=5"></script>
-<script src="js/steps/accueil.js?v=5"></script>
-<script src="js/steps/prologue.js?v=5"></script>
-<script src="js/steps/sexe.js?v=5"></script>
-<script src="js/steps/profil.js?v=5"></script>
-<script src="js/steps/peuple.js?v=5"></script>
-<script src="js/steps/caracs.js?v=5"></script>
-<script src="js/steps/voies.js?v=5"></script>
-<script src="js/steps/equipement.js?v=5"></script>
-<script src="js/steps/touche.js?v=5"></script>
-<script src="js/steps/histoire.js?v=5"></script>
-<script src="js/steps/recap.js?v=5"></script>
-<script src="js/main.js?v=5"></script>
+<div id="musique" class="musique" hidden>
+  <button type="button" id="musique-bouton" class="musique-bouton" aria-pressed="false">
+    <span id="musique-symbole" class="musique-symbole" aria-hidden="true">♪</span>
+    <span class="musique-libelle">Musique</span>
+  </button>
+  <audio id="musique-audio" loop preload="none" src="assets/musique.mp3"></audio>
+</div>
+
+<script src="vendor/pdf-lib.min.js?v=6"></script>
+<script src="js/pdf-repair.js?v=6"></script>
+<script src="js/rules.js?v=6"></script>
+<script src="js/state.js?v=6"></script>
+<script src="js/data.js?v=6"></script>
+<script src="js/ui.js?v=6"></script>
+<script src="js/dice.js?v=6"></script>
+<script src="js/prompt.js?v=6"></script>
+<script src="js/pdf.js?v=6"></script>
+<script src="js/steps/accueil.js?v=6"></script>
+<script src="js/steps/prologue.js?v=6"></script>
+<script src="js/steps/sexe.js?v=6"></script>
+<script src="js/steps/profil.js?v=6"></script>
+<script src="js/steps/peuple.js?v=6"></script>
+<script src="js/steps/caracs.js?v=6"></script>
+<script src="js/steps/voies.js?v=6"></script>
+<script src="js/steps/equipement.js?v=6"></script>
+<script src="js/steps/touche.js?v=6"></script>
+<script src="js/steps/histoire.js?v=6"></script>
+<script src="js/steps/recap.js?v=6"></script>
+<script src="js/musique.js?v=6"></script>
+<script src="js/main.js?v=6"></script>
 </body>
 </html>

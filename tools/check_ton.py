@@ -13,7 +13,8 @@ import ast, json, os, re, sys
 
 RACINE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-FICHIERS_JS = ["js/main.js", "js/rules.js", "js/ui.js", "js/dice.js"] + [
+FICHIERS_JS = ["js/main.js", "js/rules.js", "js/ui.js", "js/dice.js", "js/musique.js",
+                "js/pdf.js"] + [
     os.path.join("js", "steps", f) for f in sorted(os.listdir(os.path.join(RACINE, "js", "steps")))
     if f.endswith(".js")
 ]
